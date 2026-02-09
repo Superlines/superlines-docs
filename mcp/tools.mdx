@@ -1,0 +1,211 @@
+---
+title: Available Tools
+description: Complete reference of all MCP tools available in the Superlines MCP server.
+---
+
+The Superlines MCP server exposes 26 tools organized into categories. All tools are **read-only** — they query data but never modify your account.
+
+<Tip>
+When asking about a **specific brand**, always include the brand name in your query. The AI assistant will pass it to the `brands` parameter automatically.
+</Tip>
+
+## Brand Management
+
+### `list_brands`
+
+Lists all brands available in your account. **Always call this first** to get exact brand names for other tools.
+
+- **Parameters:** None
+- **Returns:** List of brands with IDs, names, and domains
+
+### `get_brand_details`
+
+Get detailed information about a specific brand including competitors, industry, and market settings.
+
+- **Parameters:** `domainId` (required)
+- **Returns:** Brand configuration, competitors, market settings
+
+---
+
+## Core Metrics
+
+### `analyze_metrics`
+
+Get comprehensive analytics data including Brand Visibility, Citation Rate, Mentions, Share of Voice, and Citations.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `brands` | array | Brand names to analyze |
+| `metrics` | array | `brand_visibility`, `citation_rate`, `mentions`, `share_of_voice`, `citations`, `share_of_citations`, `responses`, `tests` |
+| `startDate` / `endDate` | string | Date range (YYYY-MM-DD) |
+| `granularity` | string | `total`, `daily`, `weekly`, or `monthly` |
+| `groupBy` | array | `llm_service`, `llm_model`, `country`, `language`, `topic` |
+| `filters` | object | Additional filters |
+
+### `get_citation_data`
+
+Analyze citations at domain or URL level. Shows which domains and URLs are cited in AI responses.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `brands` | array | Brand names to analyze |
+| `aggregateBy` | string | `domain` or `url` |
+| `limit` | number | Max results (default: 100) |
+
+### `analyze_brand_mentions`
+
+Analyze brand mentions and competitor presence. Shows mention counts, sentiment scores, and share of voice.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `brands` | array | Brand names to analyze |
+| `groupBy` | array | `brand`, `llm_service`, `country`, `topic` |
+| `minMentions` | number | Minimum mentions to include (default: 1) |
+
+### `get_query_data`
+
+Analyze search queries and their metadata. Shows query text, prompt count, intent, user journey stage, and brand mentions.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `brands` | array | Brand names to analyze |
+| `filters` | object | `intent`, `userJourneyStage`, `category`, `llmService`, `country` |
+| `sortBy` | string | `query` or `prompts` |
+
+### `get_weekly_performance`
+
+Get weekly performance trends over the last N weeks with week-over-week changes.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `brands` | array | Brand names to analyze |
+| `weeksBack` | number | Number of weeks (default: 4, max: 52) |
+| `metrics` | array | Which metrics to track |
+
+---
+
+## Webpage Analysis
+
+### `webpage_crawl`
+
+Fetch and parse any webpage. Returns metadata, structured data, HTML structure, and text content.
+
+- **Parameters:** `url` (required, must include `https://`)
+
+### `webpage_audit`
+
+Full LLM-friendliness audit — technical SEO, content quality, metadata, schemas, writing quality, citations, and tone.
+
+- **Parameters:** `url` (required), `includeCodeSnippets` (default: true)
+
+### `webpage_analyze_technical`
+
+Focused technical analysis — metadata, structured data, heading structure, accessibility, technical SEO.
+
+- **Parameters:** `url` (required), `includeCodeSnippets` (default: true)
+
+### `webpage_analyze_content`
+
+Focused content analysis — heading format, content organization, data citations, tone, writing quality.
+
+- **Parameters:** `url` (required)
+
+### `schema_optimizer`
+
+Optimize Schema.org structured data. Returns quality score, proposed schemas, and implementation code.
+
+- **Parameters:** `url` (required), `includeCodeSnippets` (default: true)
+
+---
+
+## Competitive Analysis
+
+### `get_fanout_query_insights`
+
+Analyze fan-out queries — the web searches LLMs perform when answering user questions.
+
+### `get_competitive_gap`
+
+Find prompts where competitors lead or where you're winning. Includes visibility comparison and AI recommendations.
+
+### `get_top_cited_url_per_prompt`
+
+Get the #1 cited URL for each tracked prompt.
+
+### `get_best_performing_prompt`
+
+Find your best performing prompts based on visibility or citation rate.
+
+- **Key parameter:** `metric` — `visibility`, `citations`, or `both`
+
+### `get_period_comparison`
+
+Compare current period metrics vs. previous period.
+
+- **Key parameter:** `periodDays` — days per period (default: 30)
+
+### `analyze_competitor_url`
+
+Deep-dive analysis of a competitor URL. Crawls the URL and provides detailed recommendations for competing.
+
+- **Parameters:** `url` (required), `userBrand` (optional), `targetPrompt` (optional)
+
+---
+
+## Advanced Analytics
+
+### `get_competitor_insights`
+
+Top cited domains and most mentioned brands.
+
+### `analyze_sentiment`
+
+Sentiment of AI responses mentioning your brand. Shows positive/neutral/negative breakdown.
+
+- **Key parameter:** `groupBy` — `llm_service`, `topic`, or `country`
+
+### `find_content_opportunities`
+
+Topics with high query volume but low brand visibility — your biggest growth opportunities.
+
+### `get_analytics_summary`
+
+High-level analytics summary with overall metrics and top topics.
+
+---
+
+## Strategic Tools
+
+### `generate_strategic_action_plan`
+
+Generate a priority-ranked action plan with improvement potential scores.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `brands` | array | Brand names |
+| `focusArea` | string | `all`, `visibility`, `citations`, `sentiment`, `content_gaps` |
+| `maxRecommendations` | number | Max items (default: 5, max: 10) |
+
+### `get_next_actions`
+
+Get the top 3 most impactful actions to take next.
+
+---
+
+## SEO Tools (Beta)
+
+### `website_audit`
+
+Comprehensive technical SEO audit. Returns a health score (0–100) with categorized issues.
+
+- **Parameters:** `url` (required)
+
+### `keyword_research`
+
+Research a keyword for search volume, difficulty, CPC, intent, and related keyword opportunities.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `keyword` | string | Required (2–100 characters) |
+| `country` | string | Country code (default: `us`) |
+| `language` | string | Language code (default: `en`) |

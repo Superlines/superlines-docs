@@ -1,0 +1,71 @@
+---
+title: Looker Studio
+description: Connect your Superlines data to Google Looker Studio for custom dashboards and reports.
+---
+
+Superlines integrates with **Google Looker Studio** (formerly Google Data Studio), so you can build custom dashboards and reports that combine AI search visibility data with your other marketing data.
+
+## What you can do
+
+- **Custom dashboards** — build branded reports with your Superlines data
+- **Cross-platform reporting** — combine AI visibility data with Google Analytics, Search Console, and more
+- **Automated reports** — schedule email delivery of dashboards to stakeholders
+- **Team sharing** — share interactive dashboards with your team
+
+## Setup
+
+<Steps>
+  <Step title="Get your API key">
+    Go to **Organization Settings → API Keys** and generate a key.
+  </Step>
+  <Step title="Open Looker Studio">
+    Navigate to [lookerstudio.google.com](https://lookerstudio.google.com)
+  </Step>
+  <Step title="Add a data source">
+    Click **Create → Data Source** and search for the **Superlines** connector.
+  </Step>
+  <Step title="Authenticate">
+    Enter your API key when prompted.
+  </Step>
+  <Step title="Select your brand">
+    Choose the brand you want to visualize.
+  </Step>
+  <Step title="Build your report">
+    Drag and drop Superlines metrics into charts, tables, and scorecards.
+  </Step>
+</Steps>
+
+## Available data fields
+
+| Field category | Examples |
+|---|---|
+| **Metrics** | Brand Visibility, SOV, Citation Rate, Mentions, Sentiment |
+| **Dimensions** | AI Engine, Date, Prompt, Label, Country, Language |
+| **Competitor data** | Competitor names, competitor visibility, competitor citations |
+| **Citation data** | Cited domains, cited URLs, citation counts |
+
+## Dashboard ideas
+
+<CardGroup cols={2}>
+  <Card title="Executive summary" icon="chart-pie">
+    Scorecards for Brand Visibility, SOV, and Citation Rate with week-over-week trends.
+  </Card>
+  <Card title="Engine comparison" icon="chart-bar">
+    Side-by-side performance across ChatGPT, Copilot, Perplexity, and AI Overviews.
+  </Card>
+  <Card title="Competitor leaderboard" icon="trophy">
+    Ranked table of all brands by SOV with sparkline trends.
+  </Card>
+  <Card title="Topic performance" icon="tags">
+    Heatmap of visibility by topic/label across engines.
+  </Card>
+</CardGroup>
+
+<Info>
+The Looker Studio connector is available on all paid plans.
+</Info>
+
+## Resources
+
+- [Looker Studio documentation](https://support.google.com/looker-studio)
+- [Superlines connector setup guide](https://analytics.superlines.io/looker-studio)

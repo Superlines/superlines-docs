@@ -1,0 +1,98 @@
+---
+title: Organizations
+description: Manage your organization settings, subscription, and AI engine configuration.
+---
+
+An **Organization** is the top-level container in Superlines. It holds your subscription, team members, API keys, and platform-wide configuration.
+
+## Organization settings
+
+Navigate to **Organization Settings** in the sidebar to manage:
+
+| Setting | Description |
+|---|---|
+| **Organization name** | Display name used in reports, invitations, and billing |
+| **Website** | Your organization's primary website URL |
+| **Subscription plan** | Current plan (Free, Starter, Growth, Enterprise) |
+
+## Subscription & usage
+
+Your plan determines what's available across the entire organization:
+
+| Resource | Free | Starter | Growth | Enterprise |
+|---|---|---|---|---|
+| **Brands (domains)** | 1 | Multiple | Multiple | Unlimited |
+| **Tracked prompts** | 200 | Higher | Higher | Unlimited |
+| **Countries** | 1 | Multiple | Multiple | Unlimited |
+| **Languages** | 1 | Multiple | Multiple | Unlimited |
+| **Team seats** | 3 | More | More | Unlimited |
+| **AI engines** | 3 | 4+ | 6+ | All 9 |
+| **API access** | No | Yes | Yes | Yes |
+| **MCP server** | No | Yes | Yes | Yes |
+
+Usage is **aggregated** across all brands. For example, if Brand A uses 100 prompts and Brand B uses 50, your organization total is 150 prompts.
+
+<Tip>
+Monitor your usage in Organization Settings. If you're approaching limits, consider pausing unused prompts or upgrading your plan.
+</Tip>
+
+## LLM engine configuration
+
+Choose which AI platforms to monitor. Your plan determines how many you can enable simultaneously.
+
+### Available engines
+
+| Engine | Type | Plan |
+|---|---|---|
+| **ChatGPT** | Online + Offline | Free+ |
+| **Copilot** | Online | Free+ |
+| **Perplexity** | Online | Free+ |
+| **Google AI Overviews** | Online | Starter+ |
+| **Gemini** | Offline | Enterprise |
+| **Grok** | Online | Enterprise |
+| **Claude** | Offline | Enterprise |
+| **Mistral** | Offline | Enterprise |
+| **DeepSeek** | Offline | Enterprise |
+
+<Info>
+**Online engines** can access current web information and tend to cite sources. **Offline engines** rely on training data and reflect historical brand authority.
+</Info>
+
+### Engine selection tips
+
+- **Start with ChatGPT** — highest user base
+- **Add Copilot** — covers Microsoft ecosystem
+- **Add Perplexity** — strong for research-based queries
+- **Add AI Overviews** — critical for Google search integration
+- **Enterprise engines** — expand for comprehensive coverage
+
+## API keys
+
+API keys provide programmatic access to your Superlines data. Available on all paid plans.
+
+<Steps>
+  <Step title="Navigate to Organization Settings → API Keys" />
+  <Step title="Click Generate API Key">
+    A new key is created with the format `sl_live_...`
+  </Step>
+  <Step title="Copy and store the key securely">
+    Keys are shown only once at creation.
+  </Step>
+</Steps>
+
+Use keys for the [REST API](/api/authentication), [MCP server](/mcp/setup), and [Looker Studio](/integrations/looker-studio).
+
+<Warning>
+Never share API keys publicly. Store keys securely using environment variables. Rotate periodically and revoke compromised keys immediately.
+</Warning>
+
+## Permissions
+
+| Action | Owner | Admin | Member |
+|---|---|---|---|
+| View settings | ✅ | ✅ | Limited |
+| Edit organization details | ✅ | ❌ | ❌ |
+| Manage subscription/billing | ✅ | ❌ | ❌ |
+| Configure AI engines | ✅ | ✅ | ❌ |
+| Generate API keys | ✅ | ❌ | ❌ |
+| Delete organization | ✅ | ❌ | ❌ |

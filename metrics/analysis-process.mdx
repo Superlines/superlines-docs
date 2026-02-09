@@ -1,0 +1,93 @@
+---
+title: Analysis Process
+description: How Superlines collects, processes, and analyzes your AI search data.
+---
+
+Understanding how data flows through Superlines helps you interpret your metrics and make better decisions.
+
+## Daily analysis cycle
+
+Superlines runs a daily analysis cycle for each active brand:
+
+```
+Tracked Prompts → AI Engine Testing → Response Collection → Analysis → Metrics & Insights
+```
+
+<Steps>
+  <Step title="Prompt selection">
+    Active prompts for the brand are queued for testing.
+  </Step>
+  <Step title="AI engine testing">
+    Each prompt is sent to all enabled AI engines.
+  </Step>
+  <Step title="Response collection">
+    Full responses are captured (text, HTML, citations).
+  </Step>
+  <Step title="Brand detection">
+    Responses are scanned for brand mentions using the brand name, variations, and competitor names.
+  </Step>
+  <Step title="Citation extraction">
+    URLs referenced in responses are parsed and tracked.
+  </Step>
+  <Step title="Fan-out tracking">
+    Web searches performed by AI engines are captured.
+  </Step>
+  <Step title="Metric calculation">
+    Brand Visibility, SOV, Citation Rate, and other metrics are computed.
+  </Step>
+  <Step title="Insight generation">
+    Trends, alerts, and recommendations are created.
+  </Step>
+</Steps>
+
+<Note>
+This process runs **daily** for active prompts. New prompts are queued and tested within 24 hours of being added.
+</Note>
+
+## When data becomes available
+
+| Event | Timeline |
+|---|---|
+| Brand created | First results within 1–2 hours |
+| Prompt added | Tested within 24 hours |
+| Prompt paused/resumed | Takes effect immediately |
+| Engine added/removed | Takes effect from next testing cycle |
+| Data stabilization | 48 hours for reliable metrics |
+
+## Why initial numbers may fluctuate
+
+When you first create a brand or add new prompts, you may see numbers change rapidly:
+
+- **First hour** — initial results come in, percentages swing with small sample sizes
+- **First 24 hours** — more responses are collected, metrics begin to stabilize
+- **48+ hours** — enough data for reliable metrics and trend detection
+
+This is expected behavior. Superlines needs a representative sample of AI responses before metrics accurately reflect your brand's visibility.
+
+## How metrics are aggregated
+
+| Level | What it shows |
+|---|---|
+| **Per prompt** | How you perform on a specific question |
+| **Per engine** | How you perform on a specific AI platform |
+| **Per brand** | Overall brand performance across all prompts and engines |
+| **Per label** | Performance for a group of prompts sharing a label |
+| **Cross-brand** | Comparison across all your brands |
+
+## Trend detection
+
+Superlines automatically detects and surfaces:
+
+- **Week-over-week changes** in core metrics
+- **Prompt-level alerts** when visibility drops significantly
+- **Competitor movements** — new competitors gaining traction
+- **Content opportunities** — topics with high volume but low visibility
+
+These are surfaced as **Signals** on prompts (Trophy, Star, Alert, etc.) and as **Next Actions** on the dashboard.
+
+## Data retention
+
+- All response data is retained for the lifetime of your subscription
+- Historical trends are available from the moment you start tracking
+- Paused prompts retain their historical data
+- Deleted prompts retain aggregated metrics but remove raw response data

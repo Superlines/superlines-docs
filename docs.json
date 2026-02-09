@@ -1,0 +1,119 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "Superlines",
+  "description": "Monitor and optimize your brand's visibility in AI-powered search results.",
+  "colors": {
+    "primary": "#6C3DFF",
+    "light": "#EDE8FF",
+    "dark": "#1A1140"
+  },
+  "logo": {
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg",
+    "href": "https://superlines.io"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              "getting-started/introduction",
+              "getting-started/quickstart",
+              "getting-started/concepts"
+            ]
+          },
+          {
+            "group": "Account Management",
+            "icon": "gear",
+            "pages": [
+              "account/organizations",
+              "account/brands",
+              "account/prompts",
+              "account/team"
+            ]
+          },
+          {
+            "group": "Metrics & Data",
+            "icon": "chart-line",
+            "pages": [
+              "metrics/key-metrics",
+              "metrics/responses",
+              "metrics/citations",
+              "metrics/analysis-process"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "MCP & API",
+        "groups": [
+          {
+            "group": "MCP Server",
+            "icon": "plug",
+            "pages": [
+              "mcp/overview",
+              "mcp/setup",
+              "mcp/tools"
+            ]
+          },
+          {
+            "group": "REST API",
+            "icon": "code",
+            "pages": [
+              "api/authentication",
+              "api/endpoints"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "icon": "puzzle-piece",
+            "pages": [
+              "integrations/looker-studio"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "FAQ",
+        "groups": [
+          {
+            "group": "Help",
+            "pages": [
+              "faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Dashboard",
+        "href": "https://analytics.superlines.io"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://superlines.io"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/superabordi",
+      "linkedin": "https://www.linkedin.com/company/superlines/"
+    }
+  },
+  "feedback": {
+    "thumbsRating": true
+  },
+  "seo": {
+    "indexHiddenPages": false
+  }
+}

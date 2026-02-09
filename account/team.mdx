@@ -1,0 +1,75 @@
+---
+title: Team & Roles
+description: Invite team members and manage roles and permissions.
+---
+
+Superlines supports role-based access control so your whole team can collaborate with the right level of access.
+
+## Roles
+
+| Role | Description |
+|---|---|
+| **Owner** | Full platform control including billing, organization management, and team administration. Can delete the organization. |
+| **Admin** | Full analytics and monitoring access. Can manage team members (except owners), configure brands, and manage settings. Cannot access billing. |
+| **Member** | Read-only access to analytics, dashboards, and reports. Cannot modify settings or invite others. |
+
+### Detailed permissions
+
+| Action | Owner | Admin | Member |
+|---|---|---|---|
+| View analytics & dashboards | ✅ | ✅ | ✅ |
+| Export data | ✅ | ✅ | ✅ |
+| Manage prompts | ✅ | ✅ | ❌ |
+| Configure brand settings | ✅ | ✅ | ❌ |
+| Invite team members | ✅ | ✅ | ❌ |
+| Remove team members | ✅ | ✅* | ❌ |
+| Change member roles | ✅ | ❌ | ❌ |
+| Manage billing & subscription | ✅ | ❌ | ❌ |
+| Generate API keys | ✅ | ❌ | ❌ |
+| Delete organization | ✅ | ❌ | ❌ |
+
+*Admins can remove Members but not other Admins or Owners.
+
+## Inviting members
+
+<Steps>
+  <Step title="Navigate to Team Management" />
+  <Step title="Click Invite Member" />
+  <Step title="Enter their email address" />
+  <Step title="Select a role: Admin or Member" />
+  <Step title="Click Send Invitation">
+    The invitee receives an email with a sign-up/sign-in link. Once they accept, they're automatically added to your organization.
+  </Step>
+</Steps>
+
+<Tip>
+Only **Owners** and **Admins** can send invitations. Members cannot invite others.
+</Tip>
+
+## Domain-scoped access
+
+For larger organizations, you can restrict a member's access to specific brands:
+
+- **Full access** — member can see all brands in the organization
+- **Scoped access** — member only sees selected brands
+
+This is useful for agencies or enterprises where different teams manage different brands.
+
+## Seat limits
+
+| Plan | Default seats |
+|---|---|
+| Free | 3 |
+| Starter | More |
+| Growth | More |
+| Enterprise | Unlimited |
+
+If you've reached your seat limit, remove inactive members or upgrade your plan.
+
+## Best practices
+
+| Team type | Recommended structure |
+|---|---|
+| **Marketing team** | Marketing Manager (Admin), Content Team (Members), CMO (Owner) |
+| **Agency** | Agency Lead (Admin), Account Managers (Members), Client Stakeholders (Members) |
+| **Enterprise** | IT Admin (Owner), Regional Managers (Admins), Analysts (Members) |

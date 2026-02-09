@@ -1,0 +1,66 @@
+---
+title: MCP Server Overview
+description: Connect AI assistants like Claude and Cursor to your Superlines analytics data.
+---
+
+The **Superlines MCP Server** implements the [Model Context Protocol](https://modelcontextprotocol.io) (MCP) — an open standard that lets AI assistants interact with external tools and data sources.
+
+This means you can **ask questions about your AI search visibility data in natural language** directly from Claude Desktop, Cursor, VS Code, or any MCP-compatible client.
+
+## What can you do with it?
+
+<CardGroup cols={2}>
+  <Card title="Analytics & Reporting" icon="chart-bar">
+    Ask for brand audits, weekly performance trends, share of voice comparisons, and sentiment analysis — all in plain language.
+  </Card>
+  <Card title="Content Strategy" icon="pen-to-square">
+    Find content opportunities, research keywords, get prompt suggestions, and identify gaps where competitors are winning.
+  </Card>
+  <Card title="Competitor Intelligence" icon="magnifying-glass">
+    See who your top competitors are, how they compare, which prompts they dominate, and analyze their winning URLs.
+  </Card>
+  <Card title="Website Optimization" icon="wrench">
+    Audit any webpage for AI search readiness, check Schema.org markup, and get specific improvement recommendations.
+  </Card>
+</CardGroup>
+
+## Example prompts
+
+Once connected, you can ask questions like:
+
+- *"Show me my brand visibility trends for the last 8 weeks"*
+- *"Which competitors are gaining traction and on what topics?"*
+- *"Find content opportunities where I have low visibility"*
+- *"Audit my homepage for AI search readiness"*
+- *"Generate a strategic action plan to improve my AI search visibility"*
+- *"What are my best performing prompts?"*
+
+## Available tools
+
+The MCP server exposes **26 specialized tools** across these categories:
+
+| Category | Tools | Purpose |
+|---|---|---|
+| **Brand Management** | `list_brands`, `get_brand_details` | List and inspect your brands |
+| **Core Metrics** | `analyze_metrics`, `get_citation_data`, `analyze_brand_mentions`, `get_query_data`, `get_weekly_performance` | Retrieve analytics data |
+| **Webpage Analysis** | `webpage_crawl`, `webpage_audit`, `webpage_analyze_technical`, `webpage_analyze_content`, `schema_optimizer` | Analyze and optimize web pages |
+| **Competitive Analysis** | `get_fanout_query_insights`, `get_competitive_gap`, `get_top_cited_url_per_prompt`, `get_best_performing_prompt`, `get_period_comparison`, `analyze_competitor_url` | Competitive intelligence |
+| **Advanced Analytics** | `get_competitor_insights`, `analyze_sentiment`, `find_content_opportunities`, `get_analytics_summary` | Deep analytics |
+| **Strategic** | `generate_strategic_action_plan`, `get_next_actions` | AI-powered recommendations |
+| **SEO (Beta)** | `website_audit`, `keyword_research` | Technical SEO and keyword data |
+
+See the [Available Tools](/mcp/tools) page for complete documentation.
+
+## Requirements
+
+- **Paid plan** — Starter, Growth, or Enterprise
+- **API key** — generated from Organization Settings
+- **MCP client** — Claude Desktop, Cursor, VS Code, or any MCP-compatible application
+
+<Info>
+All MCP tools are **read-only** — they query your data but never modify it. Your analytics data is safe.
+</Info>
+
+<Card title="Setup Guide" icon="play" href="/mcp/setup">
+  Connect your MCP client in under 5 minutes.
+</Card>

@@ -1,0 +1,196 @@
+---
+title: API Endpoints
+description: Available REST API endpoints for accessing your Superlines data.
+---
+
+**Base URL:** `https://analytics.superlines.io/api`
+
+All endpoints require [authentication](/api/authentication) via Bearer token.
+
+## Metrics
+
+### `GET /analytics/metrics`
+
+Retrieve core metrics for a brand.
+
+**Query parameters:**
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+| `startDate` | string | No | Start date (YYYY-MM-DD) |
+| `endDate` | string | No | End date (YYYY-MM-DD) |
+| `granularity` | string | No | `total`, `daily`, `weekly`, `monthly` |
+| `metrics` | string | No | Comma-separated: `brand_visibility`, `citation_rate`, `mentions`, `share_of_voice` |
+| `groupBy` | string | No | `llm_service`, `country`, `topic` |
+
+**Example:**
+
+```bash
+curl -H "Authorization: Bearer $API_KEY" \
+  "https://analytics.superlines.io/api/analytics/metrics?domainId=abc123&startDate=2025-01-01&endDate=2025-01-31&granularity=weekly"
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "metrics": {
+      "brand_visibility": {
+        "value": 32.5,
+        "change": 2.1,
+        "trend": "up"
+      },
+      "citation_rate": {
+        "value": 18.7,
+        "change": -0.5,
+        "trend": "down"
+      },
+      "share_of_voice": {
+        "value": 22.3,
+        "change": 1.8,
+        "trend": "up"
+      }
+    }
+  }
+}
+```
+
+---
+
+## Citations
+
+### `GET /analytics/citations`
+
+Get citation data (domain or URL level).
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+| `aggregateBy` | string | No | `domain` or `url` |
+| `startDate` / `endDate` | string | No | Date range |
+| `limit` | number | No | Max results |
+
+---
+
+## Brand mentions
+
+### `GET /analytics/brand-mentions`
+
+Get brand mention data with sentiment.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+| `startDate` / `endDate` | string | No | Date range |
+| `groupBy` | string | No | `brand`, `llm_service`, `country` |
+
+---
+
+## Prompts
+
+### `GET /analytics/prompts`
+
+List tracked prompts for a brand.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+| `status` | string | No | `active`, `paused`, `all` |
+| `label` | string | No | Filter by label |
+| `limit` / `offset` | number | No | Pagination |
+
+---
+
+## Weekly performance
+
+### `GET /analytics/weekly-performance`
+
+Get week-over-week trends.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+| `weeksBack` | number | No | Number of weeks (default: 4) |
+| `metrics` | string | No | Comma-separated metrics |
+
+---
+
+## Competitors
+
+### `GET /analytics/competitor-insights`
+
+Get competitor ranking data.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+| `startDate` / `endDate` | string | No | Date range |
+| `topN` | number | No | Number of competitors (default: 10) |
+
+---
+
+## Content opportunities
+
+### `GET /analytics/content-opportunities`
+
+Find topics with high volume but low brand visibility.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+| `minMentions` | number | No | Min response count (default: 3) |
+
+---
+
+## Dashboard insights
+
+### `GET /analytics/dashboard-insights`
+
+High-level summary suitable for dashboard display.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Brand domain ID |
+
+---
+
+## Rate limits
+
+| Plan | Requests/minute |
+|---|---|
+| Starter | 60 |
+| Growth | 120 |
+| Enterprise | 300 |
+
+Exceeding the rate limit returns a `429` status code. Implement exponential backoff in your integration.
+
+## Response format
+
+All responses use this structure:
+
+```json
+{
+  "success": true,
+  "data": { ... },
+  "meta": {
+    "total": 100,
+    "limit": 10,
+    "offset": 0
+  }
+}
+```
+
+Error responses:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Invalid or expired token"
+  }
+}
+```

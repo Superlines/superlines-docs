@@ -1,0 +1,188 @@
+---
+title: MCP Setup Guide
+description: Step-by-step guide to connect Claude Desktop, Cursor, or VS Code to Superlines.
+---
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+1. A **paid Superlines plan** (Starter, Growth, or Enterprise)
+2. An **API key** from Organization Settings (format: `sl_live_...`)
+3. An MCP-compatible client installed
+
+## Connection methods
+
+| Method | Best for | Protocol |
+|---|---|---|
+| **SSE (URL-based)** | Claude Desktop, most clients | Server-Sent Events |
+| **Local npx** | Cursor, VS Code, advanced setups | Standard I/O |
+
+## Option 1: SSE / URL-based setup (Recommended)
+
+The simplest approach — just add a URL to your client's configuration.
+
+**Connection URL:**
+```
+https://mcpsse.superlines.io?token=YOUR_API_KEY
+```
+
+Replace `YOUR_API_KEY` with your actual API key.
+
+<Tabs>
+  <Tab title="Claude Desktop">
+    <Steps>
+      <Step title="Open Claude Desktop settings">
+        Go to **Settings → Developer → Edit Config** to open:
+        ```
+        ~/Library/Application Support/Claude/claude_desktop_config.json
+        ```
+      </Step>
+      <Step title="Add the Superlines server">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
+              "transport": "sse"
+            }
+          }
+        }
+        ```
+      </Step>
+      <Step title="Restart Claude Desktop">
+        Save and fully restart the app for changes to take effect.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Cursor">
+    <Steps>
+      <Step title="Open or create .cursor/mcp.json">
+        This file lives in your project root or global config directory.
+      </Step>
+      <Step title="Add the Superlines server">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
+              "transport": "sse"
+            }
+          }
+        }
+        ```
+      </Step>
+      <Step title="Restart Cursor" />
+    </Steps>
+  </Tab>
+  <Tab title="VS Code">
+    <Steps>
+      <Step title="Open your MCP configuration">
+        This depends on your MCP extension.
+      </Step>
+      <Step title="Add the Superlines server">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
+              "transport": "sse"
+            }
+          }
+        }
+        ```
+      </Step>
+      <Step title="Restart VS Code" />
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Option 2: Local npx setup
+
+For clients that prefer local process-based connections, use the npm package.
+
+<Note>
+Requires **Node.js** installed on your machine.
+</Note>
+
+<Tabs>
+  <Tab title="Claude Desktop">
+    ```json
+    {
+      "mcpServers": {
+        "superlines": {
+          "command": "npx",
+          "args": ["-y", "@superlines/mcp-server"],
+          "env": {
+            "SUPERLINES_API_KEY": "YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Cursor / VS Code">
+    ```json
+    {
+      "mcpServers": {
+        "superlines": {
+          "command": "npx",
+          "args": ["-y", "@superlines/mcp-server"],
+          "env": {
+            "SUPERLINES_API_KEY": "YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Option 3: OAuth authentication
+
+For advanced integrations, Superlines supports **OAuth 2.0 with PKCE** for secure, token-based access without embedding API keys.
+
+<Accordion title="OAuth flow details">
+  1. Client initiates authorization at `/api/mcp/oauth/authorize`
+  2. User approves access and selects accessible brands
+  3. Authorization code is exchanged for tokens at `/api/mcp/oauth/token`
+  4. Access token is used for subsequent requests
+  5. Refresh tokens are available with the `offline_access` scope
+
+  OAuth is primarily used by third-party MCP clients that support the MCP OAuth flow natively. For most users, API key authentication (Option 1 or 2) is simpler.
+</Accordion>
+
+## Verify the connection
+
+After setting up your client:
+
+1. Start a new conversation
+2. Ask: *"List my Superlines brands"*
+3. The AI should call the `list_brands` tool and show your brands
+
+If it works, try:
+
+- *"Show me my brand visibility for the last 30 days"*
+- *"Who are my top competitors?"*
+- *"Find content opportunities where I have low visibility"*
+
+## Troubleshooting
+
+| Issue | Solution |
+|---|---|
+| "Tool not found" | Restart your MCP client after configuration changes |
+| "Authentication failed" | Verify your API key is correct and starts with `sl_live_` |
+| "No data returned" | Make sure you have at least one brand with tracked prompts |
+| "Connection timeout" | Check your internet connection; the SSE endpoint is at `mcpsse.superlines.io` |
+| "Plan not supported" | MCP requires a paid plan (Starter, Growth, or Enterprise) |
+
+<Warning>
+**Never share your API key publicly.** If compromised, revoke it immediately in Organization Settings and generate a new one.
+</Warning>
+
+## Resources
+
+- [NPM Package: @superlines/mcp-server](https://www.npmjs.com/package/@superlines/mcp-server)
+- [MCP Protocol Specification](https://modelcontextprotocol.io)
+- [Available Tools Reference](/mcp/tools)
+- Support: [support@superlines.io](mailto:support@superlines.io)

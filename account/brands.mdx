@@ -1,0 +1,100 @@
+---
+title: Brands & Domains
+description: Configure your brands, market settings, and competitors.
+---
+
+A **Brand** (also called a **Domain**) represents a distinct business entity you want to monitor in AI search. Each brand has its own name, website, target market, competitors, tracked prompts, and analytics.
+
+## What counts as a brand?
+
+A brand can represent many things:
+
+- **A product line** — "Nike Running", "Nike Basketball"
+- **A geographic market** — "Acme UK", "Acme Germany"
+- **A business unit** — "Retail Division", "Enterprise Division"
+- **A sub-brand** — "Nike", "Jordan Brand", "Converse"
+- **A specific campaign or landing page**
+
+Each brand has independent analytics and configuration. Use the **domain switcher** in the sidebar to switch between brands.
+
+## Creating a brand
+
+<Steps>
+  <Step title="Navigate to Brand Settings and click Add Brand" />
+  <Step title="Enter basic information">
+    - **Brand name** — the name you want to monitor (use the most common form customers use)
+    - **Website URL** — your primary URL including `https://`
+  </Step>
+  <Step title="Configure your market">
+    - **Country** — your primary geographic market (affects prompt generation and analysis context)
+    - **Language** — the language for monitoring (matches your content language)
+  </Step>
+  <Step title="Define your audience (optional but recommended)">
+    - **Target audience** — describe your ideal customer
+    - **Industry / Topic** — your business category
+  </Step>
+  <Step title="Add competitors (up to 4 by default)">
+    Enter each competitor's brand name and website. Choose direct competitors or market leaders to benchmark against.
+  </Step>
+</Steps>
+
+<Warning>
+**Country and language matter.** They directly influence which prompts are generated, how responses are analyzed, and which competitors are relevant. Create separate brands for separate markets.
+</Warning>
+
+## Brand settings explained
+
+### Brand name & variations
+
+Superlines uses your brand name to detect mentions in AI responses. You can also configure:
+
+- **Brand name variations** — alternative spellings or abbreviations (e.g., "Nike Run Club", "NRC")
+- **Brand exclude list** — terms that should NOT count as brand mentions
+
+### Competitor mappings
+
+For each competitor, you can set up brand mappings to consolidate variations:
+
+- **Canonical name** — the main name (e.g., "Nike Running")
+- **Aliases** — variations (e.g., "Nike Run Club", "NRC")
+
+This improves accuracy in Share of Voice and competitor analytics.
+
+### Market configuration
+
+| Setting | Purpose | Impact |
+|---|---|---|
+| **Country** | Geographic targeting | Affects prompt generation, competitor relevance, and analysis context |
+| **Language** | Content language | Determines prompt language and response analysis |
+| **Region** | Optional sub-region | Further refines geographic targeting |
+| **Target audience** | Customer description | Improves AI-generated prompt suggestions |
+
+## Automatic prompt generation
+
+When you create a brand, Superlines **automatically discovers relevant prompts** based on:
+
+- Your industry and business category
+- Target audience definition
+- Competitor analysis
+- Current trending topics
+
+<Tip>
+The initial auto-generated prompts provide a great starting point. Review them and add your own high-priority questions as you learn more.
+</Tip>
+
+## Plan-based limits
+
+| Resource | Limit |
+|---|---|
+| **Brands** | 1 on Free, multiple on paid plans |
+| **Competitors per brand** | 4 (default, varies by plan) |
+| **Prompts** | Shared quota across all brands |
+
+## Best practices
+
+| Scenario | Recommendation |
+|---|---|
+| Single product/brand | 1 brand with core configuration |
+| Multiple products | 1 brand per major product line |
+| Multiple markets | 1 brand per country/language combination |
+| Parent company + sub-brands | 1 brand per distinct brand identity |

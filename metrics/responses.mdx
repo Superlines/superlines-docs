@@ -1,0 +1,83 @@
+---
+title: Understanding Responses
+description: How Superlines collects and analyzes AI responses.
+---
+
+Every time Superlines tests a prompt against an AI engine, it captures the full response and runs it through analysis.
+
+## What is a response?
+
+A **response** is the full text answer that an AI engine gives to a tracked prompt. Superlines stores and analyzes each response to extract:
+
+- **Brand mentions** — does the response name your brand or any competitor?
+- **Website citations** — does the response reference any URLs?
+- **Sentiment** — is the tone positive, neutral, or negative?
+- **Content structure** — headers, lists, links, and formatting
+
+## How responses are collected
+
+<Steps>
+  <Step title="Prompt submission">
+    Your tracked prompts are sent to each enabled AI engine.
+  </Step>
+  <Step title="Response capture">
+    The AI engine generates a response. Superlines captures the full text (text, HTML, and markdown).
+  </Step>
+  <Step title="Storage">
+    Responses are stored in BigQuery for analytics.
+  </Step>
+  <Step title="Analysis">
+    Brand detection and citation extraction run automatically.
+  </Step>
+</Steps>
+
+<Note>
+Responses are collected daily for active prompts. The testing frequency depends on your plan.
+</Note>
+
+## Brand detection
+
+Superlines detects brand mentions using:
+
+- Your **brand name** (normalized for consistent matching)
+- **Brand name variations** you've configured
+- **Brand exclude list** to avoid false positives
+- **Competitor names** and their aliases
+
+For example, if your brand is "Nike Running" and you've added "NRC" and "Nike Run Club" as variations, all three will be detected as mentions of your brand.
+
+## Where to view responses
+
+| What you want | Where to find it |
+|---|---|
+| All responses for a prompt | Click any prompt → Response detail view |
+| Full response text | Response Analysis page |
+| Brand mention highlights | Response detail view (highlighted in response) |
+| Citation links | Citations Analysis page |
+| Sentiment breakdown | Brand Sentiment page |
+
+## Response metrics per prompt
+
+Each prompt in the **Tracked Prompts** table shows:
+
+| Column | Meaning |
+|---|---|
+| **Total responses** | How many AI responses have been tested |
+| **Brand mentions** | How many responses mention your brand |
+| **Brand Visibility %** | Mentions / total responses |
+| **Citations** | How many responses cite your website |
+| **Branded Response Rate (BRR)** | % of responses that mention any brand |
+
+<Tip>
+**BRR** tells you how "brand-focused" a topic is. A high BRR means brands are commonly mentioned for this query — making it competitive but valuable to win.
+</Tip>
+
+## Why numbers may fluctuate early on
+
+When you first create a brand, numbers may change rapidly — especially in the first hour as initial responses come in. This is normal:
+
+- **Small sample sizes** make percentages volatile
+- **Each new response** has a larger relative impact
+- Data **stabilizes** after 24–48 hours as more responses are collected
+
+Give your brand at least 48 hours of data collection before drawing conclusions.

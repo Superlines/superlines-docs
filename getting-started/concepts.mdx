@@ -1,0 +1,93 @@
+---
+title: Core Concepts
+description: Understand the key concepts behind the Superlines platform.
+---
+
+Before diving into the platform, it helps to understand the key concepts that Superlines is built around.
+
+## Account hierarchy
+
+Superlines uses a hierarchical structure:
+
+```
+Organization
+├── Brand (Domain) 1
+│   ├── Prompts + Labels
+│   ├── Competitors
+│   └── Analytics
+├── Brand (Domain) 2
+│   ├── Prompts + Labels
+│   ├── Competitors
+│   └── Analytics
+└── Team Members (org-wide)
+```
+
+- **Organization** — your top-level account. It holds your subscription, team members, API keys, and LLM engine configuration.
+- **Brand (Domain)** — a business entity you want to monitor. Each brand has its own name, website, target market, competitors, prompts, and analytics.
+- **Prompts** — the questions people ask AI. Superlines tracks how each prompt performs across AI engines.
+- **Labels** — tags for organizing prompts by topic, campaign, priority, or any custom category.
+
+## What are prompts?
+
+A **prompt** is a question or query that people type into AI assistants. Examples:
+
+- *"What are the best project management tools for remote teams?"*
+- *"How do I improve my website's AI search visibility?"*
+- *"Which CRM is best for small businesses?"*
+
+Superlines **tracks** these prompts by testing them across multiple AI engines (ChatGPT, Copilot, etc.) and recording:
+- Whether your brand is mentioned in the response
+- Whether your website is cited as a source
+- Which competitors appear
+- The overall sentiment
+
+## What are responses?
+
+A **response** is an AI engine's answer to a tracked prompt. Each time Superlines tests a prompt, it captures the full response and analyzes it for:
+
+- **Brand mentions** — does the response name your brand?
+- **Website citations** — does the response link to or reference your domain?
+- **Competitor mentions** — which other brands appear?
+- **Sentiment** — is the mention positive, neutral, or negative?
+
+## What are citations?
+
+A **citation** is a reference to a specific URL in an AI response. When an AI model links to your website (or a competitor's), that's a citation. Citations are a strong signal of content authority.
+
+<Note>
+Not all AI engines provide citations. Models with web access (like Perplexity, Copilot, Google AI Overviews) cite sources more often than offline models.
+</Note>
+
+## What are fan-out queries?
+
+When an AI model with web access answers a question, it often performs **web searches** behind the scenes. These internal searches are called **fan-out queries**. Superlines tracks these to show you:
+
+- What search terms the AI uses when answering about your topic
+- Where your domain ranks for those searches
+- Opportunities to improve your content for AI retrieval
+
+## How the analysis works
+
+<Steps>
+  <Step title="Prompts are tracked">
+    You add prompts to track for each brand — or let Superlines auto-discover them.
+  </Step>
+  <Step title="Automated testing">
+    Prompts are sent to all your enabled AI engines daily.
+  </Step>
+  <Step title="Responses are collected">
+    Full responses are captured and stored.
+  </Step>
+  <Step title="Brand detection">
+    Responses are scanned for mentions using your brand name and variations.
+  </Step>
+  <Step title="Citation extraction">
+    All URLs referenced in responses are parsed and tracked.
+  </Step>
+  <Step title="Metrics are calculated">
+    Brand Visibility, Citation Rate, Share of Voice, and more.
+  </Step>
+  <Step title="Insights are generated">
+    Trends, alerts, and recommendations are surfaced.
+  </Step>
+</Steps>

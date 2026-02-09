@@ -1,0 +1,150 @@
+---
+title: Frequently Asked Questions
+description: Answers to the most common questions about Superlines.
+---
+
+## Reporting & data export
+
+<AccordionGroup>
+  <Accordion title="How can I export the most comprehensive report?">
+    There are several ways to get reports out of Superlines:
+
+    **Quick options:**
+    - Take a screenshot of the **Visibility** page at [analytics.superlines.io/dashboard](https://analytics.superlines.io/dashboard) or the **Overview** page
+    - Use the **Export** button in the top-right corner of the Visibility page for a clean one-page summary
+
+    **Advanced options:**
+    - **REST API** — pull data into your own reporting system via the [Metrics API](/api/endpoints) and visualize it however you like
+    - **MCP Server** — use Claude Desktop or Cursor to ask natural language questions about your data and generate custom reports ([setup guide](/mcp/setup))
+    - **Looker Studio** — connect to Google Looker Studio for custom dashboards and scheduled reports ([integration guide](/integrations/looker-studio))
+  </Accordion>
+
+  <Accordion title="How are prompts defined during auditing?">
+    When you create a brand, Superlines **automatically discovers relevant prompts** based on your industry, target audience, and competitors. These auto-generated prompts identify "hot" conversation topics that are relevant to your business — providing a great starting point for a lightweight AI search audit.
+
+    You can then refine the list by adding your own high-priority questions, removing irrelevant ones, and organizing them with labels.
+  </Accordion>
+</AccordionGroup>
+
+## Prompts & data
+
+<AccordionGroup>
+  <Accordion title="How do you know which prompts are relevant?">
+    Superlines uses a multi-layered approach:
+
+    1. **Industry analysis** — based on your business category and target audience
+    2. **Competitor monitoring** — what topics competitors are being mentioned for
+    3. **AI search trends** — tracking emerging queries in your space
+    4. **Search data correlation** — mapping AI prompts to traditional search queries
+    5. **User feedback** — learning from prompts you add, pause, or ignore
+
+    The system continuously refines its suggestions as it learns what matters for your brand.
+  </Accordion>
+
+  <Accordion title="How do you know what people ask AI?">
+    Our data comes from multiple sources:
+
+    - **AI query databases** — aggregated, anonymized query data from AI platforms
+    - **Search behavior analysis** — correlating traditional search queries with AI-era prompts
+    - **Industry trend detection** — monitoring trending topics by vertical
+    - **Platform observation** — analyzing public AI interactions and community forums
+
+    <Note>
+    We don't access individual user queries or private conversations. All data is aggregated and anonymized.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Can I buy more prompts or add more LLM engines later?">
+    **Yes, absolutely.** You can upgrade your plan at any time to get:
+
+    - More tracked prompts
+    - Additional AI engines
+    - More brands/domains
+    - More team seats
+    - API and MCP access
+
+    Changes take effect immediately. Contact your account manager or upgrade directly in Organization Settings.
+  </Accordion>
+
+  <Accordion title="Why don't you have historical data from before I signed up?">
+    Superlines begins collecting data **from the moment you create a brand**. We can't provide historical data because:
+
+    1. **Real-time testing** — we send your prompts to AI engines and capture actual responses, which requires active monitoring
+    2. **AI responses change constantly** — unlike traditional search rankings, AI responses are dynamic and non-deterministic
+    3. **No historical API** — AI platforms don't provide historical response data
+
+    Your historical data **begins building from day one** and becomes more valuable over time as trends emerge.
+  </Accordion>
+
+  <Accordion title="Why do numbers change rapidly in the beginning?">
+    This is normal behavior during the first 24–48 hours:
+
+    - **Small sample sizes** make percentages volatile — one new response has an outsized impact
+    - **Initial responses** are being collected across all engines simultaneously
+    - Numbers **stabilize** within 48 hours as more responses are collected
+
+    Wait at least 48 hours before drawing conclusions from your data.
+  </Accordion>
+</AccordionGroup>
+
+## Metrics & definitions
+
+<AccordionGroup>
+  <Accordion title="What's the difference between Brand Visibility and Share of Voice?">
+    These measure two different things:
+
+    **Brand Visibility** = *"How often is my brand mentioned?"*
+    ```
+    Your brand mentions / Total AI responses × 100
+    ```
+
+    **Share of Voice** = *"How do I compare to competitors?"*
+    ```
+    Your brand mentions / All brand mentions (yours + competitors) × 100
+    ```
+
+    **Example:** If 100 prompts are tested:
+    - Your brand appears in 30 responses → **Brand Visibility = 30%**
+    - Total brand mentions across all responses: 200 (yours: 50, competitors: 150) → **SOV = 25%**
+
+    Brand Visibility tells you about **your absolute presence**. Share of Voice tells you about **your competitive position**.
+  </Accordion>
+</AccordionGroup>
+
+## Account & billing
+
+<AccordionGroup>
+  <Accordion title="How many brands can I create?">
+    This depends on your plan:
+
+    | Plan | Brands |
+    |---|---|
+    | Free | 1 |
+    | Starter | Multiple |
+    | Growth | Multiple |
+    | Enterprise | Unlimited |
+
+    Each brand is independent with its own prompts, competitors, and analytics. Prompts are shared across all brands from your organization quota.
+  </Accordion>
+
+  <Accordion title="Do I need a cookie banner for the AI Bot Analytics?">
+    **No.** Superlines does not use cookies or track website visitors. The platform works by:
+
+    1. Sending your tracked prompts to AI engines
+    2. Capturing and analyzing the responses
+    3. Extracting brand mentions and citations
+
+    This happens entirely **server-side** and doesn't involve your website visitors at all. No cookies, no tracking pixels, no GDPR consent required for the AI analytics functionality.
+  </Accordion>
+</AccordionGroup>
+
+## Still have questions?
+
+<CardGroup cols={2}>
+  <Card title="Contact support" icon="envelope" href="mailto:support@superlines.io">
+    Email us at support@superlines.io
+  </Card>
+  <Card title="Book a demo" icon="calendar" href="https://superlines.io">
+    See the platform in action with a guided walkthrough.
+  </Card>
+</CardGroup>
