@@ -58,7 +58,8 @@
             "pages": [
               "mcp/overview",
               "mcp/setup",
-              "mcp/tools"
+              "mcp/tools",
+              "mcp/npm-package"
             ]
           },
           {
