@@ -1,62 +1,64 @@
-# Superlines Documentation
+# Superlines
 
-> Superlines is an AI Search Visibility platform that monitors how your brand appears in AI-powered search results from ChatGPT, Copilot, Gemini, Perplexity, Google AI Overviews, Claude, Grok, Mistral, and DeepSeek.
+> Superlines is an AI Search Visibility platform that monitors and optimizes how brands appear in AI-powered search results across ChatGPT, Copilot, Gemini, Perplexity, Google AI Overviews, Claude, Grok, Mistral, and DeepSeek.
 
-## Docs
+## Documentation
 
-- [Introduction](https://docs.superlines.io/getting-started/introduction): What is Superlines and how does it help your brand in AI search
-- [Quick Start](https://docs.superlines.io/getting-started/quickstart): Get up and running in 5 minutes
-- [Core Concepts](https://docs.superlines.io/getting-started/concepts): Account hierarchy, prompts, responses, citations, fan-out queries, and the analysis cycle
+- [Introduction](https://docs.superlines.io/getting-started/introduction): What Superlines does, who it's for, and which AI platforms are supported.
+- [Quick Start](https://docs.superlines.io/getting-started/quickstart): Set up your first brand and start tracking AI search visibility in 5 minutes.
+- [Core Concepts](https://docs.superlines.io/getting-started/concepts): Account hierarchy, prompts, responses, citations, fan-out queries, and how the analysis works.
 
 ## Account Management
 
-- [Organizations](https://docs.superlines.io/account/organizations): Manage settings, subscription plans, LLM engine configuration, and API keys
-- [Brands & Domains](https://docs.superlines.io/account/brands): Create brands, configure markets (country, language), add competitors, and manage brand name variations
-- [Prompt Management](https://docs.superlines.io/account/prompts): Add prompts (manual, CSV, auto-generated), manage labels, quotas, statuses, and prompt signals
-- [Team & Roles](https://docs.superlines.io/account/team): Invite members with Owner, Admin, or Member roles; domain-scoped access for agencies
+- [Organizations](https://docs.superlines.io/account/organizations): Organization settings, subscription plans, LLM engine configuration, and API key management.
+- [Brands & Domains](https://docs.superlines.io/account/brands): Creating brands, market configuration (country, language), competitor mappings, and automatic prompt generation.
+- [Prompt Management](https://docs.superlines.io/account/prompts): Adding prompts (manual, bulk import, auto-generated), labels, quotas, statuses, signals, and where to find prompts/citations/responses.
+- [Team & Roles](https://docs.superlines.io/account/team): Inviting members, role-based access control (Owner, Admin, Member), domain-scoped access, and seat limits.
 
 ## Metrics & Data
 
-- [Key Metrics](https://docs.superlines.io/metrics/key-metrics): Brand Visibility, Share of Voice (SOV), Citation Rate, Share of Citations, Mentions, and Sentiment Score
-- [Understanding Responses](https://docs.superlines.io/metrics/responses): How AI responses are collected, brand detection, and response metrics per prompt
-- [Citations & Fan-out Queries](https://docs.superlines.io/metrics/citations): URL-level citation tracking, fan-out query analysis, and strategies to improve citations
-- [Analysis Process](https://docs.superlines.io/metrics/analysis-process): Daily analysis cycle, data availability timelines, metric aggregation, and trend detection
+- [Key Metrics](https://docs.superlines.io/metrics/key-metrics): Brand Visibility, Share of Voice (SOV), Citation Rate, Share of Citations, Mentions, Sentiment Score, and online vs. offline metrics.
+- [Understanding Responses](https://docs.superlines.io/metrics/responses): How responses are collected, brand detection, response metrics per prompt, and why numbers fluctuate early on.
+- [Citations & Fan-out Queries](https://docs.superlines.io/metrics/citations): What citations are, which engines provide them, domain-level vs. URL-level tracking, fan-out queries, and content/technical strategies for improving citations.
+- [Analysis Process](https://docs.superlines.io/metrics/analysis-process): Daily analysis cycle, data availability timelines, metric aggregation levels, trend detection, and data retention.
 
 ## MCP Server
 
-- [Overview](https://docs.superlines.io/mcp/overview): 26 MCP tools for analytics, competitor intelligence, webpage analysis, and strategic planning
-- [Setup Guide](https://docs.superlines.io/mcp/setup): Connect via SSE (URL-based), local npx, or OAuth 2.0 with PKCE for Claude Desktop, Cursor, or VS Code
-- [Available Tools](https://docs.superlines.io/mcp/tools): Full reference for all MCP tools: list_brands, analyze_metrics, get_citation_data, analyze_brand_mentions, get_query_data, get_weekly_performance, webpage_audit, webpage_analyze_technical, webpage_analyze_content, schema_optimizer, get_competitive_gap, get_top_cited_url_per_prompt, get_best_performing_prompt, get_period_comparison, analyze_competitor_url, get_competitor_insights, analyze_sentiment, find_content_opportunities, get_analytics_summary, generate_strategic_action_plan, website_audit, keyword_research
-- [NPM Package](https://docs.superlines.io/mcp/npm-package): Install and configure @superlines/mcp-server via npx, global install, or local proxy script
+- [MCP Overview](https://docs.superlines.io/mcp/overview): What the MCP server does, example prompts, available tool categories, and requirements.
+- [MCP Setup Guide](https://docs.superlines.io/mcp/setup): Step-by-step setup for Claude Desktop, Cursor, and VS Code using SSE, npx, or OAuth authentication.
+- [Available Tools](https://docs.superlines.io/mcp/tools): Complete reference of all 26 MCP tools — brand management, core metrics, webpage analysis, competitive analysis, advanced analytics, strategic tools, and SEO tools.
 
 ## REST API
 
-- [Authentication](https://docs.superlines.io/api/authentication): Bearer token auth with API keys (sl_live_...), OAuth access tokens, or Firebase ID tokens
-- [Endpoints](https://docs.superlines.io/api/endpoints): GET /analytics/metrics, /analytics/citations, /analytics/brand-mentions, /analytics/prompts, /analytics/weekly-performance, /analytics/competitor-insights, /analytics/content-opportunities, /analytics/dashboard-insights
+- [Authentication](https://docs.superlines.io/api/authentication): Bearer token authentication with API keys, OAuth access tokens, or Firebase ID tokens. Security best practices.
+- [API Endpoints](https://docs.superlines.io/api/endpoints): Metrics, citations, brand mentions, prompts, weekly performance, competitors, content opportunities, and dashboard insights endpoints with parameters and response formats.
 
 ## Integrations
 
-- [Looker Studio](https://docs.superlines.io/integrations/looker-studio): Connect Superlines data to Google Looker Studio for custom dashboards and automated reports
+- [Looker Studio](https://docs.superlines.io/integrations/looker-studio): Connect Superlines data to Google Looker Studio for custom dashboards and automated reports.
 
 ## FAQ
 
-- [Frequently Asked Questions](https://docs.superlines.io/faq): Reporting and data export options, prompt definition during auditing, prompt relevance methodology, purchasing more prompts/LLMs, historical data availability, cookie banner requirements, Brand Visibility vs Share of Voice explained, brand creation limits
+- [Frequently Asked Questions](https://docs.superlines.io/faq): Exporting reports, prompt discovery, data sources, plan upgrades, historical data, initial number fluctuations, Brand Visibility vs. Share of Voice, brand limits, and cookie/GDPR requirements.
 
 ## Key Definitions
 
-- **Brand Visibility**: Percentage of AI responses that mention your brand (brand mentions / total responses × 100)
-- **Share of Voice (SOV)**: Your brand mentions as a percentage of all brand mentions including competitors
-- **Citation Rate**: Percentage of AI responses that cite (link to) your website
-- **Fan-out Queries**: Web searches performed behind the scenes by AI engines when answering questions
-- **Prompts**: Questions people ask AI engines that Superlines tracks and tests daily
-- **Responses**: Full AI engine answers captured and analyzed for brand mentions, citations, and sentiment
-
-## MCP Server Connection
-
-SSE endpoint: https://mcpsse.superlines.io?token=YOUR_API_KEY
-NPM package: @superlines/mcp-server
-API base URL: https://analytics.superlines.io/api
+- **Brand Visibility**: Percentage of AI responses that mention your brand. Formula: (Responses mentioning brand / Total responses) × 100.
+- **Share of Voice (SOV)**: Your brand mentions as a percentage of all brand mentions (yours + competitors). Formula: (Your mentions / All brand mentions) × 100.
+- **Citation Rate**: Percentage of AI responses that cite (link to) your website. Formula: (Responses citing website / Total responses) × 100.
+- **Prompt**: A question or query that people type into AI assistants, tracked by Superlines across multiple AI engines.
+- **Citation**: A reference to a specific URL in an AI response — a strong signal of content authority.
+- **Fan-out Query**: A web search that an AI engine performs behind the scenes when answering a question with web access.
+- **Response**: The full text answer that an AI engine gives to a tracked prompt, analyzed for brand mentions, citations, and sentiment.
+- **MCP (Model Context Protocol)**: An open standard that lets AI assistants interact with external tools and data sources.
 
 ## Supported AI Engines
 
-ChatGPT, Copilot, Perplexity, Google AI Overviews, Gemini, Grok, Claude, Mistral, DeepSeek
+ChatGPT, Microsoft Copilot, Perplexity, Google AI Overviews, Google Gemini, xAI Grok, Anthropic Claude, Mistral AI, DeepSeek.
+
+## Links
+
+- Website: https://superlines.io
+- Dashboard: https://analytics.superlines.io
+- MCP NPM Package: https://www.npmjs.com/package/@superlines/mcp-server
+- Support: support@superlines.io
