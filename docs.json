@@ -9,8 +9,8 @@
     "dark": "#1A1140"
   },
   "logo": {
-    "light": "/images/logo-light.svg",
-    "dark": "/images/logo-dark.svg",
+    "light": "/images/logo-light.svg?v=2",
+    "dark": "/images/logo-dark.svg?v=2",
     "href": "https://superlines.io"
   },
   "navigation": {
@@ -58,8 +58,7 @@
             "pages": [
               "mcp/overview",
               "mcp/setup",
-              "mcp/tools",
-              "mcp/npm-package"
+              "mcp/tools"
             ]
           },
           {
