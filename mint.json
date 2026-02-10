@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Superlines",
   "logo": {
-    "dark": "/images/logo-dark.svg?v=2",
-    "light": "/images/logo-light.svg?v=2",
+    "dark": "/images/logo-dark.svg",
+    "light": "/images/logo-light.svg",
     "href": "https://superlines.io"
   },
   "favicon": "/images/favicon.svg",

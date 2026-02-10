@@ -9,8 +9,8 @@
     "dark": "#1A1140"
   },
   "logo": {
-    "light": "/images/logo-light.svg?v=2",
-    "dark": "/images/logo-dark.svg?v=2",
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg",
     "href": "https://superlines.io"
   },
   "navigation": {
