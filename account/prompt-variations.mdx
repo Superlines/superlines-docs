@@ -1,0 +1,136 @@
+---
+title: Prompt Variations
+description: Control how prompt variations are used during crawling and testing to understand how LLMs respond to different phrasings.
+---
+
+**Prompt variations** are rephrased versions of your tracked prompts. When enabled, Superlines will occasionally use a slightly different wording of the same question during crawls — helping you understand how sensitive AI responses are to phrasing.
+
+## Why use prompt variations?
+
+AI engines don't always respond the same way to different phrasings of the same question. For example:
+
+| Original prompt | Variation |
+|---|---|
+| *"What is the best CRM for startups?"* | *"Which CRM tools are recommended for startup companies?"* |
+| *"Best running shoes 2025"* | *"Top-rated running shoes this year"* |
+
+Prompt variations help you:
+
+- **Measure phrasing sensitivity** — see if your brand visibility changes with different wordings
+- **Discover blind spots** — find phrasings where competitors outperform you
+- **Improve coverage** — understand how LLMs interpret different versions of similar queries
+- **Get more robust data** — reduce the impact of any single phrasing on your metrics
+
+## How it works
+
+When a crawl is triggered for a prompt:
+
+1. The system checks if prompt variations are **enabled** for the brand (or organization)
+2. Based on the configured **variation rate**, a random check determines whether to use a variation
+3. If a variation is selected, the system either picks from **existing variations** or **generates a new one** using AI
+4. The response is analyzed and tagged as a variation in your analytics
+
+<Info>
+Variation results are clearly tagged in your data, so you can always distinguish between original prompt results and variation results.
+</Info>
+
+## Configuration hierarchy
+
+Prompt variation settings follow a hierarchy:
+
+| Level | Priority | Description |
+|---|---|---|
+| **Brand (domain)** | Highest | Overrides organization settings for a specific brand |
+| **Organization** | Default | Applies to all brands unless overridden |
+
+If a brand has its own variation settings configured, those are used. Otherwise, the organization-level settings apply.
+
+## Configuring at the organization level
+
+Organization-level settings apply as the default for all brands.
+
+<Steps>
+  <Step title="Navigate to Organization Settings" />
+  <Step title="Find the Prompt Variations section" />
+  <Step title="Toggle Enable Prompt Variations">
+    Turn on to allow variations across all brands in your organization.
+  </Step>
+  <Step title="Set the Variation Rate">
+    Use the slider to set the percentage (5%–100%). For example, at **25%**, roughly 1 in 4 crawls will use a rephrased prompt instead of the original.
+  </Step>
+  <Step title="Save your settings" />
+</Steps>
+
+<Tip>
+A **25% variation rate** is a good starting point — it gives you meaningful variation data while keeping the majority of crawls on your original prompts.
+</Tip>
+
+## Configuring at the brand level
+
+You can override the organization default for individual brands. This is useful when:
+
+- You want to **test variations** on one brand before rolling out to all
+- A specific brand needs a **higher or lower** variation rate
+- You want to **disable variations** for a particular brand while keeping them on elsewhere
+
+<Steps>
+  <Step title="Navigate to Brand Settings for the specific brand" />
+  <Step title="Find the Prompt Variations section" />
+  <Step title="Enable Override Organization Setting">
+    This activates brand-specific variation controls.
+  </Step>
+  <Step title="Toggle Enable Prompt Variations and set the rate" />
+  <Step title="Save your settings" />
+</Steps>
+
+<Note>
+If you disable the override, the brand will revert to using the organization-level settings.
+</Note>
+
+## Defaults
+
+| Scenario | Variations enabled | Variation rate |
+|---|---|---|
+| **New organizations** | Off | 25% (pre-configured for when you enable) |
+| **New brands** | Inherits from organization | — |
+| **Existing organizations** (before this feature) | On | 25% |
+
+Existing organizations retain their previous behavior (variations active at 25%) to avoid disrupting ongoing tracking. New organizations start with variations **disabled** so you can opt in when ready.
+
+## Viewing variation results
+
+Variation results appear throughout your analytics:
+
+- **Response Analysis** — variation responses are tagged with a variation indicator
+- **Prompt detail view** — see results for both original and variation phrasings
+- **Exports and API** — variation metadata is included in data exports
+
+## Best practices
+
+| Tip | Details |
+|---|---|
+| **Start at 25%** | Enough data for insights without overwhelming your original prompt tracking |
+| **Test on one brand first** | Use brand-level overrides to pilot before organization-wide rollout |
+| **Review after 2–4 weeks** | Allow enough crawl cycles to gather meaningful variation data |
+| **Compare original vs variation** | Look for significant differences in brand visibility or citations |
+| **Increase rate for research** | Temporarily boost to 50–75% when doing deep phrasing analysis |
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Do variations count toward my prompt quota?">
+    No. Variations are generated automatically from your existing tracked prompts. They do not create new prompt entries or affect your quota.
+  </Accordion>
+  <Accordion title="Can I see which variation was used for a specific response?">
+    Yes. Each response in the analytics is tagged with whether it used the original prompt or a variation, along with the exact variation text.
+  </Accordion>
+  <Accordion title="How are variations generated?">
+    The system uses AI to create natural rephrasings that preserve the original intent. It may also reuse previously generated variations to ensure consistency over time.
+  </Accordion>
+  <Accordion title="Will enabling variations change my existing metrics?">
+    Variation results are tracked separately from original prompt results. Your existing metrics remain unaffected. When viewing aggregated data, both original and variation results contribute to the totals.
+  </Accordion>
+  <Accordion title="Can I edit or delete individual variations?">
+    Currently, variations are managed automatically by the system. You control whether they are enabled and at what rate, but individual variation texts are generated and selected by the AI.
+  </Accordion>
+</AccordionGroup>

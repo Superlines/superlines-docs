@@ -138,20 +138,6 @@ Requires **Node.js** installed on your machine.
   </Tab>
 </Tabs>
 
-## Option 3: OAuth authentication
-
-For advanced integrations, Superlines supports **OAuth 2.0 with PKCE** for secure, token-based access without embedding API keys.
-
-<Accordion title="OAuth flow details">
-  1. Client initiates authorization at `/api/mcp/oauth/authorize`
-  2. User approves access and selects accessible brands
-  3. Authorization code is exchanged for tokens at `/api/mcp/oauth/token`
-  4. Access token is used for subsequent requests
-  5. Refresh tokens are available with the `offline_access` scope
-
-  OAuth is primarily used by third-party MCP clients that support the MCP OAuth flow natively. For most users, API key authentication (Option 1 or 2) is simpler.
-</Accordion>
-
 ## Verify the connection
 
 After setting up your client:

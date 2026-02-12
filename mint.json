@@ -63,6 +63,7 @@
         "account/organizations",
         "account/brands",
         "account/prompts",
+        "account/prompt-variations",
         "account/team"
       ]
     },

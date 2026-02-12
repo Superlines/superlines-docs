@@ -25,7 +25,7 @@
 ## MCP Server
 
 - [MCP Overview](https://docs.superlines.io/mcp/overview): What the MCP server does, example prompts, available tool categories, and requirements.
-- [MCP Setup Guide](https://docs.superlines.io/mcp/setup): Step-by-step setup for Claude Desktop, Cursor, and VS Code using SSE, npx, or OAuth authentication.
+- [MCP Setup Guide](https://docs.superlines.io/mcp/setup): Step-by-step setup for Claude Desktop, Cursor, and VS Code using SSE or npx.
 - [Available Tools](https://docs.superlines.io/mcp/tools): Complete reference of all 26 MCP tools — brand management, core metrics, webpage analysis, competitive analysis, advanced analytics, strategic tools, and SEO tools.
 
 ## REST API
