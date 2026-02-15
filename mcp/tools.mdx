@@ -3,7 +3,7 @@ title: Available Tools
 description: Complete reference of all MCP tools available in the Superlines MCP server.
 ---
 
-The Superlines MCP server exposes 26 tools organized into categories. All tools are **read-only** — they query data but never modify your account.
+The Superlines MCP server exposes 32 tools organized into categories. Most tools are read-only. The [Account Management](#account-management) tools can create brands and manage prompts — these require **write permissions** on your API key.
 
 <Tip>
 When asking about a **specific brand**, always include the brand name in your query. The AI assistant will pass it to the `brands` parameter automatically.
@@ -189,6 +189,96 @@ Generate a priority-ranked action plan with improvement potential scores.
 ### `get_next_actions`
 
 Get the top 3 most impactful actions to take next.
+
+---
+
+## Account Management
+
+<Warning>
+These tools modify your account. They require **write permissions** on your API key. See [API Key Permissions](/mcp/setup#api-key-permissions) for setup instructions. Deletion is not supported — use `pause_prompts` instead.
+</Warning>
+
+### `create_brand`
+
+Create a new brand/domain in your organization. Triggers brand analysis (website scanning, competitor detection, industry classification) and prompt generation in the background. Returns immediately — use `get_brand_setup_status` to poll for completion.
+
+**Permission required:** `write:brands`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `brandName` | string | **Required.** Brand or company name |
+| `website` | string | **Required.** Website URL (e.g. `https://superlines.io`) |
+| `country` | string | Target country (e.g. `United States`) |
+| `language` | string | Target language (e.g. `English`) |
+| `competitors` | array | List of competitors (`name` required, `website` optional) |
+| `industry` | string | Industry vertical (auto-detected if omitted) |
+
+<Note>
+Brand creation is **idempotent** — if a brand with the same domain already exists, the existing brand is returned instead of creating a duplicate.
+</Note>
+
+### `get_brand_setup_status`
+
+Check the progress of brand setup after `create_brand`. Returns analysis status, prompt generation status, and whether the brand is ready for analytics.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `domainId` | string | **Required.** The domain ID returned by `create_brand` |
+
+### `add_prompts`
+
+Add tracking prompts to a brand. Prompts are the search queries that Superlines monitors across AI platforms (ChatGPT, Gemini, Perplexity, etc). Each prompt is created as active and included in the next crawl cycle. Maximum 50 prompts per call.
+
+**Permission required:** `write:prompts`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `domainId` | string | **Required.** Domain ID from `list_brands` |
+| `prompts` | array | **Required.** Array of prompt objects (1–50) |
+| `prompts[].text` | string | **Required.** The prompt text (max 500 chars) |
+| `prompts[].label` | string | Optional label/category (e.g. `product`, `brand`) |
+| `prompts[].intent` | string | Optional search intent (e.g. `informational`, `commercial`) |
+
+<Note>
+Duplicate prompts are automatically detected and skipped. Your organization's prompt quota is enforced.
+</Note>
+
+### `pause_prompts`
+
+Pause active prompts so they stop being crawled. Paused prompts are not deleted and can be reactivated with `unpause_prompts`. Filter by specific IDs or by label.
+
+**Permission required:** `write:prompts`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `domainId` | string | **Required.** Domain ID from `list_brands` |
+| `promptIds` | array | Specific prompt IDs to pause |
+| `label` | string | Pause all active prompts with this label |
+
+### `unpause_prompts`
+
+Reactivate paused prompts so they resume being crawled. Checks your prompt quota before reactivating.
+
+**Permission required:** `write:prompts`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `domainId` | string | **Required.** Domain ID from `list_brands` |
+| `promptIds` | array | Specific prompt IDs to unpause |
+| `label` | string | Unpause all paused prompts with this label |
+
+### `update_prompt_labels`
+
+Add, remove, or set labels on prompts. Labels help organize prompts into categories for filtering in analytics.
+
+**Permission required:** `write:prompts`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `domainId` | string | **Required.** Domain ID from `list_brands` |
+| `promptIds` | array | **Required.** Prompt IDs to update (max 100) |
+| `label` | string | **Required.** The label to add, remove, or set |
+| `action` | string | `set` (default — replaces all labels), `add`, or `remove` |
 
 ---
 

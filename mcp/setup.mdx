@@ -138,6 +138,47 @@ Requires **Node.js** installed on your machine.
   </Tab>
 </Tabs>
 
+## API key permissions
+
+By default, API keys have **read-only** access — they can query analytics data but cannot modify your account. To use the [Account Management](/mcp/tools#account-management) tools (creating brands, adding prompts, etc.), you need to enable write permissions on your API key.
+
+### How to enable write permissions
+
+<Steps>
+  <Step title="Go to Organization Settings">
+    Open **Organization Settings → API Keys** in the Superlines dashboard.
+  </Step>
+  <Step title="Edit your API key">
+    Click on the API key you use for MCP and open its permissions settings.
+  </Step>
+  <Step title="Enable write permissions">
+    Toggle on the permissions you need:
+    - **`write:brands`** — allows creating new brands/domains
+    - **`write:prompts`** — allows adding, pausing, unpausing prompts and managing labels
+  </Step>
+  <Step title="Save and reconnect">
+    Save your changes. No client restart is needed — permissions take effect immediately.
+  </Step>
+</Steps>
+
+### Available permissions
+
+| Permission | Grants access to |
+|---|---|
+| `read` | All analytics and reporting tools (default, always included) |
+| `write:brands` | `create_brand`, `get_brand_setup_status` |
+| `write:prompts` | `add_prompts`, `pause_prompts`, `unpause_prompts`, `update_prompt_labels` |
+
+<Info>
+Write operations are **rate-limited** and **audit-logged** for security. Brand creation is limited to 5 per hour, and prompt operations to 100 per hour per organization. All write actions are recorded in your organization's audit log.
+</Info>
+
+<Warning>
+Deletion is intentionally not supported via MCP to prevent accidental data loss. Use `pause_prompts` to temporarily disable prompts instead.
+</Warning>
+
+---
+
 ## Verify the connection
 
 After setting up your client:
