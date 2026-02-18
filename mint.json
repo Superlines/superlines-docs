@@ -73,6 +73,7 @@
         "metrics/key-metrics",
         "metrics/responses",
         "metrics/citations",
+        "metrics/ai-crawler-analytics",
         "metrics/analysis-process"
       ]
     },
