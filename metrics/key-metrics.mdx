@@ -83,6 +83,41 @@ This helps you understand how your website's authority compares to competitors i
 
 The raw count of times your brand is mentioned across all AI responses. While Brand Visibility is a percentage, Mentions gives you the absolute number — useful for understanding volume and trends.
 
+## Average Position
+
+**What it measures:** The average rank at which your brand is mentioned in AI-generated answers. Position 1 means your brand is mentioned first, Position 2 means second, and so on.
+
+```
+Average Position = Volume-weighted average of your brand's mention order across all responses
+```
+
+**How it works:** When an AI model responds to a prompt and mentions multiple brands, the order matters. The brand mentioned first (Position 1) is typically the most prominently recommended. Superlines tracks this order for every response and calculates a volume-weighted average — days with more responses have proportionally more influence on the score, similar to how Google Search Console calculates impression-weighted position.
+
+**Example:** If your brand appears at Position 1 in 60 responses and Position 3 in 40 responses, your Average Position is **1.8** (weighted by daily response volume).
+
+| Benchmark | Rating |
+|---|---|
+| 1.0–2.0 | Excellent — consistently mentioned first |
+| 2.0–3.5 | Good — among the top recommendations |
+| 3.5–5.0 | Fair — mentioned but not prominently |
+| > 5.0 | Needs improvement |
+
+<Note>
+Only responses where your brand is **actually mentioned** are included in the calculation. Responses with no mention of your brand do not affect your Average Position. See Brand Visibility and Mentions for how often your brand appears. Lower is better.
+</Note>
+
+### Average Position Ranking
+
+The leaderboard ranks **all brands** by their volume-weighted average position across your tracked prompts. This lets you see exactly where your brand stands relative to competitors — who gets mentioned first, and who gets mentioned last.
+
+- **Rank change** shows whether your relative position improved or declined vs. the previous period
+- Brands with fewer than 3 appearances are excluded to filter noise
+- The ranking updates daily and supports competitor comparison in the trend chart
+
+<Tip>
+Average Position is particularly useful for understanding *quality* of visibility. A brand can have high Brand Visibility (mentioned often) but poor Average Position (mentioned last). Improving your position means AI models see your brand as a more primary recommendation.
+</Tip>
+
 ## Sentiment Score
 
 The average sentiment of AI responses that mention your brand:

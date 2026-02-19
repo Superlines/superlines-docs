@@ -35,6 +35,10 @@
 
 ## Integrations
 
+- [Integrations Overview](https://docs.superlines.io/integrations/overview): Available integrations, how they work, setup flow, and permissions.
+- [Google Search Console](https://docs.superlines.io/integrations/google-search-console): Import search query and landing page data to compare traditional and AI search performance.
+- [Google Analytics](https://docs.superlines.io/integrations/google-analytics): Overlay AI visibility metrics with GA4 sessions, engagement, and conversions.
+- [Slack](https://docs.superlines.io/integrations/slack): Receive real-time opportunity alerts, weekly summaries, and sentiment notifications in Slack.
 - [Looker Studio](https://docs.superlines.io/integrations/looker-studio): Connect Superlines data to Google Looker Studio for custom dashboards and automated reports.
 
 ## FAQ

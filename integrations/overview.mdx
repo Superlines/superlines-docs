@@ -1,0 +1,50 @@
+---
+title: Integrations Overview
+description: Connect your tools and services to enhance AI visibility tracking in Superlines.
+---
+
+Superlines integrates with popular tools so you can enrich your AI search visibility data, receive alerts, and build custom reports.
+
+## Available integrations
+
+<CardGroup cols={2}>
+  <Card title="Google Search Console" icon="magnifying-glass" href="/integrations/google-search-console">
+    Import search query data and landing page performance to understand how users discover your site.
+  </Card>
+  <Card title="Google Analytics" icon="chart-column" href="/integrations/google-analytics">
+    Overlay AI visibility metrics with sessions, engagement, and conversions from GA4.
+  </Card>
+  <Card title="Slack" icon="comment" href="/integrations/slack">
+    Get real-time alerts and weekly summaries delivered to a Slack channel.
+  </Card>
+  <Card title="Looker Studio" icon="chart-pie" href="/integrations/looker-studio">
+    Build custom dashboards that combine Superlines data with your other marketing data.
+  </Card>
+</CardGroup>
+
+## How integrations work
+
+Integrations in Superlines are configured **per brand**. When you connect an external service, you choose which brand the data flows into. This means you can connect different Google Analytics properties to different brands.
+
+<Steps>
+  <Step title="Select a brand">
+    Navigate to **Integrations** and make sure the correct brand is selected in the sidebar.
+  </Step>
+  <Step title="Connect a service">
+    Click **Connect** on the integration card and complete the OAuth authorization flow.
+  </Step>
+  <Step title="Choose properties">
+    For Google integrations, select the specific property or site you want linked to the brand.
+  </Step>
+  <Step title="Start using enriched data">
+    Connected data appears automatically in your dashboards, metrics, and reports.
+  </Step>
+</Steps>
+
+## Permissions
+
+Only **Owners** and **Admins** can manage integrations. Team members with the **Member** role are redirected away from the Integrations page.
+
+<Info>
+You can disconnect any integration at any time from the Integrations page without losing your historical Superlines data.
+</Info>

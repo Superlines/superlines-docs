@@ -95,6 +95,10 @@
     {
       "group": "Integrations",
       "pages": [
+        "integrations/overview",
+        "integrations/google-search-console",
+        "integrations/google-analytics",
+        "integrations/slack",
         "integrations/looker-studio"
       ]
     },
