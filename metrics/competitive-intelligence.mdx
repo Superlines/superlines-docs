@@ -1,0 +1,159 @@
+---
+title: Competitive Intelligence
+description: Use fan-out queries, citations, and competitor analysis to reverse-engineer what works and improve your AI search visibility.
+---
+
+Fan-out queries and citation data together form a powerful competitive intelligence system. They tell you exactly what content AI engines use when answering questions about your market — and where your competitors are winning.
+
+## The competitive intelligence loop
+
+<Steps>
+  <Step title="Track prompts in your market">
+    Your tracked prompts generate responses across AI engines. Each response contains data about who gets mentioned and cited.
+  </Step>
+  <Step title="Analyze fan-out queries">
+    See what web searches AI engines perform behind the scenes. This reveals the *real* queries that drive AI citations.
+  </Step>
+  <Step title="Compare your position vs. competitors">
+    For each fan-out query, see where your domain ranks relative to competitors. Identify where you're strong and where you're weak.
+  </Step>
+  <Step title="Reverse-engineer winning content">
+    Analyze the top-cited URLs to understand what makes them win — then create better content for those topics.
+  </Step>
+  <Step title="Monitor improvement">
+    Track your visibility and citation changes over time as your content improves.
+  </Step>
+</Steps>
+
+---
+
+## Fan-out queries as competitive signals
+
+[Fan-out queries](/metrics/citations#what-are-fan-out-queries) are the web searches AI engines perform when answering a user's question. They're the bridge between AI prompts and traditional web content.
+
+### What fan-out queries reveal
+
+| Insight | How to use it |
+|---|---|
+| **Which searches drive AI answers** | Optimize your content for these specific queries |
+| **Your domain's ranking per query** | Identify where you rank well vs. where you're invisible |
+| **Competitor rankings** | See which competitors dominate the searches AI engines use |
+| **Content gaps** | Discover fan-out queries where no one in your space has good content |
+
+### Reading fan-out query data
+
+When you view fan-out query insights (via the dashboard or the `get_fanout_query_insights` [MCP tool](/mcp/tools#get_fanout_query_insights)), you see:
+
+- The **fan-out query text** — the actual search the AI engine performed
+- **Your domain's position** — where your site appears in search results for that query
+- **Competitor positions** — where competitors rank
+- **Citation impact** — whether this query led to your domain being cited in the AI response
+
+<Tip>
+Focus on fan-out queries where competitors rank in the top positions but you're absent or low. These are your highest-impact content opportunities.
+</Tip>
+
+---
+
+## Competitive gap analysis {#competitive-gap-analysis}
+
+The competitive gap analysis reveals where competitors consistently outperform you.
+
+### Using the dashboard
+
+The **Competitive Gap** view shows prompts where:
+- Competitors have high visibility but you don't
+- Competitors are cited but your domain isn't
+- Competitor sentiment is more positive than yours
+
+### Using the MCP server
+
+The `get_competitive_gap` tool provides programmatic access to gap analysis:
+
+```
+"Show me prompts where my competitors lead and I have low visibility,
+ and recommend which ones to prioritize for content creation."
+```
+
+This returns prompts ranked by gap size, with AI-powered recommendations for how to close each gap.
+
+---
+
+## Reverse-engineering competitor content
+
+Once you've identified where competitors win, dig into *why* they win:
+
+### Step 1: Find the winning URLs
+
+Use **Top Cited URL per Prompt** (dashboard or `get_top_cited_url_per_prompt` via MCP) to see which specific URLs get cited most for each prompt.
+
+### Step 2: Audit the winning content
+
+For each top-cited URL, analyze what makes it successful:
+
+| Analysis tool | What it reveals |
+|---|---|
+| **[`analyze_competitor_url`](/mcp/tools#analyze_competitor_url)** | Comprehensive content analysis with recommendations for competing |
+| **[`webpage_audit`](/mcp/tools#webpage_audit)** | Technical and content quality audit |
+| **[`webpage_analyze_content`](/mcp/tools#webpage_analyze_content)** | Content structure, tone, and writing quality |
+| **[`schema_optimizer`](/mcp/tools#schema_optimizer)** | Schema.org markup that may be boosting their citations |
+
+### Step 3: Create a content brief
+
+From your analysis, identify:
+- **Content structure** — how is the winning page organized?
+- **Key topics covered** — what specific questions does it answer?
+- **Fan-out query alignment** — does it rank for the fan-out queries AI engines use?
+- **Technical advantages** — better Schema.org markup, faster page load, clearer structure?
+- **What's missing** — gaps you can fill to create an even better resource
+
+---
+
+## Content opportunity prioritization
+
+Not all competitive gaps deserve equal investment. Prioritize based on:
+
+| Factor | Higher priority | Lower priority |
+|---|---|---|
+| **Prompt importance** | Strategic prompts with high market relevance | Low-volume monitoring prompts |
+| **Gap size** | Competitors have 80%+ visibility, you have <20% | Small visibility differences |
+| **Fan-out query opportunity** | You rank for none of the fan-out queries | You already rank for some |
+| **Content feasibility** | Topic is in your expertise area | Requires new domain expertise |
+| **Citation potential** | Engines that cite sources (Perplexity, Copilot) are involved | Mostly offline models |
+
+<Info>
+Use `find_content_opportunities` via the [MCP server](/mcp/tools#find_content_opportunities) to get an automated prioritization of topics with high query volume and low brand visibility.
+</Info>
+
+---
+
+## Automating competitive intelligence
+
+For ongoing competitive monitoring, use [MCP automation workflows](/mcp/workflows):
+
+1. **Weekly gap scan** — automatically identify new prompts where competitors have gained ground
+2. **Content audit pipeline** — when a new competitor URL starts getting cited, automatically analyze it
+3. **Strategic action plans** — generate prioritized recommendations using `generate_strategic_action_plan`
+
+See the [MCP Automation Workflows](/mcp/workflows) page for ready-to-use workflow examples.
+
+---
+
+## From intelligence to action
+
+The end-to-end flow from competitive intelligence to improved visibility:
+
+```
+Fan-out query analysis → Identify gaps → Audit competitor content
+    → Create content brief → Produce content → Publish
+        → Monitor in Superlines → Iterate
+```
+
+<CardGroup cols={2}>
+  <Card title="MCP Workflows" icon="robot" href="/mcp/workflows">
+    Automate the competitive intelligence pipeline with AI agents.
+  </Card>
+  <Card title="Citations & Fan-out Queries" icon="link" href="/metrics/citations">
+    Deep-dive into how citations and fan-out queries work.
+  </Card>
+</CardGroup>

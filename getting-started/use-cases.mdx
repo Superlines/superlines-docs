@@ -1,0 +1,122 @@
+---
+title: Use Cases
+description: How different teams and companies use Superlines to improve their AI search visibility.
+---
+
+Superlines serves a wide range of teams — from enterprise brand organizations managing multi-channel visibility to performance-focused marketers optimizing for AI-driven traffic. Here's how different customer types get the most out of the platform.
+
+## Enterprise brand monitoring
+
+**Best for:** Companies with existing marketing data, brand guidelines, and multiple stakeholders across brand, insights, comms, content, and PR teams.
+
+### The challenge
+
+Large organizations already have rich data about their market: marketing messages, FAQ databases, support ticket themes, keyword research, and competitive intelligence. The challenge is understanding how this existing knowledge translates to AI search visibility — and coordinating across teams to improve it.
+
+### How they use Superlines
+
+<Steps>
+  <Step title="Import existing data as prompts">
+    Use your existing assets as the foundation for AI search monitoring:
+
+    | Data source | Example prompts |
+    |---|---|
+    | **Marketing messages** | Core value propositions rephrased as questions |
+    | **FAQ databases** | Customer questions you already answer on your site |
+    | **Support tickets** | Common issues and questions from real customers |
+    | **Keyword research** | High-volume search queries converted to conversational prompts |
+    | **Competitive intelligence** | Questions where competitors are strong |
+
+    Import via [bulk upload](/account/prompts#bulk-import), [Google Search Console](/integrations/google-search-console), or the [MCP server](/mcp/overview).
+  </Step>
+  <Step title="Organize with labels and brands">
+    Structure prompts by team, campaign, product line, or funnel stage using [labels](/account/prompts#labels). Create [separate brands](/account/brands) for different markets or business units.
+  </Step>
+  <Step title="Track brand visibility across teams">
+    Share dashboards across teams. Each team focuses on different metrics:
+
+    | Team | Primary focus |
+    |---|---|
+    | **Brand / Comms** | Brand Visibility, Sentiment Score, Share of Voice |
+    | **Content / SEO** | Citations, Fan-out Queries, Content Opportunities |
+    | **PR** | Sentiment trends, competitor mention analysis |
+    | **Insights** | Week-over-week trends, engine-level breakdowns |
+  </Step>
+  <Step title="Act on competitive intelligence">
+    Use [fan-out query analysis](/metrics/competitive-intelligence) to discover what content drives AI citations for competitors — and create better content for those topics.
+  </Step>
+</Steps>
+
+<Tip>
+Enable [prompt variations](/account/prompt-variations) to test how different phrasings of the same question affect your brand visibility. This is especially valuable for large brands monitoring messaging consistency.
+</Tip>
+
+---
+
+## Performance-focused AI visibility
+
+**Best for:** Marketing teams and SEO professionals who want to capture traffic from AI search by appearing in high-volume, high-intent prompts.
+
+### The challenge
+
+Smaller teams may not have extensive existing data. They need to discover which prompts have real market volume and then systematically improve their visibility on those prompts — similar to how traditional SEO targets high-value keywords.
+
+### How they use Superlines
+
+<Steps>
+  <Step title="Discover high-value prompts automatically">
+    Start with Superlines' auto-generated prompts, then expand using:
+
+    - **[Prompt Radar](/account/prompt-radar)** — automatically discovers trending prompts from SEO, SERP, and People Also Ask data sources
+    - **[Google Search Console](/integrations/google-search-console)** — imports real queries where you already have impressions or clicks
+    - **[MCP-powered discovery](/mcp/workflows#prompt-discovery)** — use AI agents to scrape trends and add prompts programmatically
+  </Step>
+  <Step title="Focus on strategic prompts">
+    Identify prompts where you must beat competitors. Label these as strategic and monitor them closely. Use [competitive gap analysis](/metrics/competitive-intelligence#competitive-gap-analysis) to prioritize.
+  </Step>
+  <Step title="Optimize content for fan-out queries">
+    When AI engines answer a prompt, they search the web behind the scenes. [Fan-out queries](/metrics/citations#what-are-fan-out-queries) reveal exactly what they search for. Optimize your content to rank for these specific queries.
+  </Step>
+  <Step title="Automate the content pipeline">
+    Use the [MCP server](/mcp/workflows) to build automated workflows:
+    1. Identify prompts where you have low visibility
+    2. Analyze what top-cited pages do well
+    3. Feed insights to a content agent
+    4. Publish optimized content
+    5. Monitor improvement in Superlines
+  </Step>
+</Steps>
+
+---
+
+## Agency & multi-brand management
+
+**Best for:** Agencies managing AI search visibility for multiple clients, or companies with multiple brands and markets.
+
+### How they use Superlines
+
+- **Separate brands per client** — each with its own prompts, competitors, and analytics
+- **Label-based organization** — group prompts by campaign, product, or priority across clients
+- **API and MCP integration** — automate reporting and monitoring across all clients
+- **Team roles** — give clients read-only access to their brand data while maintaining admin control
+
+---
+
+## Common workflows across all use cases
+
+Regardless of your team type, these workflows apply:
+
+<CardGroup cols={2}>
+  <Card title="Prompt Strategy" icon="bullseye" href="/account/prompt-strategy">
+    Learn how to build a comprehensive prompt portfolio from multiple data sources.
+  </Card>
+  <Card title="Competitive Intelligence" icon="magnifying-glass" href="/metrics/competitive-intelligence">
+    Use fan-out queries and citations to reverse-engineer competitor content strategies.
+  </Card>
+  <Card title="MCP Automation" icon="robot" href="/mcp/workflows">
+    Build automated pipelines that connect Superlines data to content production.
+  </Card>
+  <Card title="Prompt Radar" icon="radar" href="/account/prompt-radar">
+    Automatically discover trending prompts you should be tracking.
+  </Card>
+</CardGroup>

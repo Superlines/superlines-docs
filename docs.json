@@ -24,7 +24,8 @@
             "pages": [
               "getting-started/introduction",
               "getting-started/quickstart",
-              "getting-started/concepts"
+              "getting-started/concepts",
+              "getting-started/use-cases"
             ]
           },
           {
@@ -34,6 +35,9 @@
               "account/organizations",
               "account/brands",
               "account/prompts",
+              "account/prompt-strategy",
+              "account/prompt-radar",
+              "account/prompt-variations",
               "account/team"
             ]
           },
@@ -44,6 +48,8 @@
               "metrics/key-metrics",
               "metrics/responses",
               "metrics/citations",
+              "metrics/competitive-intelligence",
+              "metrics/ai-crawler-analytics",
               "metrics/analysis-process"
             ]
           }
@@ -58,7 +64,8 @@
             "pages": [
               "mcp/overview",
               "mcp/setup",
-              "mcp/tools"
+              "mcp/tools",
+              "mcp/workflows"
             ]
           },
           {

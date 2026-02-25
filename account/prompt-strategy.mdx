@@ -1,0 +1,116 @@
+---
+title: Prompt Strategy
+description: Build a comprehensive prompt portfolio using multiple data sources and strategies.
+---
+
+Choosing the right prompts to track is the most important step in Superlines. Your prompt portfolio defines the context for all your AI search visibility data — get it right, and every metric becomes actionable.
+
+## Why prompt selection matters
+
+Unlike traditional SEO where you optimize for keywords with known search volume, AI search prompts are conversational and varied. The exact phrasing matters less than the intent — AI engines understand nuance. What matters is tracking prompts that represent real questions your market is asking.
+
+<Info>
+Enable [prompt variations](/account/prompt-variations) to automatically test different phrasings of the same question. This ensures your tracking isn't dependent on exact wording.
+</Info>
+
+## Data sources for prompt creation
+
+The best prompt portfolios combine multiple data sources. Here's how to use each one:
+
+### 1. Your own business data
+
+If your organization has existing marketing, customer success, or content data, use it as the foundation. This is the most reliable source because it reflects your actual market.
+
+| Source | How to use it | Example |
+|---|---|---|
+| **Marketing messages** | Convert your value propositions and messaging pillars into questions a prospect would ask | "What is the easiest way to get YEL insurance?" |
+| **FAQ databases** | Import existing FAQ questions directly — these are proven real customer questions | "How do I cancel my subscription?" |
+| **Support ticket themes** | Extract recurring questions from support data | "Why isn't my integration syncing?" |
+| **Sales objections** | Frame common objections as research questions | "Is [product] worth the price for small teams?" |
+| **Internal keyword research** | Convert high-volume keywords into conversational prompts | Keyword "CRM startups" becomes "What is the best CRM for startups?" |
+
+<Tip>
+You don't need to match exact phrasing. AI engines understand intent. A prompt like "Best CRM for startups" will capture responses whether a user asks "What CRM should I use for my startup?" or "Which CRMs work well for early-stage companies?"
+</Tip>
+
+### 2. Google Search Console
+
+The [Google Search Console integration](/integrations/google-search-console) imports real search queries that already drive impressions or clicks to your site. These are proven high-relevance queries.
+
+**Best practice:** Focus on queries with high impressions but lower clicks — these represent topics where users are searching but may be getting AI-powered answers instead of clicking through.
+
+### 3. Prompt Radar
+
+[Prompt Radar](/account/prompt-radar) automatically discovers trending prompts from SEO, SERP, and People Also Ask data sources. It finds "hot" prompts that are relevant to your brand but not yet in your tracking.
+
+### 4. Long-tail keyword data + AI generation
+
+For performance-focused teams, combine traditional keyword research with AI to generate high-value prompts:
+
+1. **Start with keyword data** — use tools to find long-tail keywords with real search volume in your niche
+2. **Convert to conversational prompts** — use the Superlines [keyword research tool](/mcp/tools#keyword_research) or an LLM to transform keywords into natural-language questions
+3. **Validate relevance** — ensure the generated prompts match your brand's positioning and audience
+4. **Import and label** — add prompts via [bulk import](/account/prompts#bulk-import) or [MCP](/mcp/tools#add_prompts) with appropriate labels
+
+<Warning>
+Avoid tracking prompts that have zero market relevance. Even if a prompt seems interesting, it only matters if real users are asking that question to AI engines. Use keyword volume data and your own customer data as validation signals.
+</Warning>
+
+### 5. MCP-powered prompt discovery
+
+Use the [MCP server](/mcp/workflows#prompt-discovery) to build automated prompt discovery workflows:
+
+- Scrape trending articles or SERP results with an external tool
+- Use an LLM to extract relevant questions
+- Add them to Superlines via `add_prompts` automatically
+- Label and categorize for organized tracking
+
+### 6. Competitor-inspired prompts
+
+Analyze where competitors have strong AI visibility using [competitive gap analysis](/metrics/competitive-intelligence). Their strengths reveal prompts your market cares about that you may be missing.
+
+---
+
+## Organizing your prompt portfolio
+
+### Labels for structure
+
+Use [labels](/account/prompts#labels) to organize prompts into meaningful categories:
+
+| Label strategy | Examples | Use case |
+|---|---|---|
+| **By funnel stage** | `awareness`, `consideration`, `decision` | Track visibility across the customer journey |
+| **By topic** | `pricing`, `features`, `comparison` | Identify strong and weak topic areas |
+| **By priority** | `strategic`, `monitoring`, `experimental` | Allocate effort where it matters most |
+| **By team** | `brand`, `content`, `pr` | Enable team-specific dashboards |
+| **By campaign** | `q1-launch`, `summer-promo` | Measure campaign-specific AI visibility |
+
+### Strategic vs. monitoring prompts
+
+Not all prompts are equal. Classify them:
+
+- **Strategic prompts** — high-value questions where you *must* beat competitors. Monitor these closely, invest in content optimization, and track week-over-week changes.
+- **Monitoring prompts** — broader questions that give you market awareness. Track them for trends but don't invest heavily in each one.
+- **Experimental prompts** — new or unvalidated questions you're testing. Use [Prompt Radar](/account/prompt-radar) to discover these, evaluate for 2-4 weeks, then promote or archive.
+
+---
+
+## Prompt portfolio health checklist
+
+<AccordionGroup>
+  <Accordion title="Are your prompts representative of your market?">
+    Your prompts should cover the full range of questions your target audience asks — not just the ones you want to rank for. Include comparison prompts, problem-solving prompts, and brand-specific prompts.
+  </Accordion>
+  <Accordion title="Are you using multiple data sources?">
+    A healthy portfolio combines business data, search data, automated discovery (Prompt Radar), and competitive insights. Relying on a single source creates blind spots.
+  </Accordion>
+  <Accordion title="Are your prompts labeled and organized?">
+    Without labels, your data becomes noise. Organize by topic, priority, funnel stage, or team to make analytics actionable.
+  </Accordion>
+  <Accordion title="Are you refreshing your prompts regularly?">
+    Markets evolve. Set up [Prompt Radar](/account/prompt-radar) to continuously discover new relevant prompts, and periodically review and pause low-value ones to free quota.
+  </Accordion>
+  <Accordion title="Are variations enabled?">
+    [Prompt variations](/account/prompt-variations) ensure your visibility data isn't skewed by specific phrasing. Enable at least a 25% variation rate.
+  </Accordion>
+</AccordionGroup>

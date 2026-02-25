@@ -1,0 +1,204 @@
+---
+title: Automation Workflows
+description: Build automated AI search visibility pipelines using the Superlines MCP server with AI agents.
+---
+
+The Superlines MCP server isn't just for querying data — it's a building block for automated workflows that connect AI search intelligence to content production, monitoring, and optimization.
+
+## What you can automate
+
+<CardGroup cols={2}>
+  <Card title="Prompt Discovery" icon="magnifying-glass">
+    Automatically find and add relevant prompts from external data sources.
+  </Card>
+  <Card title="Competitive Monitoring" icon="chart-bar">
+    Surface prompts where you're losing to competitors and trigger content actions.
+  </Card>
+  <Card title="Content Pipeline" icon="pen-to-square">
+    Feed AI search insights directly to content production agents.
+  </Card>
+  <Card title="Reporting" icon="file-lines">
+    Generate automated performance reports and alerts.
+  </Card>
+</CardGroup>
+
+---
+
+## Prompt discovery workflows {#prompt-discovery}
+
+### External data source to Superlines
+
+Use AI agents to discover prompts from external sources and add them to tracking automatically.
+
+**Flow:**
+1. An AI agent scrapes an external source (SERP results, trending articles, Reddit threads, industry forums)
+2. The agent extracts relevant questions and topics
+3. The agent calls `list_brands` to identify the target brand
+4. The agent calls `add_prompts` to add discovered prompts with appropriate labels
+
+**Example prompt to your AI agent:**
+
+```
+Using the Superlines MCP server:
+1. List my brands to find the domain ID for "My Brand"
+2. Research trending topics in [your industry] using SERP data
+3. Generate 10 conversational prompts from those topics
+4. Add them to my brand with the label "trend-discovery"
+```
+
+### Google Search Console to strategic prompts
+
+Combine GSC data with Superlines analytics to find high-value prompts:
+
+**Flow:**
+1. Connect [Google Search Console](/integrations/google-search-console) to import queries
+2. Use an AI agent to call `get_query_data` and identify high-impression queries
+3. Cross-reference with `analyze_metrics` to find queries where visibility is low
+4. Prioritize these as strategic prompts with `update_prompt_labels`
+
+---
+
+## Competitive intelligence workflows
+
+### Find prompts where you're losing
+
+Automatically identify fan-out queries where competitors outrank you.
+
+**Example prompt to your AI agent:**
+
+```
+Using the Superlines MCP server for brand "My Brand":
+1. Call get_fanout_query_insights to see fan-out query performance
+2. Identify queries where my domain ranks poorly or isn't present
+3. Call get_competitive_gap to see which competitors lead on those topics
+4. For the top 5 gaps, call analyze_competitor_url on the competitor's cited page
+5. Summarize: what content am I missing, and what should I create?
+```
+
+### Audit competitor content automatically
+
+When a competitor is winning on a specific prompt, reverse-engineer their strategy:
+
+**Flow:**
+1. Call `get_top_cited_url_per_prompt` to find which URLs are winning
+2. Call `analyze_competitor_url` on those URLs to get detailed content analysis
+3. Call `webpage_audit` on your own competing pages for comparison
+4. Generate a content brief based on the gaps
+
+---
+
+## Content production pipeline
+
+### Agent-to-agent content collaboration
+
+The most powerful workflow connects Superlines data directly to a content production agent. This creates a closed-loop system: **discover opportunities → create content → monitor results**.
+
+**Architecture:**
+
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Superlines MCP │────▶│  Orchestrator    │────▶│  Content Agent  │
+│  (Intelligence) │     │  Agent           │     │  (Production)   │
+│                 │◀────│                  │◀────│                 │
+└─────────────────┘     └──────────────────┘     └─────────────────┘
+```
+
+**Step-by-step flow:**
+
+<Steps>
+  <Step title="Identify opportunities">
+    The orchestrator calls `find_content_opportunities` to discover topics with high query volume but low brand visibility.
+  </Step>
+  <Step title="Analyze competitive landscape">
+    For each opportunity, call `get_fanout_query_insights` and `get_top_cited_url_per_prompt` to understand what content currently wins.
+  </Step>
+  <Step title="Audit top-performing content">
+    Call `analyze_competitor_url` and `webpage_analyze_content` on the winning URLs to extract what makes them successful.
+  </Step>
+  <Step title="Generate content brief">
+    The orchestrator synthesizes the data into a content brief: target prompts, fan-out queries to optimize for, competitive gaps to exploit, and content structure recommendations.
+  </Step>
+  <Step title="Content agent produces draft">
+    A content production agent (Claude, GPT, or a custom agent) creates content based on the brief. This could feed directly into a CMS publication queue.
+  </Step>
+  <Step title="Monitor results">
+    After publishing, use `get_weekly_performance` and `get_period_comparison` to track whether the new content improves visibility for the target prompts.
+  </Step>
+</Steps>
+
+---
+
+## Reporting and monitoring workflows
+
+### Automated weekly reports
+
+**Example prompt to your AI agent:**
+
+```
+Using the Superlines MCP server:
+1. Call get_weekly_performance for brand "My Brand" over the last 4 weeks
+2. Call get_period_comparison to compare this month vs last month
+3. Call get_best_performing_prompt to find top 5 prompts
+4. Call find_content_opportunities for the top 3 gaps
+5. Format a weekly executive summary with key trends and recommended actions
+```
+
+### Strategic action plans
+
+**Example prompt to your AI agent:**
+
+```
+Using Superlines MCP:
+1. Call generate_strategic_action_plan with focusArea "all" for "My Brand"
+2. For each recommended action, call the relevant analysis tool to gather supporting data
+3. Produce a prioritized action plan with specific content recommendations
+```
+
+---
+
+## Prompt management at scale
+
+The MCP server makes prompt management efficient for large portfolios:
+
+| Task | MCP approach |
+|---|---|
+| **Add prompts in bulk** | Call `add_prompts` with up to 50 prompts per call, with labels |
+| **Pause seasonal prompts** | Call `pause_prompts` with a label filter (e.g., `summer-campaign`) |
+| **Reactivate after season** | Call `unpause_prompts` with the same label filter |
+| **Reorganize labels** | Call `update_prompt_labels` to reclassify prompts |
+| **Discover + add in one flow** | Chain external data scraping with `add_prompts` in a single agent workflow |
+
+---
+
+## Best practices for MCP automation
+
+<AccordionGroup>
+  <Accordion title="Start simple, then automate">
+    Run workflows manually with your AI assistant first. Once you understand the flow and validate the outputs, then build automated pipelines.
+  </Accordion>
+  <Accordion title="Use labels for workflow tracking">
+    Label prompts added by automated workflows (e.g., `mcp-auto`, `trend-discovery`) so you can measure their effectiveness separately from manually curated prompts.
+  </Accordion>
+  <Accordion title="Combine MCP tools in sequence">
+    The most powerful workflows chain multiple MCP tools. For example: `list_brands` → `get_fanout_query_insights` → `analyze_competitor_url` → `generate_strategic_action_plan`.
+  </Accordion>
+  <Accordion title="Keep a human in the loop for content publishing">
+    Let agents generate content briefs and drafts, but have a human review before publishing. AI search visibility is a strategic asset — quality matters more than speed.
+  </Accordion>
+  <Accordion title="Monitor automated prompts">
+    Regularly review prompts added by automated workflows. Pause or remove any that aren't generating valuable insights after 2-4 weeks of tracking.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Getting started
+
+<CardGroup cols={2}>
+  <Card title="MCP Setup" icon="plug" href="/mcp/setup">
+    Connect the MCP server to your AI assistant.
+  </Card>
+  <Card title="Available Tools" icon="wrench" href="/mcp/tools">
+    Full reference of all 32 MCP tools.
+  </Card>
+</CardGroup>
