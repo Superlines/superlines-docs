@@ -1,0 +1,117 @@
+---
+title: GA4 AI Traffic
+description: Analyze traffic coming to your website from AI-powered search platforms.
+---
+
+The GA4 AI Traffic page shows how much traffic your website receives from AI platforms like ChatGPT, Perplexity, Copilot, Claude, and others. It connects to your Google Analytics 4 property to detect and analyze AI-referred visits.
+
+## Setup
+
+Before you can use this page, you need to connect your Google Analytics property:
+
+<Steps>
+  <Step title="Connect Google Analytics">
+    If you haven't already, go to the [Integrations](/integrations/google-analytics) page to connect your GA4 property.
+  </Step>
+  <Step title="Select your property">
+    On the AI Traffic page, select your Google Analytics property and optionally your Google Search Console site from the configuration section.
+  </Step>
+  <Step title="Click Configure Analytics">
+    Save your property selection to start receiving AI traffic data.
+  </Step>
+</Steps>
+
+<Info>
+AI traffic detection works by analyzing referral sources in your GA4 data. It identifies visits originating from known AI platforms and categorizes them accordingly.
+</Info>
+
+## Key metrics
+
+Four summary cards show your AI traffic performance:
+
+| Metric | Description |
+|---|---|
+| **Total Sessions** | AI-referred sessions in the selected period |
+| **Total Page Views** | Page views from AI-referred traffic |
+| **Total Users** | Unique users arriving from AI platforms |
+| **Top LLM** | The AI platform sending the most traffic, with its share percentage |
+
+Each metric shows the percentage change compared to the previous period.
+
+## LLM referral traffic chart
+
+A stacked bar chart showing AI-referred sessions over time, broken down by AI engine. This reveals:
+
+- Which AI platforms drive the most traffic to your site
+- How AI traffic volume changes over time
+- Whether specific platforms are growing or declining
+
+## Detailed tabs
+
+### Landing Pages
+
+Shows which pages on your site receive the most AI traffic:
+
+| Column | Description |
+|---|---|
+| **Page Path** | URL path of the landing page |
+| **Page Title** | The page title |
+| **Sessions** | Number of AI-referred sessions |
+| **Users** | Unique users |
+| **Bounce Rate** | Percentage of single-page visits |
+| **LLM Engines** | Which AI platforms sent traffic to this page |
+
+### Geographic
+
+AI traffic broken down by country:
+
+| Column | Description |
+|---|---|
+| **Country** | Visitor country |
+| **Sessions** | Number of sessions |
+| **Users** | Unique users |
+| **Bounce Rate** | Single-page visit rate |
+| **Top Engine** | Most common AI referral source for this country |
+
+### Devices
+
+AI traffic by device type, shown as both a pie chart and table:
+
+- Device category (Desktop, Mobile, Tablet)
+- Sessions and users per device
+- Bounce rate
+- Top AI engine per device type
+
+## Platform performance sidebar
+
+A sidebar panel shows individual AI platform performance:
+
+- Each platform listed with session count, user count, and percentage share
+- Top landing page highlighted
+- Quick stats: average session duration, average bounce rate, top country, top device
+
+## Filters
+
+- **Date range** — predefined (7 days, 30 days, 3 months, 6 months) or custom start/end dates
+- **LLM engines** — filter by specific AI platforms (multi-select)
+
+<Tip>
+Compare your AI traffic trends with your brand visibility metrics. If brand visibility is increasing but AI traffic isn't following, your content may be mentioned but not cited with links — focus on earning more citations through the [Citations Analysis](/analytics/citations-page) page.
+</Tip>
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Google Analytics Integration" icon="chart-simple" href="/integrations/google-analytics">
+    How to connect your GA4 property.
+  </Card>
+  <Card title="Crawler Analytics" icon="robot" href="/website/crawler-analytics">
+    Track AI bot crawling activity on your site.
+  </Card>
+  <Card title="Citations Analysis" icon="link" href="/analytics/citations-page">
+    See which URLs are cited in AI responses.
+  </Card>
+  <Card title="Key Metrics" icon="chart-bar" href="/metrics/key-metrics">
+    Understand citation rate and its impact on traffic.
+  </Card>
+</CardGroup>

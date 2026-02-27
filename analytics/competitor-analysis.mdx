@@ -1,0 +1,99 @@
+---
+title: Competitor Analysis
+description: Compare your brand's AI search performance against competitors across all key metrics.
+---
+
+The Competitor Analysis page provides a dedicated view for benchmarking your brand against competitors in AI search. See who's winning on visibility, citations, and share of voice — and identify specific prompts where you can close the gap.
+
+## KPI summary
+
+Four cards at the top give you an instant competitive overview:
+
+| Card | What it shows |
+|---|---|
+| **Your Brand Visibility** | Your brand visibility percentage with trend |
+| **Competitors Tracked** | How many competitors are being monitored |
+| **Top Competitor BV** | The competitor with the highest brand visibility |
+| **Avg Competitor BV** | Average brand visibility across all tracked competitors |
+
+## Brand Performance Overview
+
+The main table ranks all brands (yours and competitors) by performance:
+
+| Column | Description |
+|---|---|
+| **Rank** | Position based on overall brand visibility |
+| **Brand** | Brand name with logo |
+| **Top Fan-out Query** | The LLM-generated search query where this brand performs best |
+| **Top Cited URL** | The URL most frequently cited for this brand |
+| **Brand Visibility** | Percentage of AI responses mentioning this brand |
+| **Total Mentions** | Absolute count of brand mentions |
+| **Total Citations** | Number of times this brand's URLs were cited |
+
+Click any row to open a detailed modal with deeper insights into that brand's performance by engine, prompt, and more.
+
+## Charts and market share
+
+### Brand Visibility Comparison
+
+A bar chart comparing Brand Visibility percentages across all brands. This makes it easy to see the relative gap between your brand and competitors at a glance.
+
+### Market Share by Share of Voice
+
+A donut chart showing how total brand mentions are distributed. Your Share of Voice tells you what percentage of the conversation your brand owns compared to competitors.
+
+### Share of Citations
+
+A donut chart showing how website citations are distributed across brands. This reveals whose content AI models consider most authoritative.
+
+<Tip>
+Click on chart segments to open detailed modals. For example, clicking a competitor's bar in the visibility chart shows their top-performing prompts and engines.
+</Tip>
+
+## Competitor top-performing prompts
+
+A table showing prompts where competitors outperform you:
+
+| Column | Description |
+|---|---|
+| **Competitor** | Which competitor leads on this prompt |
+| **Their Top Prompt** | The prompt text |
+| **Their BV** | The competitor's brand visibility on this prompt |
+| **Your BV** | Your brand visibility on the same prompt |
+| **Gap** | The difference — your opportunity |
+
+This is one of the most actionable sections. Prompts with a large gap represent specific topics where targeted content can improve your visibility.
+
+## Filters
+
+- **Date range** — select the analysis period
+- **LLM engines** — filter by specific AI engines (multi-select)
+- **Prompt labels** — focus on specific prompt categories
+- **Specific prompt** — drill into a single tracked prompt
+- **Show all brands** — toggle between configured competitors only or all detected brands
+- **Competitor selection** — when "Show all brands" is off, choose which competitors to compare
+
+## Exporting data
+
+Export options are available on the Brand Performance table and charts:
+
+- **CSV** — tabular data export
+- **JSON** — structured data export
+- **PNG** — chart image export for presentations
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Cross-Brand Analytics" icon="chart-pie" href="/analytics/cross-brand-analytics">
+    Compare performance across multiple brands you manage.
+  </Card>
+  <Card title="Key Metrics" icon="chart-bar" href="/metrics/key-metrics">
+    Understand how Brand Visibility and SOV are calculated.
+  </Card>
+  <Card title="Mentions" icon="message" href="/analytics/mentions">
+    Deep-dive into response data and mention rankings.
+  </Card>
+  <Card title="Brands & Domains" icon="globe" href="/account/brands">
+    Configure your competitors and brand settings.
+  </Card>
+</CardGroup>

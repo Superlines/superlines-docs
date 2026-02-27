@@ -1,0 +1,99 @@
+---
+title: AI Search Checker
+description: Analyze any webpage for AI search readiness across five key dimensions.
+---
+
+The AI Search Checker evaluates how well any webpage is optimized for visibility in AI-powered search results. It scores your page across five dimensions and provides prioritized recommendations to improve your AI search presence.
+
+## What it analyzes
+
+The tool evaluates five dimensions of AI search readiness:
+
+| Dimension | What it checks |
+|---|---|
+| **SEO Metadata** | Title tags, meta descriptions, Open Graph tags, canonical URLs |
+| **Structured Data** | Schema.org markup (JSON-LD, Microdata), rich result eligibility |
+| **Semantic HTML5** | Proper use of headings, sections, landmarks, and semantic elements |
+| **Content Quality** | Readability, depth, authority signals, E-E-A-T indicators |
+| **LLM Readiness** | How well the content can be parsed and understood by AI models |
+
+## How to use it
+
+<Steps>
+  <Step title="Enter a URL">
+    Navigate to **AI Search Checker** in the Tools section of the sidebar. Enter the URL of any webpage you want to analyze.
+  </Step>
+  <Step title="Run the analysis">
+    Click **Analyze**. The tool will crawl the page and evaluate it across all five dimensions. This typically takes 10–30 seconds.
+  </Step>
+  <Step title="Review your scores">
+    You'll see an overall AI Search Readiness Score (0–100) along with sub-scores for Technical, Content, and Schema dimensions, each with a brief rationale.
+  </Step>
+  <Step title="Follow the recommendations">
+    Below the scores, you'll find prioritized recommendations ranked by impact. Each recommendation explains what to fix and why it matters for AI visibility.
+  </Step>
+</Steps>
+
+<Tip>
+Not sure where to start? Try the example sites (Nike, Stripe, GitHub Docs, NY Times) to see how well-known sites score and understand what good looks like.
+</Tip>
+
+## Understanding the readiness score
+
+The overall score reflects how well-prepared your page is for AI search visibility:
+
+| Score | Rating | Meaning |
+|---|---|---|
+| 80–100 | Excellent | Your page is well-optimized for AI search |
+| 60–79 | Good | Solid foundation with room for improvement |
+| 40–59 | Needs Work | Significant gaps that limit AI visibility |
+| 0–39 | Poor | Major issues preventing AI discovery |
+
+## The detailed analysis report
+
+Below the score summary, you'll find a comprehensive analysis covering:
+
+- **SEO metadata analysis** — evaluation of your title, description, and meta tags
+- **Structured data review** — what Schema.org markup exists and what's missing
+- **Semantic HTML5 evaluation** — how well your page uses semantic elements
+- **Content quality assessment** — readability, depth, and authority signals
+- **LLM readability evaluation** — how easily AI models can parse your content
+
+## Schema optimization
+
+The AI Search Checker includes a built-in schema analysis section that shows:
+
+- Your current Schema.org implementation and quality score
+- A summary of AI-recommended changes
+- A highlighted diff view comparing your existing schema with the optimized version
+- Ready-to-use JSON-LD that you can copy and paste into your page
+
+<Info>
+For a deeper Schema.org analysis with more detailed optimization, use the dedicated [Schema Optimiser](/tools/schema-optimiser).
+</Info>
+
+## Exporting results
+
+You can export the full analysis in two formats:
+
+- **Markdown** — copy the complete analysis report to share with your team
+- **PDF** — download a formatted report for stakeholders
+
+The optimized JSON-LD schema can be copied as raw JSON or as an HTML `<script>` tag ready to paste into your page.
+
+## Related tools
+
+<CardGroup cols={2}>
+  <Card title="Schema Optimiser" icon="code" href="/tools/schema-optimiser">
+    Deep-dive into Schema.org optimization for any URL.
+  </Card>
+  <Card title="Site Analyzer" icon="magnifying-glass-chart" href="/tools/site-analyzer">
+    Full technical SEO audit with issue categorization.
+  </Card>
+  <Card title="Site Health" icon="heart-pulse" href="/website/site-health">
+    Ongoing monitoring of your website's health scores.
+  </Card>
+  <Card title="AI Agent" icon="robot" href="/features/agent">
+    Ask the Agent to audit pages and explain results.
+  </Card>
+</CardGroup>

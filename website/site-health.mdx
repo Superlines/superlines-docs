@@ -1,0 +1,107 @@
+---
+title: Site Health
+description: Monitor your website's health scores and fix issues that affect AI search visibility.
+---
+
+Site Health tracks the technical health and AI readiness of individual pages on your website. Unlike [Crawler Analytics](/website/crawler-analytics) which tracks bot traffic, Site Health evaluates your actual page quality — technical SEO, content structure, and Answer Engine Optimization (AEO) readiness.
+
+## Health scores
+
+Each analyzed page receives three scores:
+
+| Score | What it measures |
+|---|---|
+| **Overall** | Combined health score factoring in all dimensions |
+| **Technical** | Technical SEO health — meta tags, links, performance, security |
+| **AEO** | Answer Engine Optimization — how well the page is structured for AI citation |
+
+Scores are displayed as circular gauges and tracked over time with trend charts. The aggregate scores across all your monitored pages are shown at the top of the page.
+
+## URL table
+
+The main table lists all pages being monitored:
+
+| Column | Description |
+|---|---|
+| **URL** | The page URL |
+| **Page Title** | The page's title tag |
+| **Status** | Processing state (discovered, queued, processing, complete, error) |
+| **Last Analyzed** | When the page was last crawled and analyzed |
+| **Overall Score** | Combined health score |
+| **Technical Score** | Technical SEO score |
+| **AEO Score** | Answer Engine Optimization score |
+| **Issues** | Number of issues detected |
+
+## Adding pages
+
+You can add pages for monitoring in three ways:
+
+<Tabs>
+  <Tab title="Single URL">
+    Enter an individual URL to add a specific page for monitoring.
+  </Tab>
+  <Tab title="Sitemap">
+    Provide your sitemap URL to automatically discover and add all pages listed in it.
+  </Tab>
+  <Tab title="Auto-discover">
+    Let Superlines crawl your domain to discover pages automatically.
+  </Tab>
+</Tabs>
+
+Use the **Sync Pages** button to re-discover URLs from your domain at any time.
+
+## Page detail view
+
+Click any URL in the table to open the detailed health report:
+
+- **Page metadata** — URL, title, meta description, last audit date
+- **Health scores** — Overall, Technical, and AEO with visual gauges
+- **Issues list** — each issue includes:
+  - Title and description
+  - Severity level (critical, warning, notice)
+  - Category (security, meta tags, content, links, etc.)
+  - Recommended fix
+- **Comprehensive report** — full Markdown analysis of the page
+- **Content analysis** — detailed content quality evaluation
+- **Schema optimization** — structured data recommendations
+- **Code snippets** — ready-to-implement fixes
+- **Suggested prompt** — a pre-built prompt you can copy and use with the [AI Agent](/features/agent) for deeper analysis
+
+### Actions in detail view
+
+- **Re-analyze** — trigger a fresh analysis of the page
+- **Mark issues as fixed** — track your remediation progress
+- **Copy Agent prompt** — send the page context to the AI Agent for guidance
+
+## Usage and quotas
+
+The page header shows your current usage:
+
+- Plan name and analysis interval
+- Number of domains and organizations
+- Monthly analyses used vs. limit
+
+<Warning>
+Site health analyses count against your monthly quota. Check your usage regularly and prioritize analyzing your most important pages first.
+</Warning>
+
+## Site health trends
+
+A trend chart shows how your aggregate site health scores change over time. Use the date range selector to view trends over 30, 60, or 90 days. This helps you track whether your optimization efforts are improving overall site health.
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="AI Search Checker" icon="magnifying-glass" href="/tools/ai-search-checker">
+    One-off analysis of any URL for AI readiness.
+  </Card>
+  <Card title="Site Analyzer" icon="magnifying-glass-chart" href="/tools/site-analyzer">
+    Full technical SEO audit of any page.
+  </Card>
+  <Card title="Schema Optimiser" icon="code" href="/tools/schema-optimiser">
+    Optimize structured data for monitored pages.
+  </Card>
+  <Card title="AI Agent" icon="robot" href="/features/agent">
+    Ask the Agent for guidance on fixing issues.
+  </Card>
+</CardGroup>

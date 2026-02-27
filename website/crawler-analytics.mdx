@@ -1,0 +1,125 @@
+---
+title: Crawler Analytics
+description: Track and analyze AI bot crawler traffic and human visitors to your website.
+---
+
+Crawler Analytics shows how AI bots and human visitors interact with your website. It goes beyond the conceptual coverage in [AI Crawler Analytics](/metrics/ai-crawler-analytics) with a full page walkthrough of the dashboard, its tabs, and how to use the data.
+
+## Setup
+
+To start tracking crawler traffic, install the Superlines tracking script on your website. The Crawler Traffic tab on the [Overview Dashboard](/analytics/overview-dashboard) provides setup instructions with platform-specific guides for:
+
+- **Standard websites** — JavaScript snippet
+- **Webflow, WordPress, Shopify, Next.js** — platform-specific instructions
+- **Netlify, Vercel** — Edge Functions setup
+
+<Info>
+For detailed setup instructions, see the [AI Crawler Analytics](/metrics/ai-crawler-analytics) documentation.
+</Info>
+
+## Crawlers tab
+
+### KPI cards
+
+| Card | What it shows |
+|---|---|
+| **Top Crawler** | The most active bot visiting your site |
+| **Top URL** | The page receiving the most bot traffic |
+| **Top Category** | The most common bot category |
+| **Top Country** | Where most bot traffic originates |
+
+### Charts and tables
+
+- **Bot Traffic Trend** — total bot traffic over time, or broken down by individual bot
+- **Top Bots** — ranked table of bots with name, label, category, visit count, and percentage share
+- **Top Crawled Pages** — which pages bots visit most, with both bot and human visit counts
+- **Bot Categories** — pie chart and table showing the distribution of bot types
+- **Bots by Country** — geographic distribution of crawler traffic
+
+## Visitors tab
+
+Human traffic analytics for comparison with bot activity:
+
+### KPI cards
+
+| Card | What it shows |
+|---|---|
+| **Visitors** | Unique visitors (by IP) |
+| **Pageviews** | Total page views |
+| **Top Country** | Where most human traffic originates |
+| **Top Referral** | Most common referral source |
+
+### Charts and tables
+
+- **Traffic Trend** — visitors and pageviews over time
+- **Top Pages** — most visited pages
+- **Top Referrers** — where your visitors come from
+- **Visitors by Country** — geographic breakdown
+- **Visitors by Device** — Mobile, Tablet, Desktop distribution
+- **Visitors by Browser** — Chrome, Safari, Firefox, Edge, etc.
+
+## Human vs Bot tab
+
+A direct comparison view showing:
+
+- **Total Visits** — combined human and bot visits
+- **Bot Visits** — absolute bot visit count
+- **Human Visits** — absolute human visit count
+- **Bot Percentage** and **Human Percentage** — relative shares
+- **Human vs Bot Trend** — chart comparing traffic over time
+- **Top Bots** — ranked list of most active bots
+
+## AI Bot Data tab
+
+Focused specifically on AI-related bot activity:
+
+### Citation stats
+
+Cards showing activity from specific AI bots:
+- ChatGPT Citations
+- Perplexity Bot activity
+- Claude Bot activity
+- Copilot activity
+
+Each card includes a trend indicator showing whether activity is increasing or decreasing.
+
+### AI-specific analytics
+
+- **Top Pages** — pages most visited by AI bots
+- **Citation Sources** — which AI services are citing your content
+- **AI Bot Traffic Trend** — traffic split between training bots and search bots
+- **AI Crawlers** — individual bot activity (OAI-SearchBot, GPTBot, ClaudeBot, PerplexityBot, etc.)
+- **Traffic Split** — visualization of training vs. search bot proportions
+
+<Tip>
+Pay special attention to the Training vs Search bot split. Search bots (like OAI-SearchBot, PerplexityBot) indicate your content is being used in real-time AI search results. Training bots (like GPTBot) indicate your content is being used for model training — both are valuable signals.
+</Tip>
+
+## Filters
+
+Each tab has relevant filters:
+
+- **Crawlers tab** — filter by Bot, Country, Page
+- **Visitors tab** — filter by Page, Referrer, Device, Browser, Country
+- **Human vs Bot tab** — filter by Bot, Country
+
+## Exporting data
+
+All tables support CSV and JSON export via the export dropdown.
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="AI Crawler Analytics" icon="robot" href="/metrics/ai-crawler-analytics">
+    Conceptual guide to AI crawler tracking.
+  </Card>
+  <Card title="GA4 AI Traffic" icon="chart-simple" href="/website/ga4-ai-traffic">
+    Track AI traffic using Google Analytics data.
+  </Card>
+  <Card title="Site Health" icon="heart-pulse" href="/website/site-health">
+    Monitor page-level health and AI readiness.
+  </Card>
+  <Card title="Overview Dashboard" icon="gauge" href="/analytics/overview-dashboard">
+    Crawler traffic summary in the Overview.
+  </Card>
+</CardGroup>

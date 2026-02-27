@@ -1,0 +1,167 @@
+---
+title: Troubleshooting
+description: Solutions for common issues you may encounter while using Superlines.
+---
+
+This page covers common issues and how to resolve them. If you can't find what you're looking for here, check the [FAQ](/faq) or contact support at support@superlines.io.
+
+## Data & Analysis
+
+<AccordionGroup>
+  <Accordion title="My dashboard shows 'Analysis in Progress'">
+    After adding or modifying prompts, Superlines needs time to collect and analyze responses from all AI engines. This process runs as part of the daily analysis cycle.
+
+    **What to expect:**
+    - New prompts typically start showing data within 24 hours
+    - The analysis cycle runs daily — see [Analysis Process](/metrics/analysis-process) for timing details
+    - Some engines may return data faster than others
+
+    **If it persists beyond 48 hours:** Check that the prompt status is "Active" in [Prompt Management](/account/prompts). Paused prompts are not analyzed.
+  </Accordion>
+
+  <Accordion title="My brand visibility shows 0% for some engines">
+    Not all AI engines mention every brand for every prompt. A 0% visibility on a specific engine means that engine's responses didn't include your brand name for your tracked prompts during the selected period.
+
+    **Steps to investigate:**
+    - Check the [Mentions](/analytics/mentions) page with the specific engine filter to see actual response data
+    - Review your [Brand Settings](/account/brands) to ensure your brand name and variations are correctly configured
+    - Verify the date range — new prompts may not have enough historical data yet
+  </Accordion>
+
+  <Accordion title="Data looks different between pages">
+    Different pages may show different numbers because of how filters and timeframes are applied:
+
+    - **Date ranges** — ensure you're using the same date range across pages
+    - **Engine filters** — each page may have different engines selected
+    - **Prompt filters** — some pages focus on specific prompt subsets
+    - **Metric calculations** — Brand Visibility (mentions/responses) and Share of Voice (your mentions/all mentions) use different denominators. See [Key Metrics](/metrics/key-metrics)
+
+    Reset all filters and use the same date range to compare numbers across pages.
+  </Accordion>
+
+  <Accordion title="Empty data on the dashboard">
+    If you see empty states or "No data available":
+
+    1. **New account** — allow 24 hours after onboarding for initial data collection
+    2. **No tracked prompts** — add prompts via [Prompt Import](/account/prompt-import) or [Prompt Management](/account/prompts)
+    3. **All prompts paused** — check for paused prompts and resume them
+    4. **Date range** — you may have selected a period before your prompts were created
+    5. **Filter conflict** — clear all filters and try again
+  </Accordion>
+</AccordionGroup>
+
+## Integrations
+
+<AccordionGroup>
+  <Accordion title="Google Analytics connection failed">
+    If your GA4 connection isn't working:
+
+    1. Ensure you've granted the correct permissions during the OAuth flow
+    2. Verify you're connecting the right GA4 property (not Universal Analytics)
+    3. Try disconnecting and reconnecting from the [Integrations](/integrations/google-analytics) page
+    4. Ensure your GA4 property has data for the selected date range
+
+    The AI Traffic page requires a configured GA4 property — see [GA4 AI Traffic](/website/ga4-ai-traffic) for setup steps.
+  </Accordion>
+
+  <Accordion title="Google Search Console not showing data">
+    If GSC import returns no keywords:
+
+    1. Verify your Search Console property is verified and has click/impression data
+    2. Try a longer date range (28 or 90 days) — shorter ranges may have too few queries
+    3. Ensure you've connected the correct property in [Integrations](/integrations/google-search-console)
+    4. Some new properties may take time to accumulate search data
+  </Accordion>
+
+  <Accordion title="Slack notifications not arriving">
+    If you're not receiving Slack notifications:
+
+    1. Verify the Slack connection is active in [Integrations](/integrations/slack)
+    2. Check your Slack channel — notifications go to the channel selected during setup
+    3. Ensure the Superlines bot hasn't been removed from the channel
+    4. Try disconnecting and reconnecting the Slack integration
+  </Accordion>
+
+  <Accordion title="Crawler tracking script not working">
+    If bot traffic data isn't appearing:
+
+    1. Verify the tracking script is installed correctly on your site — check for JavaScript errors in the browser console
+    2. Allow 24 hours for initial data to appear
+    3. Ensure the script is loaded on all pages you want to track
+    4. For edge function setups, verify the function is deployed and active
+    5. See [AI Crawler Analytics](/metrics/ai-crawler-analytics) for setup instructions
+  </Accordion>
+</AccordionGroup>
+
+## Prompts & Quotas
+
+<AccordionGroup>
+  <Accordion title="I've reached my prompt quota">
+    Each plan has a maximum number of tracked prompts. If you've reached the limit:
+
+    1. **Remove inactive prompts** — pause or delete prompts that are no longer relevant
+    2. **Upgrade your plan** — see [Subscription](/account/subscription) for plan options
+    3. **Prioritize** — use [Prompt Strategy](/account/prompt-strategy) to focus on the highest-value prompts
+
+    You can see your current usage on the [Prompt Import](/account/prompt-import) page quota bar.
+  </Accordion>
+
+  <Accordion title="Imported prompts aren't appearing">
+    After importing prompts:
+
+    1. Check the validation step — prompts may have been skipped during validation
+    2. Verify import completed successfully (no error messages)
+    3. Allow a few moments for prompts to sync — refresh the [Prompt Management](/account/prompts) page
+    4. Check your quota — imports that exceed your limit may be partially processed
+  </Accordion>
+</AccordionGroup>
+
+## Tools
+
+<AccordionGroup>
+  <Accordion title="AI Search Checker analysis is slow or fails">
+    Page analysis typically takes 10–30 seconds. If it's taking longer or failing:
+
+    1. Verify the URL is publicly accessible (not behind login or firewall)
+    2. Check that the URL returns a valid HTML page (not a redirect loop or error page)
+    3. Very large or complex pages may take longer to analyze
+    4. Try again — temporary network issues can cause timeouts
+  </Accordion>
+
+  <Accordion title="Site Health analysis quota exceeded">
+    Site health analyses are limited by your plan's monthly quota:
+
+    1. Check your current usage on the [Site Health](/website/site-health) page
+    2. Prioritize analyzing your most important pages
+    3. The quota resets monthly
+    4. Upgrade your plan for higher limits — see [Subscription](/account/subscription)
+  </Accordion>
+</AccordionGroup>
+
+## Account & Access
+
+<AccordionGroup>
+  <Accordion title="Team member can't access certain features">
+    Feature access is controlled by roles and domain permissions:
+
+    1. Check the member's role in [Team & Roles](/account/team)
+    2. Verify they have access to the relevant domain (domain-scoped roles only see their assigned domains)
+    3. Some features require specific plan tiers — verify your [Subscription](/account/subscription) includes the feature
+  </Accordion>
+
+  <Accordion title="Can't switch between brands/domains">
+    If the domain switcher isn't working:
+
+    1. Verify you have access to multiple domains in your organization
+    2. Check your role permissions — some roles are scoped to specific domains
+    3. Ensure the domain is active and not in a paused state
+  </Accordion>
+</AccordionGroup>
+
+## Still need help?
+
+If your issue isn't covered here:
+
+- Check the [FAQ](/faq) for additional answers
+- Contact support at **support@superlines.io**
+- Use the [AI Agent](/features/agent) — it can help diagnose data-related issues

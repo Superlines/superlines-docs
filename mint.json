@@ -28,12 +28,8 @@
   },
   "tabs": [
     {
-      "name": "MCP & API",
+      "name": "Developer",
       "url": "mcp"
-    },
-    {
-      "name": "FAQ",
-      "url": "faq"
     }
   ],
   "anchors": [
@@ -59,15 +55,65 @@
       ]
     },
     {
-      "group": "Account Management",
+      "group": "Analytics",
+      "pages": [
+        "analytics/overview-dashboard",
+        "analytics/visibility-dashboard",
+        "analytics/mentions",
+        "analytics/citations-page",
+        "analytics/competitor-analysis",
+        "analytics/brand-sentiment",
+        "analytics/cross-brand-analytics"
+      ]
+    },
+    {
+      "group": "Features",
+      "pages": [
+        "features/agent",
+        "features/action-center",
+        "features/export-reporting"
+      ]
+    },
+    {
+      "group": "Tools",
+      "pages": [
+        "tools/ai-search-checker",
+        "tools/schema-optimiser",
+        "tools/keyword-research",
+        "tools/site-analyzer"
+      ]
+    },
+    {
+      "group": "Content",
+      "pages": [
+        "content/overview"
+      ]
+    },
+    {
+      "group": "Website",
+      "pages": [
+        "website/site-health",
+        "website/ga4-ai-traffic",
+        "website/crawler-analytics"
+      ]
+    },
+    {
+      "group": "Prompts",
+      "pages": [
+        "account/prompts",
+        "account/prompt-import",
+        "account/prompt-radar",
+        "account/prompt-strategy",
+        "account/prompt-variations"
+      ]
+    },
+    {
+      "group": "Account",
       "pages": [
         "account/organizations",
         "account/brands",
-        "account/prompts",
-        "account/prompt-strategy",
-        "account/prompt-radar",
-        "account/prompt-variations",
-        "account/team"
+        "account/team",
+        "account/subscription"
       ]
     },
     {
@@ -79,6 +125,16 @@
         "metrics/competitive-intelligence",
         "metrics/ai-crawler-analytics",
         "metrics/analysis-process"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/overview",
+        "integrations/google-search-console",
+        "integrations/google-analytics",
+        "integrations/slack",
+        "integrations/looker-studio"
       ]
     },
     {
@@ -98,19 +154,11 @@
       ]
     },
     {
-      "group": "Integrations",
+      "group": "Support",
       "pages": [
-        "integrations/overview",
-        "integrations/google-search-console",
-        "integrations/google-analytics",
-        "integrations/slack",
-        "integrations/looker-studio"
-      ]
-    },
-    {
-      "group": "Help",
-      "pages": [
-        "faq"
+        "faq",
+        "support/troubleshooting",
+        "changelog"
       ]
     }
   ],

@@ -1,0 +1,112 @@
+---
+title: Site Analyzer
+description: Run a comprehensive technical SEO audit on any webpage with actionable recommendations.
+---
+
+The Site Analyzer performs a full technical SEO audit on any URL, checking for issues across security, indexability, meta tags, content, links, performance, mobile readiness, and structured data. It provides a health score and prioritized recommendations to fix the most impactful issues first.
+
+## How to use it
+
+<Steps>
+  <Step title="Enter a URL">
+    Navigate to **Site Analyzer** in the Tools section. Enter the URL you want to audit.
+  </Step>
+  <Step title="Run the audit">
+    Click **Run Audit**. The tool crawls the page and evaluates it across all categories. This takes 15–60 seconds depending on page complexity.
+  </Step>
+  <Step title="Review the health score">
+    The overall health score (0–100) appears at the top, along with counts of critical issues, warnings, notices, and passed checks.
+  </Step>
+  <Step title="Work through recommendations">
+    The Priority Fixes section lists the most impactful issues to address. Expand each category in the detailed analysis for the full picture.
+  </Step>
+</Steps>
+
+## Health score
+
+The overall score reflects the technical health of the page:
+
+| Score | Rating | Meaning |
+|---|---|---|
+| 80–100 | Excellent | Few or no issues found |
+| 60–79 | Good | Some issues to address but fundamentally sound |
+| 40–59 | Needs Improvement | Significant issues that could affect AI visibility |
+| 0–39 | Poor | Critical issues requiring immediate attention |
+
+## Issues summary
+
+Four cards at the top provide a quick overview:
+
+| Card | What it shows |
+|---|---|
+| **Critical Issues** | Problems that must be fixed — blocking indexing or AI discovery |
+| **Warnings** | Important issues that degrade performance or visibility |
+| **Notices** | Minor suggestions for improvement |
+| **Passed** | Checks that passed successfully |
+
+Click any card to filter the detailed analysis to show only that severity level.
+
+## Page information
+
+A summary card shows key page metadata:
+
+- URL and page title
+- HTTPS status
+- Word count
+- H1 tag count
+- Image count (total and with alt text)
+- Internal and external link counts
+
+## Detailed analysis by category
+
+Issues are organized into categories, each expandable:
+
+| Category | What it checks |
+|---|---|
+| **Security** | HTTPS, mixed content, security headers |
+| **Indexability** | Robots meta, canonical tags, sitemap presence |
+| **Meta Tags** | Title, description, Open Graph, social tags |
+| **Content** | Word count, heading structure, readability, duplicate content |
+| **Links** | Broken links, redirect chains, anchor text quality |
+| **Performance** | Page speed indicators, resource optimization |
+| **Mobile** | Mobile responsiveness, viewport configuration |
+| **Structured Data** | Schema.org markup, JSON-LD validation |
+
+Each issue within a category includes:
+
+- **Type** — critical, warning, notice, or passed
+- **Title** — what the issue is
+- **Description** — why it matters
+- **Affected elements** — how many elements are impacted
+- **Recommendation** — how to fix it
+
+## Priority fixes
+
+A curated list of the highest-impact issues to fix first, ranked by severity and potential improvement. This section pulls the most critical and warning-level issues to the top so you know exactly where to start.
+
+## Sidebar navigation
+
+A sticky sidebar shows all issue categories with their issue counts, letting you jump directly to any category without scrolling.
+
+## Actions
+
+- **Re-Audit** — run the audit again on the same URL to verify fixes
+- **New Audit** — clear results and start with a different URL
+- **Print** — print the full report
+
+## Related tools
+
+<CardGroup cols={2}>
+  <Card title="AI Search Checker" icon="magnifying-glass" href="/tools/ai-search-checker">
+    AI-specific readiness analysis complementing the technical audit.
+  </Card>
+  <Card title="Schema Optimiser" icon="code" href="/tools/schema-optimiser">
+    Deep-dive into structured data optimization.
+  </Card>
+  <Card title="Site Health" icon="heart-pulse" href="/website/site-health">
+    Ongoing monitoring of your entire site's health.
+  </Card>
+  <Card title="Keyword Research" icon="key" href="/tools/keyword-research">
+    Research keywords to inform your content strategy.
+  </Card>
+</CardGroup>

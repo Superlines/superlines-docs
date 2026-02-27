@@ -1,0 +1,117 @@
+---
+title: Export & Reporting
+description: Export data and generate reports from across the Superlines platform.
+---
+
+Superlines provides multiple ways to export data and generate reports — from quick CSV downloads on individual tables to comprehensive branded PDF reports covering all your analytics.
+
+## Export formats
+
+| Format | Where available | Best for |
+|---|---|---|
+| **CSV** | Most data tables | Importing into spreadsheets, custom analysis |
+| **JSON** | Most data tables | Programmatic use, API workflows |
+| **PDF** | Dashboard Export Report | Stakeholder reports, executive summaries |
+| **PNG** | Charts | Presentations, social media |
+| **Markdown** | AI Search Checker, Articles | Documentation, sharing analysis |
+
+## Table exports
+
+Most data tables across the platform have an export dropdown. Click the export icon on any table to download data as CSV or JSON. Available on:
+
+- Overview Dashboard tables (Brand Leaders, Prompts, Top Cited URLs, LLM Queries)
+- Competitor Analysis (Brand Performance table)
+- Mentions / Response Data
+- Citations Data
+- Crawler Analytics (all tables)
+- Keyword Research (keyword tables)
+- Cross-Brand Analytics (Domain Performance table)
+
+## Dashboard Export Report
+
+The Visibility Dashboard includes a full report builder that generates comprehensive PDF reports.
+
+### Creating a report
+
+<Steps>
+  <Step title="Open the Export modal">
+    On the Visibility Dashboard, click the **Export** button in the page header.
+  </Step>
+  <Step title="Choose report sections">
+    Select which sections to include in your report:
+    - Brand visibility metrics and trends
+    - Citation rates
+    - Industry rankings
+    - Platform performance by AI engine
+    - Competitor share of voice
+    - Query performance
+    - Sentiment analysis
+    - Site health (optional)
+  </Step>
+  <Step title="Configure branding">
+    Customize the report with white-label branding:
+    - Upload your logo
+    - Set brand colors
+    - Add your company name
+  </Step>
+  <Step title="Generate the report">
+    Click generate to create your PDF report. Once ready, you can download it or share it via a unique URL.
+  </Step>
+</Steps>
+
+<Tip>
+Use the shareable report URL for client reporting — it provides a professional, branded view of performance data without requiring platform access.
+</Tip>
+
+## API-based exports
+
+For programmatic access, several dedicated export endpoints are available:
+
+| Endpoint | Data |
+|---|---|
+| **Tracked Prompts** | All tracked prompts with metrics (CSV, JSON, Excel) |
+| **Citations** | Citation records (CSV, JSON) |
+| **Prompt Responses** | Full AI response data (CSV, JSON) |
+| **Conversation Opportunities** | Fan-out query opportunities (CSV, JSON, Excel) |
+
+See the [API Endpoints](/api/endpoints) documentation for authentication and endpoint details.
+
+## Other export options
+
+### Chart exports
+
+Charts on the Competitor Analysis page can be exported as PNG images — useful for presentations and reports.
+
+### AI Search Checker exports
+
+Analysis results from the [AI Search Checker](/tools/ai-search-checker) can be exported as:
+- **Markdown** — full analysis report
+- **PDF** — formatted report
+- **JSON-LD** — optimized schema markup (copy to clipboard)
+
+### Article exports
+
+Generated articles from the [Content Module](/content/overview) can be exported as Markdown files.
+
+## Integrations for automated reporting
+
+For scheduled and automated reporting, consider:
+
+- **[Looker Studio](/integrations/looker-studio)** — connect Superlines data to Google Looker Studio for custom dashboards and scheduled email reports
+- **[MCP Server](/mcp/overview)** — build custom reporting workflows using the MCP tools
+- **[REST API](/api/endpoints)** — pull data programmatically into your own reporting systems
+
+<CardGroup cols={2}>
+  <Card title="API Endpoints" icon="code" href="/api/endpoints">
+    Programmatic data access for custom reporting.
+  </Card>
+  <Card title="Looker Studio" icon="chart-line" href="/integrations/looker-studio">
+    Build custom dashboards with scheduled delivery.
+  </Card>
+  <Card title="MCP Server" icon="plug" href="/mcp/overview">
+    Automate reporting with MCP tools.
+  </Card>
+  <Card title="Slack" icon="hashtag" href="/integrations/slack">
+    Get automated notifications delivered to Slack.
+  </Card>
+</CardGroup>

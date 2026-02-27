@@ -1,0 +1,120 @@
+---
+title: Prompt Import
+description: Import prompts from CSV files, text input, webpages, or Google Search Console.
+---
+
+The Prompt Import page provides multiple methods to add tracked prompts to your brand. You can upload a CSV file, paste text, extract prompts from webpages, or import keywords from Google Search Console.
+
+## Prompt quota
+
+At the top of the page, a quota bar shows your current prompt usage:
+
+- **Current prompts** — how many tracked prompts you have
+- **Maximum allowed** — your plan's prompt limit
+- **Available** — remaining capacity
+
+<Info>
+If you're approaching your prompt limit, consider upgrading your plan or removing inactive prompts. See [Organizations](/account/organizations) for plan details.
+</Info>
+
+## Import options
+
+Two shared options apply to all import methods:
+
+- **Generate AI-enhanced prompts** — uses AI to expand and refine your input into optimized tracking prompts
+- **Import as raw prompts** — imports your input exactly as entered, without AI enhancement
+
+At least one option must be selected.
+
+## Import methods
+
+### CSV Upload
+
+Upload a CSV file with your prompts. The expected format includes a `prompt` column and an optional `labels` column.
+
+<Steps>
+  <Step title="Prepare your CSV">
+    Create a CSV file with at least a `prompt` column. Add a `labels` column to pre-categorize prompts.
+  </Step>
+  <Step title="Upload the file">
+    Click the upload area or drag and drop your CSV file. The file name and size will be shown.
+  </Step>
+  <Step title="Process">
+    Click **Process CSV** to parse and validate your prompts before importing.
+  </Step>
+</Steps>
+
+### Text Input
+
+Paste or type prompts directly — one per line, or as comma-separated keywords.
+
+<Steps>
+  <Step title="Enter your prompts">
+    Type or paste keywords and questions into the text area. The character count and detected prompt count are shown below.
+  </Step>
+  <Step title="Process">
+    Click **Process Text** to parse your input into individual prompts.
+  </Step>
+</Steps>
+
+### Webpage URLs
+
+Extract prompts from webpage content. The tool analyzes the page and identifies relevant questions and topics.
+
+<Steps>
+  <Step title="Enter URLs">
+    Paste one or more webpage URLs into the text area (one per line).
+  </Step>
+  <Step title="Configure options">
+    Toggle **Include branded prompts** to include brand-specific queries extracted from the pages.
+  </Step>
+  <Step title="Process">
+    Click **Process Webpages** to analyze the pages and extract prompts.
+  </Step>
+</Steps>
+
+### Google Search Console
+
+Import real search queries from your GSC data — these represent actual questions people ask that lead to your site.
+
+<Steps>
+  <Step title="Connect GSC">
+    If not already connected, click **Go to Integrations** to set up the Google Search Console connection.
+  </Step>
+  <Step title="Select a date range">
+    Choose how far back to fetch queries: 7 days, 14 days, 28 days, or 90 days.
+  </Step>
+  <Step title="Import">
+    Click **Import GSC Keywords** to fetch and process your search queries.
+  </Step>
+</Steps>
+
+<Tip>
+Google Search Console is one of the best sources for prompt discovery — these are real queries people type that already drive traffic to your site. Starting with a 28-day range gives a good balance of volume and relevance.
+</Tip>
+
+## Validation step
+
+After processing any import method, you're taken to the validation page (`/prompt-import/validate`) where you can:
+
+- Review all detected prompts before importing
+- Edit individual prompts
+- Remove prompts you don't want to track
+- Confirm and create the prompts
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Prompt Management" icon="list" href="/account/prompts">
+    Manage your tracked prompts after importing.
+  </Card>
+  <Card title="Prompt Strategy" icon="bullseye" href="/account/prompt-strategy">
+    Build a comprehensive prompt portfolio.
+  </Card>
+  <Card title="Google Search Console" icon="magnifying-glass" href="/integrations/google-search-console">
+    Set up GSC integration for keyword import.
+  </Card>
+  <Card title="Prompt Radar" icon="radar" href="/account/prompt-radar">
+    Auto-discover prompts from multiple data sources.
+  </Card>
+</CardGroup>

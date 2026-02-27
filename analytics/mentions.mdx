@@ -1,0 +1,100 @@
+---
+title: Mentions
+description: Explore how your brand is mentioned across AI responses and identify gaps where competitors lead.
+---
+
+The Mentions page (Response Analysis) provides a complete view of your brand's presence in AI-generated responses. It combines a high-level overview of mention share and rankings with a detailed table of every tracked response.
+
+## Overview tab
+
+### Share of Mentions
+
+A donut chart showing how brand mentions are distributed across all AI responses for your tracked prompts. This tells you at a glance what portion of the AI conversation your brand owns.
+
+### Top Prompts driving mentions
+
+Lists the prompts that generate the most brand mentions. These are the topics where your brand is most likely to be referenced by AI models — and where you have the strongest presence.
+
+### Top Brands
+
+Shows which brands (yours and competitors) are mentioned most frequently across all tracked prompts and engines.
+
+### Mention Rankings
+
+A ranked table showing how your domain and competitors perform on mentions:
+
+- Domain rank by total mentions
+- Mention count and percentage share
+- Change vs. previous period
+
+### Mentions Gap
+
+One of the most actionable sections — it identifies prompts where competitors are mentioned but your brand is not. Each gap shows:
+
+- The prompt where you're missing
+- Which competitors are mentioned instead
+- The potential opportunity if you close the gap
+
+<Tip>
+The Mentions Gap is your most direct path to improving brand visibility. Each missing mention represents a specific prompt you can target with content optimization.
+</Tip>
+
+## Response Data tab
+
+A detailed table where each row represents a tracked prompt on a specific date:
+
+| Column | Description |
+|---|---|
+| **Prompt** | The tracked prompt text |
+| **LLM Engines** | Which engines were tested (shown as icons) |
+| **Mentioned In** | Number of models where your brand was mentioned |
+| **Total Models** | Total models tested |
+| **Total Citations** | Number of citations in responses |
+| **Sentiment** | Dominant sentiment (Positive, Neutral, Negative) |
+
+### Response detail view
+
+Click any row to open a side panel showing all AI responses for that prompt and date:
+
+- Full response text from each engine
+- Sentiment analysis per response
+- Sentiment score
+- Whether web search was used
+- Citation count and cited URLs
+- All brands mentioned in the response
+
+Click an engine icon in the table to jump directly to that engine's response in the detail view.
+
+## Filters
+
+- **Date range** — select the analysis period
+- **LLM engines** — filter by specific AI engines (multi-select)
+- **Brand Mentioned** — show all responses, only those mentioning your brand, or only those where your brand is absent
+- **Website Cited** — show all responses, only those citing your site, or only those not citing your site
+- **Variation** — filter by first response or any variation
+- **Search text** — search within prompt text or response content
+
+<Info>
+The "Brand NOT mentioned" filter combined with "Website NOT cited" is particularly useful for finding prompts where you have zero presence — your biggest growth opportunities.
+</Info>
+
+## Exporting data
+
+The Response Data tab supports CSV export. Click the export button to download all filtered response data.
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Understanding Responses" icon="file-lines" href="/metrics/responses">
+    How responses are collected and brand detection works.
+  </Card>
+  <Card title="Citations Analysis" icon="link" href="/analytics/citations-page">
+    Deep-dive into citation data and URL-level analysis.
+  </Card>
+  <Card title="Brand Sentiment" icon="face-smile" href="/analytics/brand-sentiment">
+    Analyze the tone of AI responses about your brand.
+  </Card>
+  <Card title="Competitor Analysis" icon="users" href="/analytics/competitor-analysis">
+    See how your mention share compares to competitors.
+  </Card>
+</CardGroup>

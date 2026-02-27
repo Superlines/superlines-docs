@@ -1,0 +1,87 @@
+---
+title: Schema Optimiser
+description: Analyze and optimize Schema.org structured data for any webpage to improve AI search visibility.
+---
+
+The Schema Optimiser analyzes any URL for existing Schema.org structured data and generates AI-optimized JSON-LD markup ready to paste into your page. Structured data helps AI models understand your content and increases the likelihood of being cited in AI responses.
+
+## Why Schema.org matters for AI search
+
+Schema.org structured data provides explicit signals to AI models about what your page contains — your product details, article metadata, organization information, FAQ content, and more. Pages with well-implemented schema markup are easier for AI models to parse, quote, and cite.
+
+## How to use the Schema Optimiser
+
+<Steps>
+  <Step title="Enter a URL">
+    Navigate to **Schema Optimiser** in the Tools section. Enter the URL of the page you want to analyze.
+  </Step>
+  <Step title="Run the analysis">
+    Click **Analyze Schema**. The tool detects and evaluates all structured data on the page.
+  </Step>
+  <Step title="Review the results">
+    You'll see a Schema Quality Score, detected schema types, and a detailed breakdown of what was found.
+  </Step>
+  <Step title="Copy the optimized schema">
+    The tool generates an improved JSON-LD version with AI-recommended changes. Copy it and add it to your page.
+  </Step>
+</Steps>
+
+<Tip>
+Try the example sites (apple.com, shopify.com, bbc.com/news, stripe.com) to see how major sites implement schema and what the optimization process looks like.
+</Tip>
+
+## What the tool detects
+
+The Schema Optimiser scans for structured data in multiple formats:
+
+| Format | Description |
+|---|---|
+| **JSON-LD** | The recommended format — embedded in `<script>` tags |
+| **Microdata** | Inline HTML attributes (itemscope, itemprop) |
+| **Meta Tags** | Open Graph, Twitter Cards, and other meta-based markup |
+| **Page Content** | Implicit data from headings, content structure, and page elements |
+| **Rich Results** | Eligibility for Google rich results (FAQ, How-to, Product, etc.) |
+
+## Understanding the quality score
+
+The Schema Quality Score (0–100) reflects how well your structured data serves AI search visibility:
+
+| Score | Rating | What it means |
+|---|---|---|
+| 80–100 | Good | Well-structured schema that supports AI discovery |
+| 50–79 | Fair | Basic schema present but missing key properties |
+| 0–49 | Needs Work | Minimal or no useful structured data |
+
+The score accounts for completeness, accuracy, use of recommended properties, and alignment with AI search best practices.
+
+## The optimization output
+
+The tool provides:
+
+- **Summary of changes** — how many nodes were added, enriched, or removed
+- **AI-generated change list** — bullet-point explanation of each recommended change
+- **Highlighted diff view** — visual comparison of your existing schema vs. the optimized version, making it easy to see exactly what changed
+- **Detected schema types** — what types were found on the page (e.g., WebPage, Article, Product)
+- **Page info** — title, meta description, and canonical URL of the analyzed page
+
+## Implementing the optimized schema
+
+You can copy the optimized JSON-LD in two formats:
+
+1. **Raw JSON** — the JSON-LD object, useful if you manage schema through a CMS or build tool
+2. **HTML script tag** — the complete `<script type="application/ld+json">` tag, ready to paste into your page's `<head>`
+
+<Warning>
+Always review the generated schema before implementing it. While the AI optimization is designed to be accurate, verify that the content matches your page and meets your requirements.
+</Warning>
+
+## Related tools
+
+<CardGroup cols={2}>
+  <Card title="AI Search Checker" icon="magnifying-glass" href="/tools/ai-search-checker">
+    Full AI search readiness analysis including schema.
+  </Card>
+  <Card title="Site Health" icon="heart-pulse" href="/website/site-health">
+    Monitor schema quality across all your pages.
+  </Card>
+</CardGroup>

@@ -1,0 +1,109 @@
+---
+title: Citations Analysis
+description: Track which URLs are cited in AI responses and find opportunities to earn more citations.
+---
+
+The Citations Analysis page shows when and where AI models cite your website (and competitors') as a source. Citations are a strong signal of content authority — they mean an AI model considered your content authoritative enough to link to.
+
+## Overview tab
+
+### Citation Rankings
+
+A ranked table showing how domains perform on citations:
+
+- Domain rank by total citations
+- Citation count and percentage share
+- Change vs. previous period
+- Filter between "My Domain", "Competitors", and "Industry" views
+
+### Citations Gap
+
+Identifies prompts where competitor URLs are cited but yours are not. Each gap shows:
+
+- The prompt where you're missing citations
+- Which competitor domains are being cited
+- The specific URLs being cited
+- The opportunity size
+
+<Tip>
+The Citations Gap is your roadmap for content optimization. Each entry shows a specific prompt where a competitor's URL is cited — study that URL to understand what makes it citation-worthy, then create or improve your own content to compete.
+</Tip>
+
+## UGC & Community tab
+
+Identifies citation opportunities from user-generated content platforms where AI models frequently source information:
+
+- **Reddit** — subreddit discussions being cited
+- **Quora** — Q&A threads being cited
+- **YouTube** — video content being cited
+- Other community platforms
+
+These opportunities highlight where participating in community discussions could lead to AI citations.
+
+## Citations Data tab
+
+A comprehensive table listing individual citation records:
+
+| Column | Description |
+|---|---|
+| **LLM Service** | Which AI engine produced the response |
+| **Prompt** | The tracked prompt that triggered the response |
+| **Cited Status** | Whether your domain was cited |
+| **Domain** | The cited domain |
+| **Page Title** | Title of the cited page |
+| **Page URL** | Full URL of the cited page |
+| **Country** | Geographic context |
+| **Date** | When the response was generated |
+| **Sentiment** | Sentiment of the response |
+
+Click any row to open a detail modal showing:
+
+- Full prompt text
+- AI response snippet with citation context
+- Which engine generated the response
+- All cited URLs in the response
+- Citation position
+
+## Filters
+
+### Basic filters
+
+- **Date range** — select the analysis period
+- **LLM engines** — filter by specific AI engines
+- **Prompt** — focus on a specific tracked prompt
+- **Prompt tags** — filter by prompt categories
+
+### Advanced filters
+
+Click **More filters** to access:
+
+- **Citation Status** — cited only or not cited
+- **AI Engine** — single engine selection
+- **Country** — geographic filter
+- **Topic** — content topic filter
+- **Prompt Tag** — prompt category filter
+- **My domain only** — show only your domain's citations
+- **Competitors only** — show only competitor citations
+- **Search by Domain** — find citations from a specific domain
+- **Search by Title** — search cited page titles
+
+## Exporting data
+
+The Citations Data tab supports CSV export for all filtered citation records.
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Citations & Fan-out Queries" icon="link" href="/metrics/citations">
+    How citations are tracked and what fan-out queries are.
+  </Card>
+  <Card title="Mentions" icon="message" href="/analytics/mentions">
+    Explore brand mentions alongside citation data.
+  </Card>
+  <Card title="Content Module" icon="file-lines" href="/content/overview">
+    Create content to earn more citations.
+  </Card>
+  <Card title="Key Metrics" icon="chart-bar" href="/metrics/key-metrics">
+    How citation rate and share of citations are calculated.
+  </Card>
+</CardGroup>

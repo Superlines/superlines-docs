@@ -1,0 +1,149 @@
+---
+title: Visibility Dashboard
+description: The main analytics dashboard for monitoring brand visibility, citations, and AI search performance.
+---
+
+The Visibility Dashboard is the most comprehensive analytics page in Superlines. It provides detailed views of your brand's AI search performance across four tabs — Overview, Prompts, Fan-Out Queries, and Latest Mentions.
+
+## Overview tab
+
+The default view with your core analytics:
+
+### KPI cards
+
+| Card | What it shows |
+|---|---|
+| **Brand Visibility** | Radial metric showing mentions out of total responses, with trend |
+| **Citation Rate** | Radial metric showing citations out of total responses, with trend |
+| **Sentiment Score** | Breakdown of positive, neutral, and negative responses |
+| **LLM Breakdown** | Brand visibility by individual AI engine |
+
+### Trend charts
+
+- **Brand Visibility Trend** — your visibility over time, with options to overlay competitor trends, toggle annotations, and compare to the previous period
+- **Citation Rate Trend** — citation performance over time with annotations
+
+### Average Position
+
+Shows where your brand typically appears in AI responses:
+
+- Average position metric with rank
+- Position trend chart over time
+- Competitor position comparison
+- Position leaderboard table ranking all brands
+
+<Info>
+Average Position measures the order in which brands are mentioned. Position 1 means your brand is mentioned first — the most prominent placement. See [Key Metrics](/metrics/key-metrics) for the full definition.
+</Info>
+
+### Industry Ranking
+
+A "Brands by Brand Visibility" table ranking all detected brands:
+
+- Rank, brand name, mention count, change, and visibility percentage
+- Toggle **Only my competitors** to filter the view
+- Export as CSV or JSON
+
+### Insight cards
+
+Four quick-insight cards highlighting notable data points:
+
+- **Top Prompt** — your highest-performing prompt
+- **Top Competitor** — the competitor closest to your visibility
+- **Top Query** — the highest-volume fan-out query related to your prompts
+- **Priority Query** — a fan-out query with high potential but low current performance
+
+### Additional sections
+
+- **Visibility Rankings by Topic** — how your brand performs across content topics
+- **Latest Brand Mentions** — recent AI response snippets mentioning your brand
+
+## Prompts tab
+
+A detailed table of all your tracked prompts with management capabilities:
+
+| Column | Description |
+|---|---|
+| **Status** | Active, Paused, or Processing |
+| **Prompt** | The tracked prompt text |
+| **Brand Visibility** | Visibility percentage for this prompt |
+| **Citation Rate** | Citation rate for this prompt |
+| **Tests** | Number of times this prompt has been tested |
+| **Mentions** | Brand mention count |
+| **Labels** | Assigned prompt labels |
+
+### Filters
+
+- **Status** — All, Active, Paused, Processing
+- **Labels** — multi-select label filter
+- **Done status** — All, Done, Not done
+- **Search** — text search across prompts
+
+### Actions
+
+- Edit prompt details
+- Pause or resume testing
+- Delete prompts
+- Add new prompts via dialog
+- Navigate to [Prompt Import](/account/prompt-import) or [Content](/content/overview)
+
+## Queries tab
+
+Shows fan-out queries — the LLM-generated search queries that AI models produce during conversations about your tracked prompts.
+
+| Column | Description |
+|---|---|
+| **Query** | The LLM-generated search query |
+| **Prompt** | Which tracked prompt triggered this query |
+| **Citation Rate** | How often your site is cited for this query |
+| **Search Volume** | Estimated search volume of the query |
+
+<Tip>
+Fan-out queries represent what AI models actually search for when answering user prompts. High-volume queries with low citation rates are your best content optimization targets.
+</Tip>
+
+## Mentions tab
+
+A feed of the latest AI responses that mention your brand, showing actual response text, the AI engine, and when it was generated.
+
+## Export Report
+
+The dashboard includes a full report builder accessed via the **Export** button:
+
+- Customizable sections (visibility, citations, rankings, competitors, sentiment, site health)
+- White-label branding (logo, colors, company name)
+- Shareable report URLs
+- PDF download
+
+See [Export & Reporting](/features/export-reporting) for full details.
+
+## Response details
+
+Click any prompt or mention to open a detailed view of individual AI responses:
+
+- Full response text with formatted or original view
+- Brand mention status
+- Citation details and cited URLs
+- All brands mentioned in the response
+- Engine and model information
+
+## Annotations
+
+Add notes to trend charts to mark significant events (content launches, algorithm changes, competitor moves). Annotations appear as markers on the chart and are visible to your team.
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Overview Dashboard" icon="gauge" href="/analytics/overview-dashboard">
+    High-level KPI snapshot across all dimensions.
+  </Card>
+  <Card title="Key Metrics" icon="chart-bar" href="/metrics/key-metrics">
+    Understand how every metric is calculated.
+  </Card>
+  <Card title="Prompt Management" icon="list" href="/account/prompts">
+    Manage your tracked prompts.
+  </Card>
+  <Card title="Export & Reporting" icon="file-export" href="/features/export-reporting">
+    Generate PDF reports from dashboard data.
+  </Card>
+</CardGroup>

@@ -1,0 +1,111 @@
+---
+title: Overview Dashboard
+description: Your daily starting point for monitoring AI search performance across all dimensions.
+---
+
+The Overview Dashboard is the first page you see after signing in. It provides a high-level snapshot of your brand's AI search performance across three key dimensions: brand visibility, citation rate, and crawler traffic.
+
+## Dashboard tabs
+
+The Overview is organized into three tabs, each focused on a different aspect of your AI search presence.
+
+### Brand Visibility tab
+
+The default view showing how often your brand is mentioned in AI responses.
+
+**KPI cards at the top:**
+
+| Card | What it shows |
+|---|---|
+| **Top Prompt** | Your best-performing prompt and its brand visibility percentage |
+| **Brand Visibility** | Your overall brand visibility with change vs. previous period |
+| **Top Engine** | The AI engine where your brand performs best |
+| **Top Label** | The prompt label category with highest visibility |
+
+**Below the KPIs:**
+
+- **Brand Visibility Trend** — a chart showing your visibility over time, with options to show a rolling average, competitor trends, and previous period comparison
+- **Brand Leaders** — a ranked table of all brands mentioned in your tracked prompts, with mentions, change, and visibility percentage
+- **Engine Performance** — visibility breakdown by AI engine
+- **Prompts table** — all tracked prompts with their brand visibility, citation rate, total responses, and labels
+
+### Citation Rate tab
+
+Focused on how often AI responses link to your website.
+
+**KPI cards:**
+
+| Card | What it shows |
+|---|---|
+| **Top Prompt** | Your best prompt by citation rate |
+| **Citation Rate** | Overall citation rate with change vs. previous period |
+| **Top Fan-Out Query** | The LLM-generated query driving the most citations |
+
+**Below the KPIs:**
+
+- **Citation Rate Trend** — chart showing your citation rate over time
+- **Top Cited URLs** — which pages on your site are cited most
+- **LLM Search Queries** — fan-out queries with their associated prompt, citation rate, and search volume
+- **Prompts by Citation Rate** — all prompts ranked by citation performance
+
+### Crawler Traffic tab
+
+Shows how AI bots are crawling your website.
+
+If you haven't installed the tracking script yet, this tab shows setup instructions with platform-specific guides for Webflow, WordPress, Shopify, Next.js, and edge function setups (Netlify, Vercel).
+
+Once tracking is active, you'll see:
+
+- **Bot Traffic Trend** — total crawler traffic over time, or broken down by individual bot
+- **Top Bots** — which AI crawlers visit your site most
+- **Top Crawled Pages** — which pages get the most bot traffic
+- **Bot Categories** — breakdown of crawler types
+
+<Info>
+For a deeper analysis of crawler traffic with human vs. bot comparison and AI-specific bot tracking, see the dedicated [Crawler Analytics](/website/crawler-analytics) page.
+</Info>
+
+## Filters
+
+All tabs share a common set of filters:
+
+- **Date range** — select the time period to analyze, with an option to include the current (incomplete) day
+- **Engine** — filter by specific AI engines (multi-select)
+- **Prompt** — focus on a specific tracked prompt
+- **Label** — filter by prompt label categories
+
+Filter selections are shown as chips above the content, making it easy to see what's active and clear individual filters.
+
+## Using the Overview as a daily workflow
+
+<Tip>
+Start each day on the Overview Dashboard to quickly spot changes. Look for:
+
+1. **Brand Visibility changes** — any significant drops or gains in the trend
+2. **KPI shifts** — check if your top prompt, engine, or label has changed
+3. **New leaders** — scan the Brand Leaders table for competitor movement
+4. **Citation opportunities** — switch to the Citation Rate tab to find prompts with low citation rates
+
+Then drill into specific analytics pages for deeper investigation.
+</Tip>
+
+## Exporting data
+
+Each table on the Overview supports CSV and JSON export. Click the export dropdown on any table to download the data.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Visibility Dashboard" icon="chart-line" href="/analytics/visibility-dashboard">
+    Deep-dive into brand visibility with the full dashboard.
+  </Card>
+  <Card title="Key Metrics" icon="chart-bar" href="/metrics/key-metrics">
+    Understand what each metric means and how it's calculated.
+  </Card>
+  <Card title="Competitor Analysis" icon="users" href="/analytics/competitor-analysis">
+    Compare your performance against competitors.
+  </Card>
+  <Card title="Citations Analysis" icon="link" href="/analytics/citations-page">
+    Explore citation data in detail.
+  </Card>
+</CardGroup>
