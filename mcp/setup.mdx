@@ -8,17 +8,45 @@ description: Step-by-step guide to connect Claude Desktop, Cursor, or VS Code to
 Before you begin, make sure you have:
 
 1. A **paid Superlines plan** (Starter, Growth, or Enterprise)
-2. An **API key** from Organization Settings (format: `sl_live_...`)
+2. An **API key** from Organization Settings (format: `sl_live_...`) — not required for OAuth on Claude.ai
 3. An MCP-compatible client installed
 
 ## Connection methods
 
 | Method | Best for | Protocol |
 |---|---|---|
+| **OAuth (Claude.ai)** | Claude.ai web — no API key needed | OAuth 2.0 + SSE |
 | **SSE (URL-based)** | Claude Desktop, most clients | Server-Sent Events |
 | **Local npx** | Cursor, VS Code, advanced setups | Standard I/O |
 
-## Option 1: SSE / URL-based setup (Recommended)
+## Option 1: OAuth setup (Claude.ai)
+
+Connect Superlines directly to Claude.ai through OAuth — no API key required. You sign in with your Superlines account and authorize access.
+
+<Steps>
+  <Step title="Open Claude.ai settings">
+    Go to [claude.ai](https://claude.ai) → **Settings** → **Connectors** → **Add custom connector**.
+  </Step>
+  <Step title="Enter the server details">
+    - **Name:** `Superlines`
+    - **URL:** `https://mcpsse.superlines.io`
+    - Open **Advanced settings** and set **OAuth Client ID** to `anthropic-claude`
+    - Leave **OAuth Client Secret** blank
+    - Click **Add**
+  </Step>
+  <Step title="Authorize access">
+    Claude will redirect you to the Superlines authorization page. Sign in with your Superlines account, review the requested permissions, select which brands to share, and click **Authorize Access**.
+  </Step>
+  <Step title="Start using Superlines">
+    Back in Claude, start a new conversation and try: *"List my Superlines brands"*
+  </Step>
+</Steps>
+
+<Tip>
+OAuth connections are scoped to the brands you select during authorization. You can revoke access at any time from your Superlines account settings.
+</Tip>
+
+## Option 2: SSE / URL-based setup
 
 The simplest approach — just add a URL to your client's configuration.
 
@@ -97,7 +125,7 @@ Replace `YOUR_API_KEY` with your actual API key.
   </Tab>
 </Tabs>
 
-## Option 2: Local npx setup
+## Option 3: Local npx setup
 
 For clients that prefer local process-based connections, use the npm package.
 
