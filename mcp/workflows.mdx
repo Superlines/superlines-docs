@@ -71,7 +71,7 @@ Using the Superlines MCP server for brand "My Brand":
 1. Call get_fanout_query_insights to see fan-out query performance
 2. Identify queries where my domain ranks poorly or isn't present
 3. Call get_competitive_gap to see which competitors lead on those topics
-4. For the top 5 gaps, call analyze_competitor_url on the competitor's cited page
+4. For the top 5 gaps, call webpage_audit on the competitor's cited page
 5. Summarize: what content am I missing, and what should I create?
 ```
 
@@ -81,7 +81,7 @@ When a competitor is winning on a specific prompt, reverse-engineer their strate
 
 **Flow:**
 1. Call `get_top_cited_url_per_prompt` to find which URLs are winning
-2. Call `analyze_competitor_url` on those URLs to get detailed content analysis
+2. Call `webpage_audit` on those competitor URLs to get detailed content analysis
 3. Call `webpage_audit` on your own competing pages for comparison
 4. Generate a content brief based on the gaps
 
@@ -113,7 +113,7 @@ The most powerful workflow connects Superlines data directly to a content produc
     For each opportunity, call `get_fanout_query_insights` and `get_top_cited_url_per_prompt` to understand what content currently wins.
   </Step>
   <Step title="Audit top-performing content">
-    Call `analyze_competitor_url` and `webpage_analyze_content` on the winning URLs to extract what makes them successful.
+    Call `webpage_audit` and `webpage_analyze_content` on the winning URLs to extract what makes them successful.
   </Step>
   <Step title="Generate content brief">
     The orchestrator synthesizes the data into a content brief: target prompts, fan-out queries to optimize for, competitive gaps to exploit, and content structure recommendations.
@@ -180,7 +180,7 @@ The MCP server makes prompt management efficient for large portfolios:
     Label prompts added by automated workflows (e.g., `mcp-auto`, `trend-discovery`) so you can measure their effectiveness separately from manually curated prompts.
   </Accordion>
   <Accordion title="Combine MCP tools in sequence">
-    The most powerful workflows chain multiple MCP tools. For example: `list_brands` → `get_fanout_query_insights` → `analyze_competitor_url` → `generate_strategic_action_plan`.
+    The most powerful workflows chain multiple MCP tools. For example: `list_brands` → `get_fanout_query_insights` → `webpage_audit` → `generate_strategic_action_plan`.
   </Accordion>
   <Accordion title="Keep a human in the loop for content publishing">
     Let agents generate content briefs and drafts, but have a human review before publishing. AI search visibility is a strategic asset — quality matters more than speed.
@@ -199,6 +199,6 @@ The MCP server makes prompt management efficient for large portfolios:
     Connect the MCP server to your AI assistant.
   </Card>
   <Card title="Available Tools" icon="wrench" href="/mcp/tools">
-    Full reference of all 32 MCP tools.
+    Full reference of all 27 MCP tools.
   </Card>
 </CardGroup>

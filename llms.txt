@@ -26,12 +26,12 @@
 
 - [MCP Overview](https://docs.superlines.io/mcp/overview): What the MCP server does, example prompts, available tool categories, and requirements.
 - [MCP Setup Guide](https://docs.superlines.io/mcp/setup): Step-by-step setup for Claude Desktop, Cursor, and VS Code using SSE or npx.
-- [Available Tools](https://docs.superlines.io/mcp/tools): Complete reference of all 26 MCP tools — brand management, core metrics, webpage analysis, competitive analysis, advanced analytics, strategic tools, and SEO tools.
+- [Available Tools](https://docs.superlines.io/mcp/tools): Complete reference of all 27 MCP tools — brand management, core metrics, webpage analysis, competitive analysis, advanced analytics, strategic tools, and account management.
 
 ## REST API
 
 - [Authentication](https://docs.superlines.io/api/authentication): Bearer token authentication with API keys, OAuth access tokens, or Firebase ID tokens. Security best practices.
-- [API Endpoints](https://docs.superlines.io/api/endpoints): Metrics, citations, brand mentions, prompts, weekly performance, competitors, content opportunities, and dashboard insights endpoints with parameters and response formats.
+- [API Endpoints](https://docs.superlines.io/api/endpoints): Single API endpoint at `https://api.superlines.io` with an `endpoint` parameter to select data type (metrics, brands, citations, queries, prompts, responses). Filter by brand name using the `brands` parameter. Full parameter reference and examples for each endpoint type.
 
 ## Integrations
 

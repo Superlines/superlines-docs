@@ -1,34 +1,70 @@
-g---
+---
 title: API Endpoints
 description: Available REST API endpoints for accessing your Superlines data.
 ---
 
-**Base URL:** `https://analytics.superlines.io/api`
+**Base URL:** `https://api.superlines.io`
 
-All endpoints require [authentication](/api/authentication) via Bearer token.
+All requests require [authentication](/api/authentication) via Bearer token. The API supports both **GET** (query parameters) and **POST** (JSON body) requests.
 
-## Metrics
+Every request includes an `endpoint` parameter that selects which data to return. Your API key determines which brands (domains) are accessible — you can optionally narrow results with the `brands` parameter.
 
-### `GET /analytics/metrics`
+<Info>
+Your API key is scoped to your organization. If you omit the `brands` parameter, data for **all** brands in your organization is returned.
+</Info>
 
-Retrieve core metrics for a brand.
+## Common parameters
 
-**Query parameters:**
+These parameters are shared across most endpoints.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
-| `startDate` | string | No | Start date (YYYY-MM-DD) |
-| `endDate` | string | No | End date (YYYY-MM-DD) |
-| `granularity` | string | No | `total`, `daily`, `weekly`, `monthly` |
-| `metrics` | string | No | Comma-separated: `brand_visibility`, `citation_rate`, `mentions`, `share_of_voice` |
-| `groupBy` | string | No | `llm_service`, `country`, `topic` |
+| `endpoint` | string | Yes | Which data to retrieve: `metrics`, `brands`, `citations`, `queries`, `prompts`, `responses` |
+| `brands` | string or string[] | No | Filter by brand name(s). Omit to include all brands in your organization. |
+| `labels` | string or string[] | No | Filter by prompt label(s). Only data for prompts with these labels is returned. |
+| `startDate` | string | No | Start date (`YYYY-MM-DD`) |
+| `endDate` | string | No | End date (`YYYY-MM-DD`) |
 
-**Example:**
+---
+
+## Metrics
+
+### `endpoint=metrics`
+
+Retrieve core performance metrics for your brands.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `metrics` | string or string[] | **Yes** | Comma-separated or array: `brand_visibility`, `citation_rate`, `citations`, `share_of_citations`, `share_of_voice`, `mentions`, `tests`, `responses` |
+| `brands` | string or string[] | No | Filter by brand name(s) |
+| `labels` | string or string[] | No | Filter by prompt label(s) |
+| `startDate` | string | No | Start date (`YYYY-MM-DD`) |
+| `endDate` | string | No | End date (`YYYY-MM-DD`) |
+| `granularity` | string | No | `total` (default), `daily`, `weekly`, `monthly` |
+| `groupBy` | string or string[] | No | Group results by dimension(s) |
+| `filters` | object | No | Additional filter criteria |
+
+**Example (POST):**
+
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "metrics",
+    "metrics": ["brand_visibility", "citation_rate", "share_of_voice"],
+    "brands": ["My Brand"],
+    "startDate": "2025-01-01",
+    "endDate": "2025-01-31",
+    "granularity": "weekly"
+  }'
+```
+
+**Example (GET):**
 
 ```bash
 curl -H "Authorization: Bearer $API_KEY" \
-  "https://analytics.superlines.io/api/analytics/metrics?domainId=abc123&startDate=2025-01-01&endDate=2025-01-31&granularity=weekly"
+  "https://api.superlines.io?endpoint=metrics&metrics=brand_visibility,citation_rate&brands=My+Brand&startDate=2025-01-01&endDate=2025-01-31&granularity=weekly"
 ```
 
 **Response:**
@@ -36,124 +72,196 @@ curl -H "Authorization: Bearer $API_KEY" \
 ```json
 {
   "success": true,
-  "data": {
-    "metrics": {
-      "brand_visibility": {
-        "value": 32.5,
-        "change": 2.1,
-        "trend": "up"
-      },
-      "citation_rate": {
-        "value": 18.7,
-        "change": -0.5,
-        "trend": "down"
-      },
-      "share_of_voice": {
-        "value": 22.3,
-        "change": 1.8,
-        "trend": "up"
-      }
-    }
+  "endpoint": "metrics",
+  "data": [ ... ],
+  "metadata": {
+    "metrics": ["brand_visibility", "citation_rate", "share_of_voice"],
+    "brands": ["My Brand"],
+    "dateRange": {
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31"
+    },
+    "granularity": "weekly",
+    "totalRows": 4,
+    "executionTime": "320ms"
   }
 }
 ```
 
 ---
 
-## Citations
+## Brand mentions
 
-### `GET /analytics/citations`
+### `endpoint=brands`
 
-Get citation data (domain or URL level).
+Get brand mention data with sentiment and share of voice.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
-| `aggregateBy` | string | No | `domain` or `url` |
-| `startDate` / `endDate` | string | No | Date range |
-| `limit` | number | No | Max results |
+| `brands` | string or string[] | No | Filter by brand name(s) |
+| `labels` | string or string[] | No | Filter by prompt label(s) |
+| `startDate` | string | No | Start date (`YYYY-MM-DD`) |
+| `endDate` | string | No | End date (`YYYY-MM-DD`) |
+| `granularity` | string | No | `total` (default), `daily`, `weekly`, `monthly` |
+| `groupBy` | string or string[] | No | Group results by dimension(s) |
+| `filters` | object | No | Additional filter criteria |
+| `topN` | number | No | Max brands to return (default: 50) |
+| `includeSentiment` | boolean | No | Include sentiment data (default: true) |
+| `includeShareOfVoice` | boolean | No | Include SOV data (default: true) |
+| `minMentions` | number | No | Minimum mention count to include (default: 1) |
+
+**Example:**
+
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "brands",
+    "brands": ["My Brand"],
+    "startDate": "2025-01-01",
+    "endDate": "2025-01-31",
+    "groupBy": ["brand"],
+    "includeSentiment": true
+  }'
+```
 
 ---
 
-## Brand mentions
+## Citations
 
-### `GET /analytics/brand-mentions`
+### `endpoint=citations`
 
-Get brand mention data with sentiment.
+Get citation data at domain or URL level.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
-| `startDate` / `endDate` | string | No | Date range |
-| `groupBy` | string | No | `brand`, `llm_service`, `country` |
+| `brands` | string or string[] | No | Filter by brand name(s) |
+| `labels` | string or string[] | No | Filter by prompt label(s) |
+| `startDate` | string | No | Start date (`YYYY-MM-DD`) |
+| `endDate` | string | No | End date (`YYYY-MM-DD`) |
+| `granularity` | string | No | `total` (default), `daily`, `weekly`, `monthly` |
+| `groupBy` | string or string[] | No | Group results by dimension(s) |
+| `filters` | object | No | Additional filter criteria |
+| `topN` | number | No | Max results (default: 100) |
+| `aggregateBy` | string | No | `domain` (default) or `url` |
+| `includeUrls` | boolean | No | Include URL-level data (default: true) |
+
+**Example:**
+
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "citations",
+    "brands": ["My Brand"],
+    "aggregateBy": "url",
+    "startDate": "2025-01-01",
+    "endDate": "2025-01-31",
+    "topN": 50
+  }'
+```
+
+---
+
+## Queries
+
+### `endpoint=queries`
+
+Get search query data associated with your tracked prompts.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string or string[] | No | Filter by brand name(s) |
+| `promptId` | string | No | Filter by a specific prompt ID |
+| `groupBy` | string or string[] | No | Group results by dimension(s) |
+| `filters` | object | No | Additional filter criteria |
+| `topN` | number | No | Max results (default: 100) |
+| `sortBy` | string | No | `prompts` (default) or `query` |
+| `minVolume` | number | No | Minimum volume threshold (default: 0) |
+| `includeMetadata` | boolean | No | Include metadata (default: true) |
+
+**Example:**
+
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "queries",
+    "brands": ["My Brand"],
+    "sortBy": "prompts",
+    "topN": 50
+  }'
+```
 
 ---
 
 ## Prompts
 
-### `GET /analytics/prompts`
+### `endpoint=prompts`
 
-List tracked prompts for a brand.
+List tracked prompts for your brands.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
-| `status` | string | No | `active`, `paused`, `all` |
-| `label` | string | No | Filter by label |
-| `limit` / `offset` | number | No | Pagination |
+| `brands` | string or string[] | No | Filter by brand name(s) |
+| `status` | string or string[] | No | Filter by status: `active`, `paused`, etc. |
+| `intent` | string or string[] | No | Filter by intent type |
+| `labels` | string or string[] | No | Filter by label(s) |
+| `sortBy` | string | No | `createdAt` (default), `lastRunAt`, `promptText` |
+| `topN` | number | No | Max results (default: 100) |
+| `includeMetadata` | boolean | No | Include metadata (default: true) |
+
+**Example:**
+
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "prompts",
+    "brands": ["My Brand"],
+    "status": "active",
+    "topN": 50
+  }'
+```
 
 ---
 
-## Weekly performance
+## Responses
 
-### `GET /analytics/weekly-performance`
+### `endpoint=responses`
 
-Get week-over-week trends.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
-| `weeksBack` | number | No | Number of weeks (default: 4) |
-| `metrics` | string | No | Comma-separated metrics |
-
----
-
-## Competitors
-
-### `GET /analytics/competitor-insights`
-
-Get competitor ranking data.
+Get raw AI response data for your tracked prompts.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
-| `startDate` / `endDate` | string | No | Date range |
-| `topN` | number | No | Number of competitors (default: 10) |
+| `brands` | string or string[] | No | Filter by brand name(s) |
+| `labels` | string or string[] | No | Filter by prompt label(s) |
+| `startDate` | string | No | Start date (`YYYY-MM-DD`) |
+| `endDate` | string | No | End date (`YYYY-MM-DD`) |
+| `filters` | object | No | Additional filter criteria |
+| `sortBy` | string | No | `createdAt` (default) or `promptId` |
+| `topN` | number | No | Max results (default: 100) |
+| `includeFullText` | boolean | No | Include full response text (default: false) |
 
----
+**Example:**
 
-## Content opportunities
-
-### `GET /analytics/content-opportunities`
-
-Find topics with high volume but low brand visibility.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
-| `minMentions` | number | No | Min response count (default: 3) |
-
----
-
-## Dashboard insights
-
-### `GET /analytics/dashboard-insights`
-
-High-level summary suitable for dashboard display.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `domainId` | string | Yes | Brand domain ID |
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "responses",
+    "brands": ["My Brand"],
+    "startDate": "2025-01-01",
+    "endDate": "2025-01-31",
+    "includeFullText": true,
+    "topN": 20
+  }'
+```
 
 ---
 
@@ -165,20 +273,22 @@ High-level summary suitable for dashboard display.
 | Growth | 120 |
 | Enterprise | 300 |
 
-Exceeding the rate limit returns a `429` status code. Implement exponential backoff in your integration.
+Exceeding the rate limit returns a `429` status code with `X-RateLimit-Remaining` and `X-RateLimit-Reset` headers. Implement exponential backoff in your integration.
 
 ## Response format
 
-All responses use this structure:
+All successful responses follow this structure:
 
 ```json
 {
   "success": true,
-  "data": { ... },
-  "meta": {
-    "total": 100,
-    "limit": 10,
-    "offset": 0
+  "endpoint": "metrics",
+  "data": [ ... ],
+  "metadata": {
+    "brands": ["My Brand"],
+    "dateRange": { "startDate": "2025-01-01", "endDate": "2025-01-31" },
+    "totalRows": 42,
+    "executionTime": "215ms"
   }
 }
 ```
@@ -187,10 +297,8 @@ Error responses:
 
 ```json
 {
-  "success": false,
-  "error": {
-    "code": "UNAUTHORIZED",
-    "message": "Invalid or expired token"
-  }
+  "error": "Invalid endpoint parameter",
+  "message": "Endpoint must be one of: metrics, brands, citations, queries, prompts, responses",
+  "validEndpoints": ["metrics", "brands", "citations", "queries", "prompts", "responses"]
 }
 ```

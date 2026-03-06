@@ -3,10 +3,10 @@ title: Available Tools
 description: Complete reference of all MCP tools available in the Superlines MCP server.
 ---
 
-The Superlines MCP server exposes 32 tools organized into categories. Most tools are read-only. The [Account Management](#account-management) tools can create brands and manage prompts — these require **write permissions** on your API key.
+The Superlines MCP server exposes **27 tools** organized into categories. Most tools are read-only. The [Account Management](#account-management) tools can create brands and manage prompts — these require **write permissions** on your API key.
 
 <Tip>
-When asking about a **specific brand**, always include the brand name in your query. The AI assistant will pass it to the `brands` parameter automatically.
+When asking about a **specific brand**, always include the brand name in your query. The AI assistant will pass it to the `brands` parameter automatically. If you omit brands, data for **all** brands in your organization is returned.
 </Tip>
 
 ## Brand Management
@@ -16,14 +16,15 @@ When asking about a **specific brand**, always include the brand name in your qu
 Lists all brands available in your account. **Always call this first** to get exact brand names for other tools.
 
 - **Parameters:** None
-- **Returns:** List of brands with IDs, names, and domains
+- **Returns:** List of brands with IDs, names, websites, country, language, industry, and competitors
 
 ### `get_brand_details`
 
 Get detailed information about a specific brand including competitors, industry, and market settings.
 
-- **Parameters:** `domainId` (required)
-- **Returns:** Brand configuration, competitors, market settings
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Domain ID from `list_brands` |
 
 ---
 
@@ -33,88 +34,105 @@ Get detailed information about a specific brand including competitors, industry,
 
 Get comprehensive analytics data including Brand Visibility, Citation Rate, Mentions, Share of Voice, and Citations.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brands` | array | Brand names to analyze |
-| `metrics` | array | `brand_visibility`, `citation_rate`, `mentions`, `share_of_voice`, `citations`, `share_of_citations`, `responses`, `tests` |
-| `startDate` / `endDate` | string | Date range (YYYY-MM-DD) |
-| `granularity` | string | `total`, `daily`, `weekly`, or `monthly` |
-| `groupBy` | array | `llm_service`, `llm_model`, `country`, `language`, `topic` |
-| `filters` | object | Additional filters |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands`. Omit to return all brands combined. |
+| `metrics` | string[] | No | `brand_visibility`, `citation_rate`, `mentions`, `share_of_voice`, `citations`, `share_of_citations`, `responses`, `tests` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD). Defaults to last 30 days. |
+| `granularity` | string | No | `total` (default), `daily`, `weekly`, `monthly` |
+| `groupBy` | string[] | No | `llm_service`, `llm_model`, `country`, `language`, `topic` |
+| `filters` | object | No | `llmService`, `llmModel`, `country`, `language`, `topic`, etc. |
 
 ### `get_citation_data`
 
 Analyze citations at domain or URL level. Shows which domains and URLs are cited in AI responses.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brands` | array | Brand names to analyze |
-| `aggregateBy` | string | `domain` or `url` |
-| `limit` | number | Max results (default: 100) |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `aggregateBy` | string | No | `domain` (default) or `url` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `granularity` | string | No | `total`, `daily`, `weekly`, `monthly` |
+| `groupBy` | string[] | No | `llm_service`, `llm_model`, `country`, etc. |
+| `filters` | object | No | `llmService`, `llmModel`, `promptId`, `domain`, `country`, `topic` |
+| `limit` | number | No | Max results (default: 100) |
 
 ### `analyze_brand_mentions`
 
 Analyze brand mentions and competitor presence. Shows mention counts, sentiment scores, and share of voice.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brands` | array | Brand names to analyze |
-| `groupBy` | array | `brand`, `llm_service`, `country`, `topic` |
-| `minMentions` | number | Minimum mentions to include (default: 1) |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `granularity` | string | No | `total`, `daily`, `weekly`, `monthly` |
+| `groupBy` | string[] | No | `brand`, `llm_service`, `country`, `topic` |
+| `filters` | object | No | `llmService`, `llmModel`, `promptId`, `brand`, `sentiment` |
+| `minMentions` | number | No | Minimum mentions to include (default: 1) |
+| `limit` | number | No | Max brands to return (default: 50) |
 
 ### `get_query_data`
 
 Analyze search queries and their metadata. Shows query text, prompt count, intent, user journey stage, and brand mentions.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brands` | array | Brand names to analyze |
-| `filters` | object | `intent`, `userJourneyStage`, `category`, `llmService`, `country` |
-| `sortBy` | string | `query` or `prompts` |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `promptId` | string | No | Filter by a specific prompt ID |
+| `groupBy` | string[] | No | `query`, `intent`, `userJourneyStage`, `category` |
+| `filters` | object | No | `intent`, `userJourneyStage`, `category`, `llmService`, `country`, `naicsCode` |
+| `sortBy` | string | No | `prompts` (default) or `query` |
+| `minVolume` | number | No | Minimum search volume (default: 0) |
+| `limit` | number | No | Max queries (default: 100) |
 
 ### `get_weekly_performance`
 
 Get weekly performance trends over the last N weeks with week-over-week changes.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brands` | array | Brand names to analyze |
-| `weeksBack` | number | Number of weeks (default: 4, max: 52) |
-| `metrics` | array | Which metrics to track |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `weeksBack` | number | No | Number of weeks (default: 4, max: 52) |
+| `metrics` | string[] | No | Metrics to track (defaults to all core metrics) |
 
 ---
 
 ## Webpage Analysis
 
-### `webpage_crawl`
-
-Fetch and parse any webpage. Returns metadata, structured data, HTML structure, and text content.
-
-- **Parameters:** `url` (required, must include `https://`)
-
 ### `webpage_audit`
 
-Full LLM-friendliness audit — technical SEO, content quality, metadata, schemas, writing quality, citations, and tone.
+Comprehensive LLM-friendliness audit — technical SEO, content quality, metadata, schemas, writing quality, citations, and tone.
 
-- **Parameters:** `url` (required), `includeCodeSnippets` (default: true)
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `url` | string | Yes | Full URL (must include `https://`) |
+| `includeCodeSnippets` | boolean | No | Generate actionable code snippets (default: true) |
 
 ### `webpage_analyze_technical`
 
-Focused technical analysis — metadata, structured data, heading structure, accessibility, technical SEO.
+Focused technical analysis — metadata, structured data (JSON-LD, microdata), heading structure, accessibility, and technical SEO.
 
-- **Parameters:** `url` (required), `includeCodeSnippets` (default: true)
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `url` | string | Yes | Full URL (must include `https://`) |
+| `includeCodeSnippets` | boolean | No | Generate technical code snippets (default: true) |
 
 ### `webpage_analyze_content`
 
-Focused content analysis — heading format, content organization, data citations, tone, writing quality.
+Focused content analysis — heading format, content organization, data citations, tone, writing quality, and marketing messages.
 
-- **Parameters:** `url` (required)
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `url` | string | Yes | Full URL (must include `https://`) |
 
 ### `schema_optimizer`
 
 Optimize Schema.org structured data. Returns quality score, proposed schemas, and implementation code.
 
-- **Parameters:** `url` (required), `includeCodeSnippets` (default: true)
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `url` | string | Yes | Full URL (must include `https://`) |
+| `includeCodeSnippets` | boolean | No | Generate implementation code (default: true) |
 
 ---
 
@@ -122,33 +140,56 @@ Optimize Schema.org structured data. Returns quality score, proposed schemas, an
 
 ### `get_fanout_query_insights`
 
-Analyze fan-out queries — the web searches LLMs perform when answering user questions.
+Analyze fan-out queries — the web searches LLMs perform when answering user questions. Shows which queries are most common and where your domain ranks.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `limit` | number | No | Max fan-out queries to analyze (default: 5) |
 
 ### `get_competitive_gap`
 
-Find prompts where competitors lead or where you're winning. Includes visibility comparison and AI recommendations.
+Find prompts where competitors lead or where you're winning. Includes visibility comparison and optional AI recommendations.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `promptId` | string | No | Scope to a single prompt (expanded to its active cluster) |
+| `promptIds` | string[] | No | Scope to multiple prompt IDs (expanded to clusters) |
+| `aggregateBy` | string | No | `cluster` (aggregate together, default) or `prompt` (per-prompt results) |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD). Defaults to last 30 days. |
+| `includeAIAnalysis` | boolean | No | Include AI analysis of competitor's top-ranking URL (default: false) |
 
 ### `get_top_cited_url_per_prompt`
 
 Get the #1 cited URL for each tracked prompt.
 
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `limit` | number | No | Max prompts to analyze (default: 20) |
+
 ### `get_best_performing_prompt`
 
 Find your best performing prompts based on visibility or citation rate.
 
-- **Key parameter:** `metric` — `visibility`, `citations`, or `both`
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `metric` | string | No | `visibility` (default), `citations`, or `both` |
 
 ### `get_period_comparison`
 
-Compare current period metrics vs. previous period.
+Compare current period metrics vs. previous period with trend analysis.
 
-- **Key parameter:** `periodDays` — days per period (default: 30)
-
-### `analyze_competitor_url`
-
-Deep-dive analysis of a competitor URL. Crawls the URL and provides detailed recommendations for competing.
-
-- **Parameters:** `url` (required), `userBrand` (optional), `targetPrompt` (optional)
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `periodDays` | number | No | Days per period (default: 30). Compares last N days vs. previous N days. |
+| `metrics` | string[] | No | Specific metrics to compare |
 
 ---
 
@@ -156,21 +197,43 @@ Deep-dive analysis of a competitor URL. Crawls the URL and provides detailed rec
 
 ### `get_competitor_insights`
 
-Top cited domains and most mentioned brands.
+Top cited domains and most mentioned brands for your tracked prompts.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `topN` | number | No | Number of top competitors (default: 10) |
 
 ### `analyze_sentiment`
 
 Sentiment of AI responses mentioning your brand. Shows positive/neutral/negative breakdown.
 
-- **Key parameter:** `groupBy` — `llm_service`, `topic`, or `country`
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `groupBy` | string | No | `llm_service`, `topic`, or `country` |
 
 ### `find_content_opportunities`
 
 Topics with high query volume but low brand visibility — your biggest growth opportunities.
 
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `minMentions` | number | No | Minimum response count to consider a topic (default: 3) |
+
 ### `get_analytics_summary`
 
 High-level analytics summary with overall metrics and top topics.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD) |
+| `groupBy` | string | No | `llm_service`, `country`, `language`, `topic`, or `date` |
 
 ---
 
@@ -180,15 +243,13 @@ High-level analytics summary with overall metrics and top topics.
 
 Generate a priority-ranked action plan with improvement potential scores.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brands` | array | Brand names |
-| `focusArea` | string | `all`, `visibility`, `citations`, `sentiment`, `content_gaps` |
-| `maxRecommendations` | number | Max items (default: 5, max: 10) |
-
-### `get_next_actions`
-
-Get the top 3 most impactful actions to take next.
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brands` | string[] | Recommended | Brand names from `list_brands` |
+| `focusArea` | string | No | `all` (default), `visibility`, `citations`, `sentiment`, `content_gaps` |
+| `maxRecommendations` | number | No | Max items (default: 5, max: 10) |
+| `competitorUrls` | string[] | No | Specific competitor URLs to analyze |
+| `startDate` / `endDate` | string | No | Date range (YYYY-MM-DD). Defaults to last 30 days. |
 
 ---
 
@@ -204,14 +265,14 @@ Create a new brand/domain in your organization. Triggers brand analysis (website
 
 **Permission required:** `write:brands`
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brandName` | string | **Required.** Brand or company name |
-| `website` | string | **Required.** Website URL (e.g. `https://superlines.io`) |
-| `country` | string | Target country (e.g. `United States`) |
-| `language` | string | Target language (e.g. `English`) |
-| `competitors` | array | List of competitors (`name` required, `website` optional) |
-| `industry` | string | Industry vertical (auto-detected if omitted) |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `brandName` | string | Yes | Brand or company name |
+| `website` | string | Yes | Website URL (e.g. `https://superlines.io`) |
+| `country` | string | No | Target country (e.g. `United States`) |
+| `language` | string | No | Target language (e.g. `English`) |
+| `competitors` | array | No | List of competitors (`name` required, `website` optional). Auto-detected if omitted. |
+| `industry` | string | No | Industry vertical (auto-detected if omitted) |
 
 <Note>
 Brand creation is **idempotent** — if a brand with the same domain already exists, the existing brand is returned instead of creating a duplicate.
@@ -221,9 +282,9 @@ Brand creation is **idempotent** — if a brand with the same domain already exi
 
 Check the progress of brand setup after `create_brand`. Returns analysis status, prompt generation status, and whether the brand is ready for analytics.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `domainId` | string | **Required.** The domain ID returned by `create_brand` |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | The domain ID returned by `create_brand` |
 
 ### `add_prompts`
 
@@ -231,13 +292,13 @@ Add tracking prompts to a brand. Prompts are the search queries that Superlines 
 
 **Permission required:** `write:prompts`
 
-| Parameter | Type | Description |
-|---|---|---|
-| `domainId` | string | **Required.** Domain ID from `list_brands` |
-| `prompts` | array | **Required.** Array of prompt objects (1–50) |
-| `prompts[].text` | string | **Required.** The prompt text (max 500 chars) |
-| `prompts[].label` | string | Optional label/category (e.g. `product`, `brand`) |
-| `prompts[].intent` | string | Optional search intent (e.g. `informational`, `commercial`) |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Domain ID from `list_brands` |
+| `prompts` | array | Yes | Array of prompt objects (1-50) |
+| `prompts[].text` | string | Yes | The prompt text (max 500 chars) |
+| `prompts[].label` | string | No | Label/category (e.g. `product`, `brand`) |
+| `prompts[].intent` | string | No | Search intent (e.g. `informational`, `commercial`) |
 
 <Note>
 Duplicate prompts are automatically detected and skipped. Your organization's prompt quota is enforced.
@@ -249,11 +310,11 @@ Pause active prompts so they stop being crawled. Paused prompts are not deleted 
 
 **Permission required:** `write:prompts`
 
-| Parameter | Type | Description |
-|---|---|---|
-| `domainId` | string | **Required.** Domain ID from `list_brands` |
-| `promptIds` | array | Specific prompt IDs to pause |
-| `label` | string | Pause all active prompts with this label |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Domain ID from `list_brands` |
+| `promptIds` | string[] | No | Specific prompt IDs to pause |
+| `label` | string | No | Pause all active prompts with this label |
 
 ### `unpause_prompts`
 
@@ -261,11 +322,11 @@ Reactivate paused prompts so they resume being crawled. Checks your prompt quota
 
 **Permission required:** `write:prompts`
 
-| Parameter | Type | Description |
-|---|---|---|
-| `domainId` | string | **Required.** Domain ID from `list_brands` |
-| `promptIds` | array | Specific prompt IDs to unpause |
-| `label` | string | Unpause all paused prompts with this label |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Domain ID from `list_brands` |
+| `promptIds` | string[] | No | Specific prompt IDs to unpause |
+| `label` | string | No | Unpause all paused prompts with this label |
 
 ### `update_prompt_labels`
 
@@ -273,29 +334,9 @@ Add, remove, or set labels on prompts. Labels help organize prompts into categor
 
 **Permission required:** `write:prompts`
 
-| Parameter | Type | Description |
-|---|---|---|
-| `domainId` | string | **Required.** Domain ID from `list_brands` |
-| `promptIds` | array | **Required.** Prompt IDs to update (max 100) |
-| `label` | string | **Required.** The label to add, remove, or set |
-| `action` | string | `set` (default — replaces all labels), `add`, or `remove` |
-
----
-
-## SEO Tools (Beta)
-
-### `website_audit`
-
-Comprehensive technical SEO audit. Returns a health score (0–100) with categorized issues.
-
-- **Parameters:** `url` (required)
-
-### `keyword_research`
-
-Research a keyword for search volume, difficulty, CPC, intent, and related keyword opportunities.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `keyword` | string | Required (2–100 characters) |
-| `country` | string | Country code (default: `us`) |
-| `language` | string | Language code (default: `en`) |
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Domain ID from `list_brands` |
+| `promptIds` | string[] | Yes | Prompt IDs to update (max 100) |
+| `label` | string | Yes | The label to add, remove, or set |
+| `action` | string | No | `set` (default — replaces all labels), `add`, or `remove` |
