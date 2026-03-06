@@ -85,7 +85,7 @@ Percentage of AI responses that mention your brand.
 Brand Visibility = (Responses mentioning your brand / Total responses) × 100
 ```
 
-Benchmarks: >30% Excellent, 20–30% Good, 10–20% Fair, <10% Needs improvement.
+Benchmarks: above 30% Excellent, 20–30% Good, 10–20% Fair, below 10% Needs improvement.
 
 ### Share of Voice (SOV)
 
@@ -95,7 +95,7 @@ Your brand mentions as a percentage of all brand mentions (yours + competitors).
 Share of Voice = (Your brand mentions / All brand mentions) × 100
 ```
 
-Benchmarks: >25% Market leader, 15–25% Strong, 5–15% Moderate, <5% Needs attention.
+Benchmarks: above 25% Market leader, 15–25% Strong, 5–15% Moderate, below 5% Needs attention.
 
 Key difference: Brand Visibility measures absolute presence. SOV measures competitive position.
 
@@ -107,7 +107,7 @@ Percentage of AI responses that cite (link to) your website.
 Citation Rate = (Responses citing your website / Total responses) × 100
 ```
 
-Benchmarks: >20% Excellent, 10–20% Good, 5–10% Fair, <5% Needs improvement.
+Benchmarks: above 20% Excellent, 10–20% Good, 5–10% Fair, below 5% Needs improvement.
 
 ### Share of Citations
 
@@ -129,7 +129,7 @@ Volume-weighted average rank at which your brand is mentioned in AI answers. Pos
 Average Position = Volume-weighted average of mention order across all responses
 ```
 
-Benchmarks: 1.0–2.0 Excellent, 2.0–3.5 Good, 3.5–5.0 Fair, >5.0 Needs improvement.
+Benchmarks: 1.0–2.0 Excellent, 2.0–3.5 Good, 3.5–5.0 Fair, above 5.0 Needs improvement.
 
 Only responses where your brand is actually mentioned are included.
 
