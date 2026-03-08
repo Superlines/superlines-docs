@@ -24,10 +24,15 @@ Each brand has independent analytics and configuration. Use the **domain switche
   <Step title="Enter basic information">
     - **Brand name** — the name you want to monitor (use the most common form customers use)
     - **Website URL** — your primary URL including `https://`
+    - **Business Type** — select your business model (e.g., B2B, B2C, SaaS)
+    - **Description** — a brief description of your brand or business
   </Step>
-  <Step title="Configure your market">
-    - **Country** — your primary geographic market (affects prompt generation and analysis context)
+  <Step title="Configure your markets">
+    Add one or more markets for your brand. Each market is a combination of:
+    - **Country** — the geographic market (affects prompt generation and analysis context)
     - **Language** — the language for monitoring (matches your content language)
+
+    You can add multiple markets to monitor your brand across different regions simultaneously.
   </Step>
   <Step title="Define your audience (optional but recommended)">
     - **Target audience** — describe your ideal customer
@@ -62,12 +67,33 @@ This improves accuracy in Share of Voice and competitor analytics.
 
 ### Market configuration
 
+Superlines supports **multiple markets** per brand. Each market is a country/language pair that determines how prompts are generated and responses are analyzed.
+
 | Setting | Purpose | Impact |
 |---|---|---|
 | **Country** | Geographic targeting | Affects prompt generation, competitor relevance, and analysis context |
 | **Language** | Content language | Determines prompt language and response analysis |
 | **Region** | Optional sub-region | Further refines geographic targeting |
 | **Target audience** | Customer description | Improves AI-generated prompt suggestions |
+
+<Info>
+Unlike setting up separate brands per market, multiple markets within a single brand let you track the same brand identity across different regions while keeping analytics unified.
+</Info>
+
+### Sitemap settings
+
+Configure automatic sitemap integration:
+
+- **Sitemap URL** — your website's sitemap URL for automatic page discovery
+- **Auto-sync** — enable to keep your tracked pages in sync with your sitemap
+
+### Prompt automation
+
+| Setting | Description |
+|---|---|
+| **Auto-Add Prompts** | Automatically add AI-discovered prompts to tracking |
+| **Auto-Archive Zero-Result Prompts** | Automatically archive prompts that consistently return no brand mentions |
+| **Prompt Variations** | Override the default prompt variation settings for this brand |
 
 ## Automatic prompt generation
 
@@ -86,7 +112,7 @@ The initial auto-generated prompts provide a great starting point. Review them a
 
 | Resource | Limit |
 |---|---|
-| **Brands** | 1 on Free, multiple on paid plans |
+| **Brands** | 1 on Starter, multiple on Growth, unlimited on Enterprise |
 | **Competitors per brand** | 4 (default, varies by plan) |
 | **Prompts** | Shared quota across all brands |
 

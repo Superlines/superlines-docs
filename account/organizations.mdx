@@ -7,33 +7,38 @@ An **Organization** is the top-level container in Superlines. It holds your subs
 
 ## Organization settings
 
-Navigate to **Organization Settings** in the sidebar to manage:
+Navigate to **Settings** in the sidebar to manage:
 
 | Setting | Description |
 |---|---|
 | **Organization name** | Display name used in reports, invitations, and billing |
 | **Website** | Your organization's primary website URL |
-| **Subscription plan** | Current plan (Free, Starter, Growth, Enterprise) |
+| **Subscription plan** | Current plan (Starter, Growth, Enterprise) |
 
 ## Subscription & usage
 
 Your plan determines what's available across the entire organization:
 
-| Resource | Free | Starter | Growth | Enterprise |
-|---|---|---|---|---|
-| **Brands (domains)** | 1 | Multiple | Multiple | Unlimited |
-| **Tracked prompts** | 200 | Higher | Higher | Unlimited |
-| **Countries** | 1 | Multiple | Multiple | Unlimited |
-| **Languages** | 1 | Multiple | Multiple | Unlimited |
-| **Team seats** | 3 | More | More | Unlimited |
-| **AI engines** | 3 | 4+ | 6+ | All 9 |
-| **API access** | No | Yes | Yes | Yes |
-| **MCP server** | No | Yes | Yes | Yes |
+| Resource | Starter | Growth | Enterprise |
+|---|---|---|---|
+| **Brands (domains)** | 1 | Multiple | Unlimited |
+| **Tracked prompts** | 50 | 150 | Custom |
+| **Countries** | 1 | Multiple | Unlimited |
+| **Languages** | 1 | Multiple | Unlimited |
+| **Team seats** | 1 | 3 | Custom |
+| **AI engines** | 3 | 3 | All 10 |
+| **Article generations** | 5 | 15 | 50 |
+| **Crawled URLs** | Limited | Higher | Custom |
+| **API access** | No | Yes | Yes |
+| **MCP server** | No | Yes | Yes |
+| **Report Builder** | No | Yes | Yes |
+| **Cross-Brand Analytics** | No | No | Yes |
+| **Dedicated Strategist** | No | No | Yes |
 
 Usage is **aggregated** across all brands. For example, if Brand A uses 100 prompts and Brand B uses 50, your organization total is 150 prompts.
 
 <Tip>
-Monitor your usage in Organization Settings. If you're approaching limits, consider pausing unused prompts or upgrading your plan.
+Monitor your usage on the **Subscription** page under Settings. If you're approaching limits, consider pausing unused prompts or upgrading your plan.
 </Tip>
 
 ## LLM engine configuration
@@ -44,10 +49,11 @@ Choose which AI platforms to monitor. Your plan determines how many you can enab
 
 | Engine | Type | Plan |
 |---|---|---|
-| **ChatGPT** | Online + Offline | Free+ |
-| **Copilot** | Online | Free+ |
-| **Perplexity** | Online | Free+ |
-| **Google AI Overviews** | Online | Starter+ |
+| **ChatGPT** | Online + Offline | Starter+ |
+| **Copilot** | Online | Starter+ |
+| **Perplexity** | Online | Starter+ |
+| **Google AI Overviews** | Online | Enterprise |
+| **Google AI Mode** | Online | Enterprise |
 | **Gemini** | Offline | Enterprise |
 | **Grok** | Online | Enterprise |
 | **Claude** | Offline | Enterprise |
@@ -71,7 +77,7 @@ Choose which AI platforms to monitor. Your plan determines how many you can enab
 API keys provide programmatic access to your Superlines data. Available on all paid plans.
 
 <Steps>
-  <Step title="Navigate to Organization Settings → API Keys" />
+  <Step title="Navigate to Settings → Subscription or Brand Settings to find your API Key section" />
   <Step title="Click Generate API Key">
     A new key is created with the format `sl_live_...`
   </Step>

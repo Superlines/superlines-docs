@@ -3,7 +3,7 @@ title: AI Crawler Analytics
 description: Track and analyze AI bot traffic on your website to understand how AI engines crawl your content.
 ---
 
-AI Crawler Analytics lets you see exactly which AI bots and crawlers are visiting your website, how often they visit, and which pages they're crawling. This gives you a direct signal of how AI engines interact with your content — complementing the response-based metrics like Brand Visibility and Citation Rate.
+AI Crawler Analytics (labeled **Bot Traffic** in the platform) lets you see exactly which AI bots and crawlers are visiting your website, how often they visit, and which pages they're crawling. This gives you a direct signal of how AI engines interact with your content — complementing the response-based metrics like Brand Visibility and Citation Rate.
 
 <Note>
 AI Crawler Analytics requires installing a lightweight tracking script on your website. No data will appear until the script is live.
@@ -85,7 +85,7 @@ Every detected bot is classified into one of these categories:
 | **Monitoring** | Uptime and performance monitoring bots | UptimeRobot, Pingdom, GTmetrix |
 
 <Tip>
-Use the **AI bots only** toggle on the dashboard to focus specifically on AI Training and AI Search crawlers — the ones most relevant to your AI search visibility.
+Use the category filter on the dashboard to focus on specific bot types like AI Training and AI Search crawlers — the ones most relevant to your AI search visibility.
 </Tip>
 
 ## Dashboard overview
@@ -96,10 +96,10 @@ The AI Crawler Analytics dashboard provides several views:
 
 At the top, you'll see high-level stats for the selected date range:
 
-- **Total visits** — all recorded page loads
-- **Bot visits** — visits identified as bots (with percentage)
-- **Human visits** — visits from real users (with percentage)
-- **Unique visitors** — deduplicated visitor count
+- **Top Crawler** — the most active bot visiting your site
+- **Top URL** — the page receiving the most bot traffic
+- **Top Category** — the most common bot category
+- **Top Country** — where most bot traffic originates
 
 ### Trend chart
 
@@ -134,11 +134,11 @@ The dashboard supports several filters to narrow down your analysis:
 | **Bot filter** | Filter to a specific bot (e.g., only GPTBot) |
 | **Category filter** | Filter to a specific category (e.g., only AI Search) |
 | **Country filter** | Filter by geographic origin |
-| **AI bots only** | Toggle to show only AI Training and AI Search bots |
+| **All bots** | Toggle between showing all bots or filtering to specific categories |
 
 ## Human visitor analytics
 
-When the **AI bots only** toggle is off, you also get analytics for human visitors:
+The dashboard also provides analytics for human visitors:
 
 - **Top referrers** — where your human traffic comes from
 - **Browsers** — browser distribution (Chrome, Safari, Firefox, etc.)

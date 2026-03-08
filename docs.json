@@ -29,21 +29,77 @@
             ]
           },
           {
+            "group": "Analytics",
+            "icon": "chart-line",
+            "pages": [
+              "analytics/overview-dashboard",
+              "analytics/visibility-dashboard",
+              "analytics/mentions",
+              "analytics/citations-page",
+              "analytics/competitor-analysis",
+              "analytics/brand-sentiment",
+              "analytics/cross-brand-analytics"
+            ]
+          },
+          {
+            "group": "Features",
+            "icon": "wand-magic-sparkles",
+            "pages": [
+              "features/agent",
+              "features/action-center",
+              "features/export-reporting"
+            ]
+          },
+          {
+            "group": "Tools",
+            "icon": "wrench",
+            "pages": [
+              "tools/ai-search-checker",
+              "tools/schema-optimiser",
+              "tools/keyword-research",
+              "tools/site-analyzer"
+            ]
+          },
+          {
+            "group": "Content",
+            "icon": "file-lines",
+            "pages": [
+              "content/overview"
+            ]
+          },
+          {
+            "group": "Website",
+            "icon": "globe",
+            "pages": [
+              "website/site-health",
+              "website/ga4-ai-traffic",
+              "website/crawler-analytics"
+            ]
+          },
+          {
+            "group": "Prompts",
+            "icon": "message",
+            "pages": [
+              "account/prompts",
+              "account/prompt-import",
+              "account/prompt-radar",
+              "account/prompt-strategy",
+              "account/prompt-variations"
+            ]
+          },
+          {
             "group": "Account Management",
             "icon": "gear",
             "pages": [
               "account/organizations",
               "account/brands",
-              "account/prompts",
-              "account/prompt-strategy",
-              "account/prompt-radar",
-              "account/prompt-variations",
-              "account/team"
+              "account/team",
+              "account/subscription"
             ]
           },
           {
             "group": "Metrics & Data",
-            "icon": "chart-line",
+            "icon": "chart-bar",
             "pages": [
               "metrics/key-metrics",
               "metrics/responses",
