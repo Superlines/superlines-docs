@@ -1,6 +1,6 @@
 ---
 title: MCP Setup Guide
-description: Step-by-step guide to connect Claude Desktop, Cursor, or VS Code to Superlines.
+description: Step-by-step guides to connect Superlines to Claude, Cursor, Windsurf, Lovable, ChatGPT, and other MCP clients.
 ---
 
 ## Prerequisites
@@ -13,15 +13,58 @@ Before you begin, make sure you have:
 
 ## Connection methods
 
-| Method | Best for | Protocol |
+| Method | Protocol | Best for |
 |---|---|---|
-| **OAuth (Claude.ai)** | Claude.ai web — no API key needed | OAuth 2.0 + SSE |
-| **SSE (URL-based)** | Claude Desktop, most clients | Server-Sent Events |
-| **Local npx** | Cursor, VS Code, advanced setups | Standard I/O |
+| **OAuth** | OAuth 2.0 + SSE | Claude.ai — no API key needed |
+| **SSE (URL-based)** | Server-Sent Events | Claude Desktop, Cursor, Windsurf, Lovable, ChatGPT, most clients |
+| **Local npx** | Standard I/O | Cursor, Claude Desktop, VS Code — runs locally on your machine |
+| **CLI** | Varies | Claude Code — add servers from the terminal |
 
-## Option 1: OAuth setup (Claude.ai)
+**SSE connection URL:**
+```
+https://mcpsse.superlines.io?token=YOUR_API_KEY
+```
+Replace `YOUR_API_KEY` with your actual API key.
 
-Connect Superlines directly to Claude.ai through OAuth — no API key required. You sign in with your Superlines account and authorize access.
+## Choose your platform
+
+<CardGroup cols={3}>
+  <Card title="Claude.ai" icon="globe" href="#claude-ai">
+    OAuth — no API key needed
+  </Card>
+  <Card title="Claude Desktop" icon="desktop" href="#claude-desktop">
+    SSE or local npx
+  </Card>
+  <Card title="Claude Code" icon="terminal" href="#claude-code">
+    CLI — one command setup
+  </Card>
+  <Card title="Cursor" icon="code" href="#cursor">
+    SSE or local npx
+  </Card>
+  <Card title="Cursor Cloud" icon="cloud" href="#cursor-cloud">
+    SSE — remote agents
+  </Card>
+  <Card title="Windsurf" icon="wind" href="#windsurf">
+    SSE or local npx
+  </Card>
+  <Card title="Lovable" icon="heart" href="#lovable">
+    SSE via Settings UI
+  </Card>
+  <Card title="ChatGPT" icon="message" href="#chatgpt">
+    Connector URL
+  </Card>
+  <Card title="VS Code" icon="window" href="#vs-code">
+    SSE or local npx
+  </Card>
+</CardGroup>
+
+---
+
+## Claude.ai {#claude-ai}
+
+<Info>
+**Method:** OAuth — no API key needed. You authorize access with your Superlines account.
+</Info>
 
 <Steps>
   <Step title="Open Claude.ai settings">
@@ -46,125 +89,379 @@ Connect Superlines directly to Claude.ai through OAuth — no API key required. 
 OAuth connections are scoped to the brands you select during authorization. You can revoke access at any time from your Superlines account settings.
 </Tip>
 
-## Option 2: SSE / URL-based setup
+---
 
-The simplest approach — just add a URL to your client's configuration.
+## Claude Desktop {#claude-desktop}
 
-**Connection URL:**
+<Info>
+**Method:** SSE (recommended) or local npx. Both use the `claude_desktop_config.json` config file.
+</Info>
+
+<Steps>
+  <Step title="Open Claude Desktop settings">
+    Go to **Settings → Developer → Edit Config** to open:
+    ```
+    ~/Library/Application Support/Claude/claude_desktop_config.json
+    ```
+    On Windows:
+    ```
+    %APPDATA%\Claude\claude_desktop_config.json
+    ```
+  </Step>
+  <Step title="Add the Superlines server">
+    <Tabs>
+      <Tab title="SSE (recommended)">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
+              "transport": "sse"
+            }
+          }
+        }
+        ```
+      </Tab>
+      <Tab title="Local npx">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "command": "npx",
+              "args": ["-y", "@superlines/mcp-server"],
+              "env": {
+                "SUPERLINES_API_KEY": "YOUR_API_KEY"
+              }
+            }
+          }
+        }
+        ```
+        <Note>Requires **Node.js** installed on your machine.</Note>
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Restart Claude Desktop">
+    Save the file and fully restart the app for changes to take effect.
+  </Step>
+</Steps>
+
+---
+
+## Claude Code {#claude-code}
+
+<Info>
+**Method:** CLI — add the server directly from your terminal with one command.
+</Info>
+
+<Steps>
+  <Step title="Add the Superlines server">
+    Run one of these commands in your terminal:
+    <Tabs>
+      <Tab title="SSE (recommended)">
+        ```bash
+        claude mcp add --transport sse superlines \
+          "https://mcpsse.superlines.io?token=YOUR_API_KEY"
+        ```
+      </Tab>
+      <Tab title="Local npx">
+        ```bash
+        claude mcp add --transport stdio \
+          --env SUPERLINES_API_KEY=YOUR_API_KEY \
+          superlines -- npx -y @superlines/mcp-server
+        ```
+        <Note>Requires **Node.js** installed on your machine.</Note>
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Verify the connection">
+    ```bash
+    claude mcp list
+    ```
+    You should see `superlines` in the list of connected servers.
+  </Step>
+  <Step title="Start using Superlines">
+    In your Claude Code session, try: *"List my Superlines brands"*
+  </Step>
+</Steps>
+
+<Tip>
+Use the `--scope` flag to control where the configuration is stored:
+- `--scope local` (default) — private to you, this project only
+- `--scope project` — shared via `.mcp.json`, checked into git
+- `--scope user` — available across all your projects
+</Tip>
+
+---
+
+## Cursor {#cursor}
+
+<Info>
+**Method:** SSE (recommended) or local npx via `.cursor/mcp.json`.
+</Info>
+
+<Steps>
+  <Step title="Open MCP settings">
+    Go to **Cursor Settings → Tools & MCP → Add new MCP server**, or create/edit the `.cursor/mcp.json` file in your project root.
+  </Step>
+  <Step title="Add the Superlines server">
+    <Tabs>
+      <Tab title="SSE (recommended)">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
+              "transport": "sse"
+            }
+          }
+        }
+        ```
+      </Tab>
+      <Tab title="Local npx">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "command": "npx",
+              "args": ["-y", "@superlines/mcp-server"],
+              "env": {
+                "SUPERLINES_API_KEY": "YOUR_API_KEY"
+              }
+            }
+          }
+        }
+        ```
+        <Note>Requires **Node.js** installed on your machine.</Note>
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Restart Cursor">
+    Restart Cursor for the changes to take effect. You should see the Superlines server listed under **Tools & MCP** in settings.
+  </Step>
+</Steps>
+
+---
+
+## Cursor Cloud {#cursor-cloud}
+
+<Info>
+**Method:** SSE only — cloud agents run in remote VMs, so local npx is not available.
+</Info>
+
+Since Cursor Cloud agents run in a remote environment, only the SSE (URL-based) connection method works.
+
+<Steps>
+  <Step title="Add the Superlines server">
+    Add the following to your `.cursor/mcp.json` file in your project root:
+    ```json
+    {
+      "mcpServers": {
+        "superlines": {
+          "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
+          "transport": "sse"
+        }
+      }
+    }
+    ```
+  </Step>
+  <Step title="Commit the config">
+    Commit the `.cursor/mcp.json` file to your repository so it's available in the cloud environment.
+  </Step>
+  <Step title="Verify in cloud session">
+    When using a Cursor Cloud agent, the Superlines tools will be available automatically. Try asking: *"List my Superlines brands"*
+  </Step>
+</Steps>
+
+<Warning>
+Local npx transport does not work with Cursor Cloud agents. Always use the SSE method for cloud environments.
+</Warning>
+
+---
+
+## Windsurf {#windsurf}
+
+<Info>
+**Method:** SSE URL or local npx via `mcp_config.json`. You can also browse the built-in MCP Marketplace.
+</Info>
+
+<Steps>
+  <Step title="Open MCP configuration">
+    In Windsurf, click the **Plugins** icon in the sidebar → **Manage plugins** → **View raw config**, or edit the file directly:
+    ```
+    ~/.codeium/windsurf/mcp_config.json
+    ```
+  </Step>
+  <Step title="Add the Superlines server">
+    <Tabs>
+      <Tab title="SSE (recommended)">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "serverUrl": "https://mcpsse.superlines.io?token=YOUR_API_KEY"
+            }
+          }
+        }
+        ```
+      </Tab>
+      <Tab title="Local npx">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "command": "npx",
+              "args": ["-y", "@superlines/mcp-server"],
+              "env": {
+                "SUPERLINES_API_KEY": "YOUR_API_KEY"
+              }
+            }
+          }
+        }
+        ```
+        <Note>Requires **Node.js** installed on your machine.</Note>
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Refresh Windsurf">
+    Save the file and restart Windsurf, or refresh the MCP plugins from the sidebar.
+  </Step>
+</Steps>
+
+<Tip>
+Windsurf supports environment variable interpolation in MCP configs. You can use `${env:SUPERLINES_API_KEY}` in the `serverUrl` to reference environment variables instead of hardcoding your key.
+</Tip>
+
+---
+
+## Lovable {#lovable}
+
+<Info>
+**Method:** SSE URL via Settings UI. Custom MCP servers are available on all paid Lovable plans.
+</Info>
+
+<Steps>
+  <Step title="Open connector settings">
+    Go to **Settings → Connectors → Personal connectors** and click **New MCP server**.
+  </Step>
+  <Step title="Enter the server details">
+    - **Server name:** `Superlines`
+    - **Server URL:** `https://mcpsse.superlines.io?token=YOUR_API_KEY`
+    - **Authentication:** Select **No authentication** (the API key is included in the URL)
+  </Step>
+  <Step title="Add the server">
+    Click **Add**. The Superlines server now appears in your list of personal connectors.
+  </Step>
+  <Step title="Use in your project">
+    In any Lovable project, the Superlines tools are now available to the AI agent. Try prompting: *"Use Superlines to show my brand visibility"*
+  </Step>
+</Steps>
+
+<Tip>
+You can also use **Bearer token** authentication. Set the Server URL to `https://mcpsse.superlines.io` and enter your API key (format: `sl_live_...`) as the bearer token.
+</Tip>
+
+---
+
+## ChatGPT {#chatgpt}
+
+<Info>
+**Method:** MCP Connector via Settings. Requires a **ChatGPT Plus or Pro** subscription with Developer Mode enabled.
+</Info>
+
+<Steps>
+  <Step title="Enable Developer Mode">
+    In [ChatGPT](https://chatgpt.com), go to your profile → **Settings → Apps & Connectors → Advanced settings** (at the bottom of the page) and toggle on **Developer Mode**.
+  </Step>
+  <Step title="Create a connector">
+    Go to **Settings → Apps & Connectors** and click **Create**.
+  </Step>
+  <Step title="Enter the server details">
+    - **Name:** `Superlines`
+    - **Description:** `AI Search Analytics — brand visibility, citations, competitor intelligence`
+    - **MCP Server URL:** `https://mcpsse.superlines.io?token=YOUR_API_KEY`
+  </Step>
+  <Step title="Confirm and create">
+    Check the confirmation box and click **Create**. You should see the available Superlines tools listed.
+  </Step>
+  <Step title="Start using Superlines">
+    Open a new ChatGPT conversation, click the **+** button near the message composer, select **More**, then choose the **Superlines** connector. Try: *"List my Superlines brands"*
+  </Step>
+</Steps>
+
+<Note>
+ChatGPT connectors require a remote HTTPS endpoint. Local npx servers do not work with ChatGPT. MCP support in ChatGPT is currently in beta and may evolve — check [OpenAI's documentation](https://developers.openai.com/apps-sdk/deploy/connect-chatgpt/) for the latest setup steps.
+</Note>
+
+---
+
+## VS Code {#vs-code}
+
+<Info>
+**Method:** SSE or local npx. The config format depends on your MCP extension (e.g., GitHub Copilot, Continue, Cline).
+</Info>
+
+<Steps>
+  <Step title="Open your MCP configuration">
+    Check your MCP extension's documentation for the config file location. Common locations include `.vscode/mcp.json` in your project root or the extension's global settings.
+  </Step>
+  <Step title="Add the Superlines server">
+    <Tabs>
+      <Tab title="SSE (recommended)">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
+              "transport": "sse"
+            }
+          }
+        }
+        ```
+      </Tab>
+      <Tab title="Local npx">
+        ```json
+        {
+          "mcpServers": {
+            "superlines": {
+              "command": "npx",
+              "args": ["-y", "@superlines/mcp-server"],
+              "env": {
+                "SUPERLINES_API_KEY": "YOUR_API_KEY"
+              }
+            }
+          }
+        }
+        ```
+        <Note>Requires **Node.js** installed on your machine.</Note>
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Restart VS Code">
+    Restart VS Code for the changes to take effect.
+  </Step>
+</Steps>
+
+---
+
+## Other MCP clients {#other-clients}
+
+Any MCP-compatible client can connect to Superlines using the SSE endpoint:
+
 ```
 https://mcpsse.superlines.io?token=YOUR_API_KEY
 ```
 
-Replace `YOUR_API_KEY` with your actual API key.
+Add this URL as an SSE transport server in your client's MCP configuration. Consult your client's documentation for the specific config format.
 
-<Tabs>
-  <Tab title="Claude Desktop">
-    <Steps>
-      <Step title="Open Claude Desktop settings">
-        Go to **Settings → Developer → Edit Config** to open:
-        ```
-        ~/Library/Application Support/Claude/claude_desktop_config.json
-        ```
-      </Step>
-      <Step title="Add the Superlines server">
-        ```json
-        {
-          "mcpServers": {
-            "superlines": {
-              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
-              "transport": "sse"
-            }
-          }
-        }
-        ```
-      </Step>
-      <Step title="Restart Claude Desktop">
-        Save and fully restart the app for changes to take effect.
-      </Step>
-    </Steps>
-  </Tab>
-  <Tab title="Cursor">
-    <Steps>
-      <Step title="Open or create .cursor/mcp.json">
-        This file lives in your project root or global config directory.
-      </Step>
-      <Step title="Add the Superlines server">
-        ```json
-        {
-          "mcpServers": {
-            "superlines": {
-              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
-              "transport": "sse"
-            }
-          }
-        }
-        ```
-      </Step>
-      <Step title="Restart Cursor" />
-    </Steps>
-  </Tab>
-  <Tab title="VS Code">
-    <Steps>
-      <Step title="Open your MCP configuration">
-        This depends on your MCP extension.
-      </Step>
-      <Step title="Add the Superlines server">
-        ```json
-        {
-          "mcpServers": {
-            "superlines": {
-              "url": "https://mcpsse.superlines.io?token=YOUR_API_KEY",
-              "transport": "sse"
-            }
-          }
-        }
-        ```
-      </Step>
-      <Step title="Restart VS Code" />
-    </Steps>
-  </Tab>
-</Tabs>
+For clients that support local process-based connections, use the npm package:
 
-## Option 3: Local npx setup
+```bash
+npx -y @superlines/mcp-server
+```
 
-For clients that prefer local process-based connections, use the npm package.
+Set the `SUPERLINES_API_KEY` environment variable to your API key.
 
-<Note>
-Requires **Node.js** installed on your machine.
-</Note>
-
-<Tabs>
-  <Tab title="Claude Desktop">
-    ```json
-    {
-      "mcpServers": {
-        "superlines": {
-          "command": "npx",
-          "args": ["-y", "@superlines/mcp-server"],
-          "env": {
-            "SUPERLINES_API_KEY": "YOUR_API_KEY"
-          }
-        }
-      }
-    }
-    ```
-  </Tab>
-  <Tab title="Cursor / VS Code">
-    ```json
-    {
-      "mcpServers": {
-        "superlines": {
-          "command": "npx",
-          "args": ["-y", "@superlines/mcp-server"],
-          "env": {
-            "SUPERLINES_API_KEY": "YOUR_API_KEY"
-          }
-        }
-      }
-    }
-    ```
-  </Tab>
-</Tabs>
+---
 
 ## API key permissions
 
@@ -230,6 +527,11 @@ If it works, try:
 | "No data returned" | Make sure you have at least one brand with tracked prompts |
 | "Connection timeout" | Check your internet connection; the SSE endpoint is at `mcpsse.superlines.io` |
 | "Plan not supported" | MCP requires a paid plan (Starter, Growth, or Enterprise) |
+| "Command not found" (npx) | Ensure Node.js is installed and `npx` is in your PATH |
+| Server hangs on connection | Try the SSE method instead of npx — it's more reliable for remote connections |
+| ChatGPT connector not visible | Confirm Developer Mode is enabled and you have a Plus or Pro subscription |
+| Lovable tools not available | Make sure your Lovable plan supports custom MCP servers (paid plans) |
+| Windsurf server not loading | Check that `mcp_config.json` is valid JSON — trailing commas cause silent failures |
 
 <Warning>
 **Never share your API key publicly.** If compromised, revoke it immediately in Organization Settings and generate a new one.
