@@ -162,10 +162,12 @@ The MCP server makes prompt management efficient for large portfolios:
 
 | Task | MCP approach |
 |---|---|
+| **List current prompts** | Call `list_prompts` to see all tracked prompts with status and quota usage |
 | **Add prompts in bulk** | Call `add_prompts` with up to 50 prompts per call, with labels |
 | **Pause seasonal prompts** | Call `pause_prompts` with a label filter (e.g., `summer-campaign`) |
 | **Reactivate after season** | Call `unpause_prompts` with the same label filter |
 | **Reorganize labels** | Call `update_prompt_labels` to reclassify prompts |
+| **Remove stale prompts** | Call `delete_prompts` with a label or ID list to permanently remove low-value prompts |
 | **Discover + add in one flow** | Chain external data scraping with `add_prompts` in a single agent workflow |
 
 ---
@@ -199,6 +201,6 @@ The MCP server makes prompt management efficient for large portfolios:
     Connect the MCP server to your AI assistant.
   </Card>
   <Card title="Available Tools" icon="wrench" href="/mcp/tools">
-    Full reference of all 27 MCP tools.
+    Full reference of all 30 MCP tools.
   </Card>
 </CardGroup>

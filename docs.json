@@ -120,6 +120,7 @@
             "pages": [
               "mcp/overview",
               "mcp/setup",
+              "mcp/prompting-guide",
               "mcp/tools",
               "mcp/workflows"
             ]

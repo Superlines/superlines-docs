@@ -16,7 +16,7 @@ description: Answers to the most common questions about Superlines.
     **Advanced options:**
     - **REST API** — pull data into your own reporting system via the [Metrics API](/api/endpoints) and visualize it however you like
     - **MCP Server** — use Claude Desktop or Cursor to ask natural language questions about your data and generate custom reports ([setup guide](/mcp/setup))
-    - **Looker Studio** — connect to Google Looker Studio for custom dashboards and scheduled reports ([integration guide](/integrations/looker-studio))
+    - **Looker Studio** — connect to Looker Studio for custom dashboards and scheduled reports ([integration guide](/integrations/looker-studio))
   </Accordion>
 
   <Accordion title="How are prompts defined during auditing?">
@@ -123,6 +123,33 @@ description: Answers to the most common questions about Superlines.
     **Example:** If an AI responds to "Best project management tools" and mentions Asana first, Monday.com second, and your brand third — your position for that response is 3.
 
     Average Position helps you understand the **quality** of your visibility. A brand can have high Brand Visibility (mentioned often) but poor Average Position (mentioned last). Improving your position means AI models treat your brand as a top recommendation.
+  </Accordion>
+
+  <Accordion title="Why is my label-level Brand Visibility higher than every prompt under it?">
+    This looks impossible at first — for example, a label showing 10.1% while its five prompts show 3.5%, 6.0%, 4.2%, 0.0%, and 0.7% — but it is expected. The two levels use slightly different detection rules:
+
+    - **Label/theme level (and the dashboard KPI card)** counts a response when your brand is found anywhere in the response text, **including common name variants** — "Yale" counts for the brand "Yale Home".
+    - **Per-prompt Brand Visibility** (Prompts table and CSV export) is stricter: a response counts only when your exact brand name appears in the structured list of brands extracted from that response.
+
+    Since the per-prompt rule is stricter, its percentages are always **lower than or equal to** what the tolerant rule would give — so every prompt can sit below the label figure.
+
+    **To reconcile the numbers:** in the Tracked Prompts CSV export, divide **Brand Mentions** by **AI Responses** for each prompt. Those columns use the same detection as the label level, and summed across the label's prompts they reproduce the label figure exactly (e.g., 73 / 726 = 10.1%).
+
+    Also note that the label figure is **response-weighted**, not a simple average of the prompt percentages — prompts with more responses influence it more.
+  </Accordion>
+
+  <Accordion title="What does the Industry Average include?">
+    The Industry Average shown on the KPI cards and in the Industry Ranking section is the **simple (unweighted) mean** of the metric across the brands currently shown in the Industry Ranking table — at most the top 10.
+
+    Which brands are included depends on the **Only my competitors** toggle in the Industry Ranking section:
+
+    - **Toggle on (default):** only your configured competitors, **plus your own brand**
+    - **Toggle off:** all brands detected in AI responses
+
+    Two things to keep in mind when using it as a benchmark:
+
+    1. Your own brand is always part of the average, so it is not a pure "everyone else" comparison.
+    2. Every brand counts equally in the average, regardless of how many mentions it has.
   </Accordion>
 </AccordionGroup>
 

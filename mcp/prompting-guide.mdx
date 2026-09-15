@@ -1,0 +1,160 @@
+---
+title: Getting Reliable Numbers from Claude
+description: How to ask Claude (or any MCP client) for Superlines data so the answer matches the dashboard — with copy-paste prompts and the questions to avoid.
+---
+
+Claude does not calculate anything. It calls a Superlines tool, receives a JSON payload, and writes it up. Every mismatch between "what Claude said" and "what the dashboard shows" comes from one of three things: Claude picked a different date range, Claude picked a different tool than the dashboard view you are comparing against, or Claude summarised across two payloads that were not comparable. This page shows how to remove all three.
+
+<Note>
+**Rule of thumb:** tell Claude the brand, the exact dates, and the metric name as it appears in the dashboard. Then ask it to quote the `dataFreshness.latest_response_at` timestamp. If that timestamp matches the "Data updated" indicator in the dashboard, both are reading the same data.
+</Note>
+
+## The four things every data question needs
+
+| Include | Why | Example |
+|---|---|---|
+| **Exact brand name** | Without it, several tools return *all your brands combined* and Claude may not notice the warning. | `for the brand "Acme Insurance"` |
+| **Explicit start and end date** | MCP tools default to *the last 30 days including today*. The dashboard defaults to *the last 28 days ending yesterday*. Different windows, different numbers. | `from 2026-08-15 to 2026-09-14` |
+| **End date = yesterday** | Today's collection is still running. The dashboard hides today unless you toggle "Include current date". | `ending yesterday (2026-09-14)` |
+| **The metric name from the dashboard** | "Visibility", "mentions" and "share" each map to different fields. Naming the metric stops Claude picking a neighbour. | `Brand Visibility`, `Share of Voice`, `Citation Rate` |
+
+## Copy-paste prompts
+
+### Match a dashboard KPI
+
+```
+Using Superlines, for the brand "Acme Insurance": call analyze_metrics with
+startDate 2026-08-18, endDate 2026-09-14, metrics brand_visibility and citation_rate,
+granularity total. Report the exact values and the dataFreshness.latest_response_at
+timestamp from the response. Do not round.
+```
+
+Compare against the dashboard with the same dates and **Include current date** off.
+
+### Brand leaderboard (Brands by Brand Visibility)
+
+```
+Using Superlines, for the brand "Acme Insurance": call analyze_brand_mentions with
+startDate 2026-08-18, endDate 2026-09-14, consolidate true, limit 20.
+List the brands with their mention_count in a table, exactly as returned.
+```
+
+`consolidate: true` merges name variants ("OP", "OP Ryhmä", "OP Pohjola") the same way the dashboard does. Without it you get raw extracted names and the list will not match.
+
+### Period-over-period change
+
+```
+Using Superlines, for the brand "Acme Insurance": call get_period_comparison with periodDays 28.
+For each metric, show current value, previous value and the change, using only the
+numbers in the response. State both date ranges the tool used.
+```
+
+### Per-engine breakdown
+
+```
+Using Superlines, for the brand "Acme Insurance": call analyze_metrics with
+startDate 2026-08-18, endDate 2026-09-14, metrics brand_visibility,
+groupBy llm_service. Show one row per engine, values as returned.
+```
+
+### Which engines show which competitors
+
+```
+Using Superlines, for the brand "Acme Insurance": call get_visibility_heatmap with
+startDate 2026-08-18, endDate 2026-09-14. Show the table exactly as returned
+and tell me which engine has the lowest visibility for Acme Insurance.
+```
+
+### A verifiable summary for a client
+
+```
+Using Superlines, for the brand "Acme Insurance" from 2026-08-18 to 2026-09-14:
+1. analyze_metrics → brand_visibility, citation_rate, mentions, share_of_voice
+2. analyze_brand_mentions with consolidate true, limit 10
+3. get_period_comparison with periodDays 28
+Write a one-page summary. Every number must come from a tool response. After each
+number, put the tool name in brackets. End with the dataFreshness.latest_response_at
+timestamp so I can check it against the dashboard.
+```
+
+## Questions to avoid, and what to ask instead
+
+<AccordionGroup>
+  <Accordion title="Don't: “How is Acme Insurance doing?”">
+    No dates, no metric. Claude will pick the tool's default window (30 days including today) and whichever metric it finds first. The result cannot be checked against anything.
+
+    **Ask instead:** *"For Acme Insurance, what was Brand Visibility from 2026-08-18 to 2026-09-14? Use analyze_metrics."*
+  </Accordion>
+  <Accordion title="Don't: “Compare this month to last month”">
+    "This month" is ambiguous (calendar month vs. last 30 days) and today is partial. Claude may also call two tools with slightly different windows and compare them.
+
+    **Ask instead:** *"Call get_period_comparison with periodDays 28"* — one call, two aligned windows, or give both date ranges explicitly.
+  </Accordion>
+  <Accordion title="Don't: “What's our visibility?” when you mean the leaderboard">
+    `analyze_brand_mentions` returns a `brand_visibility` field that is the brand's **share of all mentions**, not the dashboard's Brand Visibility (share of responses that mention the brand). They are different metrics with the same name.
+
+    **Ask instead:** For the KPI, use `analyze_metrics` → `brand_visibility`. For the leaderboard, use `analyze_brand_mentions` and read `mention_count` and `share_of_voice`.
+  </Accordion>
+  <Accordion title="Don't: “Add up the daily numbers”">
+    Daily Brand Visibility values are percentages of different denominators. Summing or averaging them does not reproduce the period total.
+
+    **Ask instead:** call the same tool with `granularity: total` for the period.
+  </Accordion>
+  <Accordion title="Don't: “Roughly how much…” / “About what percent…”">
+    This invites rounding and estimation. The server instructs Claude to report exact values; asking for approximations works against that.
+
+    **Ask instead:** *"Report the exact values returned. Do not round."*
+  </Accordion>
+  <Accordion title="Don't: ask about a brand without naming it">
+    If your API key has access to several brands and you omit the name, tools return everything combined and add a `warning` field. Claude should relay it, but the numbers will already be in the conversation.
+
+    **Ask instead:** always say *for the brand "…"* using the exact name from `list_brands`.
+  </Accordion>
+  <Accordion title="Don't: mix MCP output with a screenshot from a different day">
+    Collection runs continuously. A dashboard screenshot from the morning and an MCP answer from the afternoon can legitimately differ.
+
+    **Ask instead:** compare `dataFreshness.latest_response_at` in the MCP response with the dashboard's **Data updated** indicator. Same timestamp, same data.
+  </Accordion>
+</AccordionGroup>
+
+## Known differences between MCP and the dashboard
+
+These are real today and worth knowing before you compare. We are consolidating all surfaces onto one metric layer; until that ships, treat these as expected.
+
+| Area | Dashboard | MCP / Metrics API | What to do |
+|---|---|---|---|
+| Default date window | Last 28 days ending yesterday | Last 30 days ending **today** | Always pass explicit dates ending yesterday. |
+| Prompt population | Active prompts only | All responses for the brand, including paused prompts' history | If you have paused prompts, expect small differences unless you filter by `promptId`. |
+| `brand_visibility` in `analyze_brand_mentions` | Not shown | Share of mentions, **not** Brand Visibility | Use `analyze_metrics` for Brand Visibility. |
+| Brand name variants | Merged via Brand Settings mappings | Merged only with `consolidate: true` | Pass `consolidate: true`. |
+| Names hidden with **Hide from Brand Lists** | Removed | Removed | Same behaviour — nothing to do. |
+| Today's data | Hidden by default | Included by default | End the range yesterday. |
+
+## Reading `dataFreshness`
+
+Every analytics tool response now includes:
+
+```json
+"dataFreshness": {
+  "latest_response_at": "2026-09-15T05:41:12.000Z",
+  "latest_response_date": "2026-09-15",
+  "hours_since_latest": 9,
+  "computed_at": "2026-09-15T14:36:02.114Z",
+  "domain_ids": ["abc123"]
+}
+```
+
+- `latest_response_at` is the newest AI response collected for the brand. The dashboard shows the same value as **Data updated … ago** in the filter bar and as **Last collected** inside the date picker.
+- If `hours_since_latest` is above 36, collection is behind. Numbers are still correct for the data that exists, but the most recent day may be incomplete. Claude is instructed to warn you.
+- Two answers are only comparable if their `latest_response_at` values match.
+
+## Setting expectations with clients
+
+If you present Superlines data to your own clients:
+
+1. Pull the numbers with one of the prompts above, with explicit dates.
+2. Open the dashboard with the same dates and **Include current date** off.
+3. Check that **Data updated** matches `latest_response_at`.
+4. Quote the date range and the "data as of" timestamp on the slide.
+
+If a number still differs after those steps, send us the prompt, the tool response, and a dashboard screenshot — that is a defect on our side, not a usage problem.

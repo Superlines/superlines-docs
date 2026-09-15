@@ -49,12 +49,128 @@ Each brand has independent analytics and configuration. Use the **domain switche
 
 ## Brand settings explained
 
-### Brand name & variations
+### Brand Detection
 
-Superlines uses your brand name to detect mentions in AI responses. You can also configure:
+The **Brand Detection** card in Brand Settings controls how Superlines identifies mentions of your brand in AI responses. Detection uses a two-step process:
 
-- **Brand name variations** — alternative spellings or abbreviations (e.g., "Nike Run Club", "NRC")
-- **Brand exclude list** — terms that should NOT count as brand mentions
+1. **AI extraction** — an AI model reads the full response and extracts every company, brand, and product name it finds. This step is unbiased because the model doesn't know which brand you're looking for.
+2. **Matching** — Superlines checks whether any of your brand names (including variations you configure) appear in the extracted list. A secondary regex-based check provides an additional signal.
+
+If a match is found, Superlines also runs **sentiment analysis** to determine whether the mention is positive, neutral, or negative.
+
+Brand Detection accuracy depends on two settings described below: **Brand Name Variations** (to catch all the ways your brand might be mentioned) and the **Exclude List** (to filter out false positives from similar-sounding names).
+
+### Your Brand Name Variations
+
+Alternative names, abbreviations, acronyms, or common misspellings that AI models might use when referring to your brand. Superlines checks all of these during brand detection, so adding variations ensures you capture every mention.
+
+<Steps>
+  <Step title="Open Brand Settings">
+    Navigate to **Settings → Brand Settings** and select the brand you want to configure.
+  </Step>
+  <Step title="Find the Brand Detection card">
+    Scroll to the **Brand Detection** section.
+  </Step>
+  <Step title="Add variations">
+    In the **Your Brand Name Variations** field, enter comma-separated values. For example:
+
+    `Microsoft Corp, MSFT, MS Corporation`
+  </Step>
+  <Step title="Save">
+    Click **Save Settings** at the bottom of the page. Changes take effect on the next analysis cycle.
+  </Step>
+</Steps>
+
+**What to include:**
+
+| Type | Example (brand: "Nike Running") |
+|---|---|
+| Abbreviations | NRC |
+| Alternate forms | Nike Run Club |
+| Common misspellings | Nikee Running |
+| Stock tickers / acronyms | NKE |
+| Localized names | ナイキ (Japanese) |
+
+<Tip>
+Check the **Response Analysis** page for responses where your brand is *not* detected. If you spot mentions that use an alternative name, add that name as a variation.
+</Tip>
+
+<Warning>
+Do not add generic words (e.g., "running", "cloud") as variations — they will trigger false positives across many responses.
+</Warning>
+
+### Exclude List from My Brand
+
+Brand names that look similar to yours but should **not** be counted as your brand mentions. The exclude list filters out these names after extraction, preventing false positives in your analytics.
+
+<Steps>
+  <Step title="Open Brand Settings">
+    Navigate to **Settings → Brand Settings** and select the brand you want to configure.
+  </Step>
+  <Step title="Find the Brand Detection card">
+    Scroll to the **Brand Detection** section.
+  </Step>
+  <Step title="Add exclusions">
+    In the **Exclude List from My Brand** field, enter comma-separated values. For example:
+
+    `Microsoft Office, MS Paint, MS-DOS`
+  </Step>
+  <Step title="Save">
+    Click **Save Settings**. Excluded names are filtered out starting with the next analysis cycle.
+  </Step>
+</Steps>
+
+**When to use the exclude list:**
+
+| Scenario | Your brand | Exclude |
+|---|---|---|
+| Parent brand vs. sub-product | Microsoft | Microsoft Office, Microsoft Teams |
+| Abbreviation collision | MS (your brand) | MS Paint, MS-DOS, MS Excel |
+| Similar brand name | Meta (your brand) | Meta Quest, Meta Platforms |
+| Industry overlap | Apple (fruit brand) | Apple Inc, Apple Watch, iPhone |
+
+<Info>
+Excluded names only affect **your brand's** mention counts. They do not change how competitor brands are detected or reported.
+</Info>
+
+<Tip>
+Review the **Response Analysis** page and filter for "Brand mentioned" to spot false positives. If a response is incorrectly marked as mentioning your brand because of a similar name, add that name to the exclude list.
+</Tip>
+
+### Hide from Brand Lists (Not a Brand)
+
+AI answers sometimes name things that are not brands at all — product categories, regulators, insurance types — and the extractor stores them alongside real brands. A Finnish pension insurer, for example, will see **YEL** and **TyEL** (statutory pension insurance types) appear as "brands" next to its actual competitors.
+
+The exclude list above does not remove these: it only stops a name from counting as *your* brand. **Hide from Brand Lists** removes the name from brand listings everywhere.
+
+<Steps>
+  <Step title="Open Brand Settings">
+    Navigate to **Settings → Brand Settings** and select the brand you want to configure.
+  </Step>
+  <Step title="Find the Brand Detection card">
+    Scroll to the **Brand Detection** section.
+  </Step>
+  <Step title="Add the names to hide">
+    In the **Hide from Brand Lists (Not a Brand)** field, enter comma-separated values. For example:
+
+    `YEL, TyEL, Kela`
+  </Step>
+  <Step title="Save">
+    Click **Save Settings**. Hidden names disappear from listings on the next load (dashboard results are cached for up to two minutes).
+  </Step>
+</Steps>
+
+Hidden names are removed from:
+
+- **Brands by Brand Visibility** and the **Competitor Visibility Heatmap** in the dashboard, plus the **Competitor Analysis** and **Brand Sentiment** pages
+- `analyze_brand_mentions`, `get_visibility_heatmap` and `get_competitor_insights` in the MCP server
+- The `brands` endpoint of the Metrics API
+
+Because they are removed *before* aggregation, they also stop counting towards the Share of Voice denominator, so the remaining brands' shares add up to 100% again.
+
+<Info>
+Matching is case-insensitive on the exact name (`tyel` hides `TyEL` and `TYEL`, but not `TyEL-vakuutus`). Add each variant you see in the listing.
+</Info>
 
 ### Competitor mappings
 

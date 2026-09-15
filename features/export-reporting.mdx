@@ -76,6 +76,20 @@ For programmatic access, several dedicated export endpoints are available:
 
 See the [API Endpoints](/api/endpoints) documentation for authentication and endpoint details.
 
+### Tracked Prompts export: metric columns explained
+
+Three columns in the Tracked Prompts export are easy to mix up:
+
+| Column | What it contains |
+|---|---|
+| **Brand Mentions** | Number of responses where your brand was detected anywhere in the response text, including common name variants. Same detection as the dashboard KPI card. |
+| **Brand Visibility** | Percentage of responses where your **exact brand name** appears in the structured list of brands extracted from the response. A stricter rule, so this is typically lower than `Brand Mentions ÷ AI Responses`. |
+| **Share of Voice** | Your brand's mentions as a share of **all** brand mentions (yours + competitors) in the same responses. A share-of-mentions metric, not a response rate. |
+
+<Note>
+To reconcile the export with the dashboard's "X of Y AI responses mention your brand" figure, use **Brand Mentions ÷ AI Responses** per prompt — summed across prompts, these reproduce the dashboard and label-level Brand Visibility exactly. See the [Metrics Glossary](/analytics/metrics-glossary) for why the Brand Visibility column can differ.
+</Note>
+
 ## Other export options
 
 ### Chart exports
@@ -97,7 +111,7 @@ Generated articles from the [Content Module](/content/overview) can be exported 
 
 For scheduled and automated reporting, consider:
 
-- **[Looker Studio](/integrations/looker-studio)** — connect Superlines data to Google Looker Studio for custom dashboards and scheduled email reports
+- **[Looker Studio](/integrations/looker-studio)** — connect Superlines data to Looker Studio for custom dashboards and scheduled email reports
 - **[MCP Server](/mcp/overview)** — build custom reporting workflows using the MCP tools
 - **[REST API](/api/endpoints)** — pull data programmatically into your own reporting systems
 

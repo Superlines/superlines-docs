@@ -350,7 +350,7 @@ Real-time opportunity alerts, weekly summaries, and sentiment notifications.
 
 ### Looker Studio
 
-Connect Superlines data to Google Looker Studio for custom dashboards and automated reports.
+Connect Superlines data to Looker Studio for custom dashboards and automated reports.
 
 ---
 

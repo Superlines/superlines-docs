@@ -26,6 +26,15 @@ Brand Visibility = (Responses mentioning your brand / Total responses) × 100
 Brand Visibility is the single most important metric — it tells you how visible your brand is when people ask AI about topics relevant to your business.
 </Note>
 
+### Dashboard level vs. per-prompt level
+
+Brand Visibility is detected in two slightly different ways depending on where you look:
+
+- The **dashboard KPI card and label/theme-level figures** count a response when your brand is found anywhere in the response text, including common name variants (e.g., "Yale" counts for the brand "Yale Home").
+- The **per-prompt Brand Visibility** in the Prompts table and Tracked Prompts CSV export applies a stricter rule: a response counts only when your exact brand name appears in the structured list of brands extracted from that response.
+
+Because the per-prompt rule is stricter, per-prompt percentages can all sit below the label-level figure they belong to — this is expected. To reconcile the CSV export with the dashboard KPI, divide **Brand Mentions** by **AI Responses** per prompt; those columns use the same detection as the dashboard and roll up to it exactly.
+
 ## Share of Voice (SOV)
 
 **What it measures:** Your brand mentions as a percentage of **all brand mentions** (yours + competitors).
@@ -117,6 +126,23 @@ The leaderboard ranks **all brands** by their volume-weighted average position a
 <Tip>
 Average Position is particularly useful for understanding *quality* of visibility. A brand can have high Brand Visibility (mentioned often) but poor Average Position (mentioned last). Improving your position means AI models see your brand as a more primary recommendation.
 </Tip>
+
+## Industry Average
+
+**What it measures:** The average score of the brands shown in the Industry Ranking table, used as a benchmark reference on the Brand Visibility, Citation Rate, and Sentiment KPI cards.
+
+```
+Industry Average = Simple mean of the metric across the top 10 brands in the Industry Ranking
+```
+
+Which brands are included depends on the **Only my competitors** toggle in the Industry Ranking section of the Visibility Dashboard:
+
+- **Toggle on (default):** your configured competitors plus your own brand
+- **Toggle off:** all brands detected in AI responses
+
+<Note>
+The Industry Average always includes your own brand, covers at most the top 10 brands shown in the ranking, and is unweighted — every brand counts equally regardless of how many mentions it has.
+</Note>
 
 ## Sentiment Score
 

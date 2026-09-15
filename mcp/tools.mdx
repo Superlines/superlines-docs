@@ -3,7 +3,7 @@ title: Available Tools
 description: Complete reference of all MCP tools available in the Superlines MCP server.
 ---
 
-The Superlines MCP server exposes **27 tools** organized into categories. Most tools are read-only. The [Account Management](#account-management) tools can create brands and manage prompts — these require **write permissions** on your API key.
+The Superlines MCP server exposes **30 tools** organized into categories. Most tools are read-only. The [Account Management](#account-management) tools can create brands and manage prompts — these require **write permissions** on your API key.
 
 <Tip>
 When asking about a **specific brand**, always include the brand name in your query. The AI assistant will pass it to the `brands` parameter automatically. If you omit brands, data for **all** brands in your organization is returned.
@@ -256,7 +256,7 @@ Generate a priority-ranked action plan with improvement potential scores.
 ## Account Management
 
 <Warning>
-These tools modify your account. They require **write permissions** on your API key. See [API Key Permissions](/mcp/setup#api-key-permissions) for setup instructions. Deletion is not supported — use `pause_prompts` instead.
+These tools modify your account. They require **write permissions** on your API key. See [API Key Permissions](/mcp/setup#api-key-permissions) for setup instructions.
 </Warning>
 
 ### `create_brand`
@@ -285,6 +285,37 @@ Check the progress of brand setup after `create_brand`. Returns analysis status,
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `domainId` | string | Yes | The domain ID returned by `create_brand` |
+
+### `update_brand`
+
+Update brand details such as topic, company description, country, language, industry, or competitors. Use this to correct or improve auto-detected values from brand analysis.
+
+**Permission required:** `write:brands`
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Domain ID from `list_brands` |
+| `topic` | string | No | Concise topic (2–4 words, e.g. `AI Search Analytics`) |
+| `companyDescription` | string | No | 1–2 sentence company elevator pitch |
+| `country` | string | No | Target country (e.g. `Finland`) |
+| `language` | string | No | Target language (e.g. `English`) |
+| `industry` | string | No | Industry vertical (e.g. `SaaS`) |
+| `competitors` | array | No | Updated competitor list — replaces existing list |
+
+<Note>
+Setting `topic` triggers automatic recomputation of the standardized topic used in analytics.
+</Note>
+
+### `list_prompts`
+
+List tracked prompts for a brand or across all brands. Returns prompt text, status, labels, and metadata. Also returns your organization's quota usage.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | No | Filter by a specific domain. Omit to list prompts across all domains. |
+| `status` | string | No | `active`, `paused`, or `all` (default) |
+| `label` | string | No | Filter by label |
+| `limit` | number | No | Max prompts to return (default: 200, max: 500) |
 
 ### `add_prompts`
 
@@ -340,3 +371,19 @@ Add, remove, or set labels on prompts. Labels help organize prompts into categor
 | `promptIds` | string[] | Yes | Prompt IDs to update (max 100) |
 | `label` | string | Yes | The label to add, remove, or set |
 | `action` | string | No | `set` (default — replaces all labels), `add`, or `remove` |
+
+### `delete_prompts`
+
+Permanently delete tracked prompts by ID or by label filter. Deleted prompts cannot be recovered.
+
+**Permission required:** `write:prompts`
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `domainId` | string | Yes | Domain ID from `list_brands` |
+| `promptIds` | string[] | No | Specific prompt IDs to delete (max 100). Use this OR `label`. |
+| `label` | string | No | Delete all prompts with this label. Use this OR `promptIds`. |
+
+<Warning>
+Deletion is **permanent and irreversible**. Use `pause_prompts` if you may want to reactivate the prompts later. Historical response data linked to the prompts is retained for reporting.
+</Warning>

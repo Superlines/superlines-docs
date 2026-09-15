@@ -41,10 +41,21 @@ Retrieve core performance metrics for your brands.
 | `startDate` | string | No | Start date (`YYYY-MM-DD`) |
 | `endDate` | string | No | End date (`YYYY-MM-DD`) |
 | `granularity` | string | No | `total` (default), `daily`, `weekly`, `monthly` |
-| `groupBy` | string or string[] | No | Group results by dimension(s) |
-| `filters` | object | No | Additional filter criteria |
+| `groupBy` | string or string[] | No | Group results by dimension(s). Valid dimensions: `llm_service`, `llm_model`, `prompt_id`, `domain_id`, `intent`, `country`, `naics_code`, `brand` |
+| `filters` | object | No | Additional filter criteria (see below) |
 
-**Example (POST):**
+**Filters object:**
+
+| Key | Type | Description |
+|---|---|---|
+| `llmService` | string or string[] | Filter by AI engine (e.g. `"chatgpt"`, `"perplexity"`) |
+| `llmModel` | string or string[] | Filter by specific model |
+| `promptId` | string or string[] | Filter by prompt ID(s) |
+| `intent` | string | Filter by intent type |
+| `country` | string | Filter by country |
+| `naicsCode` | string | Filter by NAICS industry code |
+
+**Example — aggregated metrics:**
 
 ```bash
 curl -X POST https://api.superlines.io \
@@ -57,6 +68,40 @@ curl -X POST https://api.superlines.io \
     "startDate": "2025-01-01",
     "endDate": "2025-01-31",
     "granularity": "weekly"
+  }'
+```
+
+**Example — metrics grouped by prompt:**
+
+Use `groupBy` with `prompt_id` to get metrics broken down per prompt instead of aggregated. To discover prompt IDs, use the [prompts endpoint](#prompts).
+
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "metrics",
+    "metrics": ["brand_visibility", "citation_rate"],
+    "brands": ["My Brand"],
+    "groupBy": ["prompt_id"],
+    "startDate": "2025-01-01",
+    "endDate": "2025-01-31"
+  }'
+```
+
+You can also combine `groupBy` with `filters` to narrow results to specific prompts:
+
+```bash
+curl -X POST https://api.superlines.io \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "metrics",
+    "metrics": ["brand_visibility", "citation_rate"],
+    "groupBy": ["prompt_id"],
+    "filters": {
+      "promptId": ["prompt_abc123", "prompt_def456"]
+    }
   }'
 ```
 
@@ -88,6 +133,10 @@ curl -H "Authorization: Bearer $API_KEY" \
 }
 ```
 
+<Tip>
+**Per-prompt workflow:** Call `endpoint=prompts` to get prompt IDs, then use `endpoint=metrics` with `groupBy: ["prompt_id"]` to get `brand_visibility`, `citation_rate`, and other metrics for each individual prompt.
+</Tip>
+
 ---
 
 ## Brand mentions
@@ -103,12 +152,22 @@ Get brand mention data with sentiment and share of voice.
 | `startDate` | string | No | Start date (`YYYY-MM-DD`) |
 | `endDate` | string | No | End date (`YYYY-MM-DD`) |
 | `granularity` | string | No | `total` (default), `daily`, `weekly`, `monthly` |
-| `groupBy` | string or string[] | No | Group results by dimension(s) |
-| `filters` | object | No | Additional filter criteria |
+| `groupBy` | string or string[] | No | Group results by dimension(s). Valid dimensions: `llm_service`, `llm_model`, `prompt_id`, `domain_id`, `intent`, `country`, `naics_code` |
+| `filters` | object | No | Additional filter criteria (see below) |
 | `topN` | number | No | Max brands to return (default: 50) |
 | `includeSentiment` | boolean | No | Include sentiment data (default: true) |
 | `includeShareOfVoice` | boolean | No | Include SOV data (default: true) |
 | `minMentions` | number | No | Minimum mention count to include (default: 1) |
+
+**Filters object:**
+
+| Key | Type | Description |
+|---|---|---|
+| `llmService` | string or string[] | Filter by AI engine |
+| `llmModel` | string or string[] | Filter by specific model |
+| `promptId` | string or string[] | Filter by prompt ID(s) |
+| `intent` | string | Filter by intent type |
+| `country` | string | Filter by country |
 
 **Example:**
 
@@ -141,11 +200,22 @@ Get citation data at domain or URL level.
 | `startDate` | string | No | Start date (`YYYY-MM-DD`) |
 | `endDate` | string | No | End date (`YYYY-MM-DD`) |
 | `granularity` | string | No | `total` (default), `daily`, `weekly`, `monthly` |
-| `groupBy` | string or string[] | No | Group results by dimension(s) |
-| `filters` | object | No | Additional filter criteria |
+| `groupBy` | string or string[] | No | Group results by dimension(s). Valid dimensions: `llm_service`, `llm_model`, `prompt_id`, `domain_id`, `country`, `topic`, `language` |
+| `filters` | object | No | Additional filter criteria (see below) |
 | `topN` | number | No | Max results (default: 100) |
 | `aggregateBy` | string | No | `domain` (default) or `url` |
 | `includeUrls` | boolean | No | Include URL-level data (default: true) |
+
+**Filters object:**
+
+| Key | Type | Description |
+|---|---|---|
+| `llmService` | string or string[] | Filter by AI engine |
+| `llmModel` | string or string[] | Filter by specific model |
+| `promptId` | string or string[] | Filter by prompt ID(s) |
+| `domain` | string | Filter by cited domain (partial match) |
+| `country` | string | Filter by country |
+| `topic` | string | Filter by topic |
 
 **Example:**
 
@@ -175,12 +245,36 @@ Get search query data associated with your tracked prompts.
 |---|---|---|---|
 | `brands` | string or string[] | No | Filter by brand name(s) |
 | `promptId` | string | No | Filter by a specific prompt ID |
-| `groupBy` | string or string[] | No | Group results by dimension(s) |
-| `filters` | object | No | Additional filter criteria |
+| `groupBy` | string or string[] | No | Group results by dimension(s). Valid dimensions: `llm_service`, `llm_model`, `prompt_id`, `domain_id`, `country`, `naics_code`, `standardized_topic`, `business_type` |
+| `filters` | object | No | Additional filter criteria (see below) |
 | `topN` | number | No | Max results (default: 100) |
 | `sortBy` | string | No | `prompts` (default) or `query` |
 | `minVolume` | number | No | Minimum volume threshold (default: 0) |
 | `includeMetadata` | boolean | No | Include metadata (default: true) |
+
+**Filters object:**
+
+| Key | Type | Description |
+|---|---|---|
+| `llmService` | string or string[] | Filter by AI engine |
+| `intent` | string | Filter by intent type |
+| `userJourneyStage` | string | Filter by user journey stage |
+| `category` | string | Filter by category |
+| `country` | string | Filter by country |
+| `naicsCode` | string | Filter by NAICS industry code |
+
+**Response fields:**
+
+| Field | Type | Description |
+|---|---|---|
+| `query` | string | The search query text |
+| `prompt_count` | number | Number of prompts associated with this query |
+| `last_updated` | string | Timestamp of the most recent data |
+| `brands_mentioned` | number | Total number of distinct brands detected in the AI responses for this query — includes **all** brands (yours, competitors, and others), not only your own |
+
+<Info>
+`brands_mentioned` counts every distinct brand, product, or service name found in the AI-generated response text. For example, if a response mentions your brand plus three competitors, `brands_mentioned` is 4.
+</Info>
 
 **Example:**
 
@@ -212,7 +306,23 @@ List tracked prompts for your brands.
 | `labels` | string or string[] | No | Filter by label(s) |
 | `sortBy` | string | No | `createdAt` (default), `lastRunAt`, `promptText` |
 | `topN` | number | No | Max results (default: 100) |
-| `includeMetadata` | boolean | No | Include metadata (default: true) |
+| `includeMetadata` | boolean | No | Include extended metadata fields (default: true) |
+
+**Response fields:**
+
+| Field | Type | Description |
+|---|---|---|
+| `promptId` | string | Unique identifier for the prompt. Use this with `groupBy` or `filters.promptId` on other endpoints. |
+| `promptText` | string | The prompt text |
+| `status` | string | Current status (`active`, `paused`, etc.) |
+| `intent` | string | Detected intent type |
+| `category` | string | Prompt category |
+| `labels` | string[] | Labels assigned to this prompt |
+| `createdAt` | string | ISO 8601 creation timestamp |
+| `lastRunAt` | string | ISO 8601 timestamp of the last analysis run |
+| `domainId` | string | The brand (domain) this prompt belongs to |
+
+When `includeMetadata` is `true`, additional fields are returned: `userJourneyStage`, `commercial`, `source`, `naicsCode`, `country`.
 
 **Example:**
 
@@ -228,6 +338,33 @@ curl -X POST https://api.superlines.io \
   }'
 ```
 
+**Response:**
+
+```json
+{
+  "success": true,
+  "endpoint": "prompts",
+  "data": [
+    {
+      "promptId": "abc123",
+      "promptText": "What is the best project management tool?",
+      "status": "active",
+      "intent": "informational",
+      "category": "software",
+      "labels": ["product", "comparison"],
+      "createdAt": "2025-01-15T10:30:00.000Z",
+      "lastRunAt": "2025-01-31T08:00:00.000Z",
+      "domainId": "domain_xyz"
+    }
+  ],
+  "metadata": { ... }
+}
+```
+
+<Tip>
+Use `promptId` from this endpoint to filter or group data on the `metrics`, `brands`, `citations`, and `queries` endpoints — for example, `groupBy: ["prompt_id"]` or `filters: { "promptId": ["abc123"] }`.
+</Tip>
+
 ---
 
 ## Responses
@@ -242,10 +379,36 @@ Get raw AI response data for your tracked prompts.
 | `labels` | string or string[] | No | Filter by prompt label(s) |
 | `startDate` | string | No | Start date (`YYYY-MM-DD`) |
 | `endDate` | string | No | End date (`YYYY-MM-DD`) |
-| `filters` | object | No | Additional filter criteria |
+| `filters` | object | No | Additional filter criteria (see below) |
 | `sortBy` | string | No | `createdAt` (default) or `promptId` |
 | `topN` | number | No | Max results (default: 100) |
 | `includeFullText` | boolean | No | Include full response text (default: false) |
+
+**Filters object:**
+
+| Key | Type | Description |
+|---|---|---|
+| `llmService` | string or string[] | Filter by AI engine |
+| `llmModel` | string or string[] | Filter by specific model |
+| `promptId` | string or string[] | Filter by prompt ID(s) |
+| `brandMentioned` | boolean | Only responses where your brand is/isn't mentioned |
+| `websiteCited` | boolean | Only responses where your website is/isn't cited |
+| `intent` | string | Filter by intent type |
+| `country` | string | Filter by country |
+
+**Response fields:**
+
+| Field | Type | Description |
+|---|---|---|
+| `promptId` | string | The prompt this response belongs to |
+| `promptText` | string | The prompt text |
+| `answerText` | string | The AI-generated response text (when `includeFullText` is true) |
+| `llmService` | string | AI engine that generated the response (e.g. `"chatgpt"`, `"perplexity"`) |
+| `llmModel` | string | Specific model used |
+| `brandMentioned` | boolean | Whether your brand was mentioned in this response |
+| `websiteCited` | boolean | Whether your website was cited in this response |
+| `brands` | string[] | All brands detected in the response text (yours, competitors, and others) |
+| `citations` | object[] | Citations found in the response, each with `url` and `cited` fields |
 
 **Example:**
 
