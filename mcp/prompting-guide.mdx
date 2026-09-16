@@ -117,19 +117,6 @@ timestamp so I can check it against the dashboard.
   </Accordion>
 </AccordionGroup>
 
-## Known differences between MCP and the dashboard
-
-These are real today and worth knowing before you compare. We are consolidating all surfaces onto one metric layer; until that ships, treat these as expected.
-
-| Area | Dashboard | MCP / Metrics API | What to do |
-|---|---|---|---|
-| Default date window | Last 28 days ending yesterday | Last 30 days ending **today** | Always pass explicit dates ending yesterday. |
-| Prompt population | Active prompts only | All responses for the brand, including paused prompts' history | If you have paused prompts, expect small differences unless you filter by `promptId`. |
-| `brand_visibility` in `analyze_brand_mentions` | Not shown | Share of mentions, **not** Brand Visibility | Use `analyze_metrics` for Brand Visibility. |
-| Brand name variants | Merged via Brand Settings mappings | Merged only with `consolidate: true` | Pass `consolidate: true`. |
-| Names hidden with **Hide from Brand Lists** | Removed | Removed | Same behaviour — nothing to do. |
-| Today's data | Hidden by default | Included by default | End the range yesterday. |
-
 ## Reading `dataFreshness`
 
 Every analytics tool response now includes:
