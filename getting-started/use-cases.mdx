@@ -1,23 +1,28 @@
 ---
 title: Use Cases
-description: How different teams and companies use Superlines to improve their AI search visibility.
+description: How enterprise marketing teams and marketing agencies use Superlines for AI Search intelligence.
 ---
 
-Superlines serves a wide range of teams — from enterprise brand organizations managing multi-channel visibility to performance-focused marketers optimizing for AI-driven traffic. Here's how different customer types get the most out of the platform.
+Superlines is an AI Search Intelligence platform for enterprise marketing teams and marketing agencies. It is especially suited to organizations that measure AI Search across multiple brands, markets, languages, competitors and AI engines.
 
-## Enterprise brand monitoring
+## Enterprise marketing teams
 
-**Best for:** Companies with existing marketing data, brand guidelines, and multiple stakeholders across brand, insights, comms, content, and PR teams.
+**Best for:** Enterprise and multi-market brands that need one source of truth for how AI platforms represent the company.
+
+Brand, SEO, content, communications, digital, growth and analytics teams use Superlines inside the broader marketing organization. They are users of the same platform, not separate products.
 
 ### The challenge
 
-Large organizations already have rich data about their market: marketing messages, FAQ databases, support ticket themes, keyword research, and competitive intelligence. The challenge is understanding how this existing knowledge translates to AI search visibility — and coordinating across teams to improve it.
+Large organizations already have marketing messages, FAQ databases, support themes, keyword research and competitive intelligence. The harder problem is understanding how that knowledge shows up in AI Search — across brands, countries, languages and engines — and reporting it in one place.
 
 ### How they use Superlines
 
 <Steps>
-  <Step title="Import existing data as prompts">
-    Use your existing assets as the foundation for AI search monitoring:
+  <Step title="Measure visibility across brands and markets">
+    Create a [brand](/account/brands) for each market, product line or business unit. Compare them in [Cross-Brand Analytics](/analytics/cross-brand-analytics) so leadership sees one view across the organization.
+  </Step>
+  <Step title="Import existing knowledge as prompts">
+    Use assets you already have as the prompt set:
 
     | Data source | Example prompts |
     |---|---|
@@ -29,94 +34,67 @@ Large organizations already have rich data about their market: marketing message
 
     Import via [bulk upload](/account/prompts#bulk-import), [Google Search Console](/integrations/google-search-console), or the [MCP server](/mcp/overview).
   </Step>
-  <Step title="Organize with labels and brands">
-    Structure prompts by team, campaign, product line, or funnel stage using [labels](/account/prompts#labels). Create [separate brands](/account/brands) for different markets or business units.
-  </Step>
-  <Step title="Track brand visibility across teams">
-    Share dashboards across teams. Each team focuses on different metrics:
+  <Step title="Give each team the metric they own">
+    Share dashboards across the marketing organization. Labels keep large prompt sets organized by market, product, campaign or priority.
 
     | Team | Primary focus |
     |---|---|
-    | **Brand / Comms** | Brand Visibility, Sentiment Score, Share of Voice |
-    | **Content / SEO** | Citations, Fan-out Queries, Content Opportunities |
-    | **PR** | Sentiment trends, competitor mention analysis |
-    | **Insights** | Week-over-week trends, engine-level breakdowns |
+    | **Brand** | Brand Visibility, Sentiment Score, Share of Voice |
+    | **SEO and content** | Citations, sources, fan-out queries, content opportunities |
+    | **Communications and PR** | How AI represents the company, sentiment, competitor mentions |
+    | **Digital and growth** | High-intent prompts, engine-level performance, market differences |
+    | **Marketing analytics** | Trends, centralized reporting, API and Looker Studio exports |
   </Step>
-  <Step title="Act on competitive intelligence">
-    Use [fan-out query analysis](/metrics/competitive-intelligence) to discover what content drives AI citations for competitors — and create better content for those topics.
+  <Step title="Act on competitive and source intelligence">
+    Use [fan-out query analysis](/metrics/competitive-intelligence) and citation data to see which sources AI engines rely on, where competitors outperform you, and which prompts are the largest visibility opportunities.
   </Step>
 </Steps>
 
 <Tip>
-Enable [prompt variations](/account/prompt-variations) to test how different phrasings of the same question affect your brand visibility. This is especially valuable for large brands monitoring messaging consistency.
+Enable [prompt variations](/account/prompt-variations) to test how different phrasings of the same question affect brand visibility. This is useful when a global brand needs consistent measurement across markets and languages.
 </Tip>
 
 ---
 
-## Performance-focused AI visibility
+## Marketing agencies
 
-**Best for:** Marketing teams and SEO professionals who want to capture traffic from AI search by appearing in high-volume, high-intent prompts.
-
-### The challenge
-
-Smaller teams may not have extensive existing data. They need to discover which prompts have real market volume and then systematically improve their visibility on those prompts — similar to how traditional SEO targets high-value keywords.
+**Best for:** Agencies managing AI Search visibility for multiple clients, brands or markets.
 
 ### How they use Superlines
 
-<Steps>
-  <Step title="Discover high-value prompts automatically">
-    Start with Superlines' auto-generated prompts, then expand using:
-
-    - **[Prompt Radar](/account/prompt-radar)** — automatically discovers trending prompts from SEO, SERP, and People Also Ask data sources
-    - **[Google Search Console](/integrations/google-search-console)** — imports real queries where you already have impressions or clicks
-    - **[MCP-powered discovery](/mcp/workflows#prompt-discovery)** — use AI agents to scrape trends and add prompts programmatically
-  </Step>
-  <Step title="Focus on strategic prompts">
-    Identify prompts where you must beat competitors. Label these as strategic and monitor them closely. Use [competitive gap analysis](/metrics/competitive-intelligence#competitive-gap-analysis) to prioritize.
-  </Step>
-  <Step title="Optimize content for fan-out queries">
-    When AI engines answer a prompt, they search the web behind the scenes. [Fan-out queries](/metrics/citations#what-are-fan-out-queries) reveal exactly what they search for. Optimize your content to rank for these specific queries.
-  </Step>
-  <Step title="Automate the content pipeline">
-    Use the [MCP server](/mcp/workflows) to build automated workflows:
-    1. Identify prompts where you have low visibility
-    2. Analyze what top-cited pages do well
-    3. Feed insights to a content agent
-    4. Publish optimized content
-    5. Monitor improvement in Superlines
-  </Step>
-</Steps>
+- **One brand per client** — each with its own prompts, competitors, markets and analytics
+- **Portfolio reporting** — [Cross-Brand Analytics](/analytics/cross-brand-analytics) for a view across the client book, then drill into a single brand
+- **Labels** — group prompts by client, campaign, market or priority
+- **Centralized reporting** — scheduled exports, Looker Studio, or the API for client dashboards
+- **MCP in the tools the team already uses** — query a client's visibility from Claude, ChatGPT, Cursor or an n8n workflow without building a separate report each time
+- **Team roles** — give a client read-only access to their brand while the agency keeps admin control
 
 ---
 
-## Agency & multi-brand management
+## Use Superlines outside the platform
 
-**Best for:** Agencies managing AI search visibility for multiple clients, or companies with multiple brands and markets.
+Enterprise teams and agencies rarely want another dashboard as the only place the data lives.
 
-### How they use Superlines
-
-- **Separate brands per client** — each with its own prompts, competitors, and analytics
-- **Label-based organization** — group prompts by campaign, product, or priority across clients
-- **API and MCP integration** — automate reporting and monitoring across all clients
-- **Team roles** — give clients read-only access to their brand data while maintaining admin control
+- **MCP** — bring Superlines intelligence into Claude, ChatGPT, Cursor, n8n and other MCP clients. Ask for share of voice by market, citation sources, or a weekly digest in the assistant or workflow you already use. See the [MCP overview](/mcp/overview).
+- **API** — pull mentions, position, share of voice, citations and prompt-level results into internal dashboards, warehouses and reporting. See [API authentication](/api/authentication).
 
 ---
 
-## Common workflows across all use cases
+## Shared workflows
 
-Regardless of your team type, these workflows apply:
+These workflows apply to both enterprise marketing teams and agencies:
 
 <CardGroup cols={2}>
   <Card title="Prompt Strategy" icon="bullseye" href="/account/prompt-strategy">
-    Learn how to build a comprehensive prompt portfolio from multiple data sources.
+    Build a prompt portfolio from the data sources you already have.
   </Card>
   <Card title="Competitive Intelligence" icon="magnifying-glass" href="/metrics/competitive-intelligence">
-    Use fan-out queries and citations to reverse-engineer competitor content strategies.
+    Use fan-out queries and citations to see which sources and competitors shape AI answers.
   </Card>
-  <Card title="MCP Automation" icon="robot" href="/mcp/workflows">
-    Build automated pipelines that connect Superlines data to content production.
+  <Card title="MCP and API" icon="plug" href="/mcp/overview">
+    Use Superlines data in Claude, ChatGPT, Cursor, n8n and your own reporting.
   </Card>
-  <Card title="Prompt Radar" icon="radar" href="/account/prompt-radar">
-    Automatically discover trending prompts you should be tracking.
+  <Card title="Cross-Brand Analytics" icon="chart-line" href="/analytics/cross-brand-analytics">
+    Compare brands, markets and client portfolios in one view.
   </Card>
 </CardGroup>

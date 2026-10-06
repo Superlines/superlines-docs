@@ -1,6 +1,6 @@
 ---
 title: MCP Setup Guide
-description: Step-by-step guides to connect Superlines to Claude, Cursor, Windsurf, Lovable, ChatGPT, and other MCP clients.
+description: Connect Superlines to Claude, ChatGPT, Cursor, n8n and other MCP clients so marketing teams can use AI Search intelligence where they already work.
 ---
 
 ## Prerequisites
@@ -16,7 +16,7 @@ Before you begin, make sure you have:
 | Method | Protocol | Best for |
 |---|---|---|
 | **OAuth** | OAuth 2.0 + SSE | Claude.ai — no API key needed |
-| **SSE (URL-based)** | Server-Sent Events | Claude Desktop, Cursor, Windsurf, Lovable, ChatGPT, most clients |
+| **SSE (URL-based)** | Server-Sent Events | Claude Desktop, Cursor, ChatGPT, n8n, Windsurf, Lovable, most clients |
 | **Local npx** | Standard I/O | Cursor, Claude Desktop, VS Code — runs locally on your machine |
 | **CLI** | Varies | Claude Code — add servers from the terminal |
 
@@ -52,6 +52,9 @@ Replace `YOUR_API_KEY` with your actual API key.
   </Card>
   <Card title="ChatGPT" icon="message" href="#chatgpt">
     Connector URL
+  </Card>
+  <Card title="n8n" icon="diagram-project" href="#n8n">
+    MCP Client node
   </Card>
   <Card title="VS Code" icon="window" href="#vs-code">
     SSE or local npx
@@ -377,7 +380,7 @@ You can also use **Bearer token** authentication. Set the Server URL to `https:/
   </Step>
   <Step title="Enter the server details">
     - **Name:** `Superlines`
-    - **Description:** `AI Search Analytics — brand visibility, citations, competitor intelligence`
+    - **Description:** `AI Search Intelligence — mentions, share of voice, citations and competitors`
     - **MCP Server URL:** `https://mcpsse.superlines.io?token=YOUR_API_KEY`
   </Step>
   <Step title="Confirm and create">
@@ -390,6 +393,40 @@ You can also use **Bearer token** authentication. Set the Server URL to `https:/
 
 <Note>
 ChatGPT connectors require a remote HTTPS endpoint. Local npx servers do not work with ChatGPT. MCP support in ChatGPT is currently in beta and may evolve — check [OpenAI's documentation](https://developers.openai.com/apps-sdk/deploy/connect-chatgpt/) for the latest setup steps.
+</Note>
+
+---
+
+## n8n {#n8n}
+
+<Info>
+**Method:** MCP Client node over SSE. Use this when a marketing or agency workflow should pull Superlines data on a schedule — for example a Monday digest per brand or market into Slack, Teams or Sheets.
+</Info>
+
+<Steps>
+  <Step title="Add an MCP Client node">
+    In an n8n workflow, add an **MCP Client** node. If an AI Agent should call Superlines as a tool, use **MCP Client Tool** instead and connect it to the agent.
+  </Step>
+  <Step title="Set the server">
+    - **Server Transport:** `SSE`
+    - **Endpoint:** `https://mcpsse.superlines.io`
+    - **Authentication:** Bearer Auth, with your Superlines API key (`sl_live_...`) as the token
+
+    You can also put the key in the URL and set authentication to **None**:
+
+    ```
+    https://mcpsse.superlines.io?token=YOUR_API_KEY
+    ```
+  </Step>
+  <Step title="Choose a tool and run it">
+    n8n loads the Superlines tools from the server. Pick one — for example list brands or a metrics query — fill in the parameters, and execute the node.
+
+    A typical agency or enterprise workflow is: schedule trigger → MCP Client (period comparison for each brand or market) → Slack, email or a spreadsheet.
+  </Step>
+</Steps>
+
+<Note>
+Parameter names in n8n are **Server Transport**, **Endpoint** (shown as MCP Endpoint URL in current n8n docs) and **Authentication**. If SSE does not connect, try the HTTP transport against the same endpoint. The API key must belong to a paid plan.
 </Note>
 
 ---

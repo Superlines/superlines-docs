@@ -1,6 +1,10 @@
 # Superlines Documentation
 
-Superlines is an AI Search Visibility platform that monitors and optimizes how brands appear in AI-powered search results across ChatGPT, Copilot, Gemini, Perplexity, Google AI Overviews, Claude, Grok, Mistral, and DeepSeek.
+Superlines is an AI Search Intelligence platform for enterprise marketing teams and marketing agencies. It provides granular visibility into brand mentions, position, share of voice, citations, sources and competitive performance across AI engines, brands and markets — including ChatGPT, Copilot, Gemini, Perplexity, Google AI Overviews, Claude, Grok, Mistral, and DeepSeek.
+
+It is particularly suited to multi-market and multi-brand organizations. Brand, SEO, content, communications, digital, growth and analytics teams use Superlines inside the enterprise marketing organization. Marketing agencies use it to manage AI Search visibility across client portfolios.
+
+The same intelligence is available in the platform, through the REST API, and through the MCP server in tools such as Claude, ChatGPT, Cursor and n8n.
 
 - Website: https://superlines.io
 - Dashboard: https://analytics.superlines.io

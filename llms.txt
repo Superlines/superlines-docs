@@ -1,6 +1,10 @@
 # Superlines
 
-> Superlines is an AI Search Visibility platform that monitors and optimizes how brands appear in AI-powered search results across ChatGPT, Copilot, Gemini, Perplexity, Google AI Overviews, Claude, Grok, Mistral, and DeepSeek.
+> Superlines is an AI Search Intelligence platform for enterprise marketing teams and marketing agencies. It provides granular visibility into brand mentions, position, share of voice, citations, sources and competitive performance across AI engines, brands and markets — including ChatGPT, Copilot, Gemini, Perplexity, Google AI Overviews, Claude, Grok, Mistral, and DeepSeek.
+
+Superlines is built primarily for enterprise marketing teams and marketing agencies, especially organizations managing multiple brands, markets, languages, competitors and AI engines. Brand, SEO, content, communications, digital, growth and analytics teams use it as part of the broader enterprise marketing organization. They are not separate customer segments.
+
+Use Superlines in the platform, or bring the same intelligence into the tools your organization already uses. Connect through MCP to Claude, ChatGPT, Cursor and n8n, or use the API for dashboards, applications and reporting workflows.
 
 ## Documentation
 
@@ -25,7 +29,7 @@
 ## MCP Server
 
 - [MCP Overview](https://docs.superlines.io/mcp/overview): What the MCP server does, example prompts, available tool categories, and requirements.
-- [MCP Setup Guide](https://docs.superlines.io/mcp/setup): Step-by-step setup for Claude Desktop, Cursor, and VS Code using SSE or npx.
+- [MCP Setup Guide](https://docs.superlines.io/mcp/setup): Step-by-step setup for Claude, ChatGPT, Cursor, n8n, and other MCP clients using OAuth, SSE, or npx.
 - [Available Tools](https://docs.superlines.io/mcp/tools): Complete reference of all 27 MCP tools — brand management, core metrics, webpage analysis, competitive analysis, advanced analytics, strategic tools, and account management.
 
 ## REST API
