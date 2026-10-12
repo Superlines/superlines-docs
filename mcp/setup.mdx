@@ -7,9 +7,15 @@ description: Connect Superlines to Claude, ChatGPT, Cursor, n8n and other MCP cl
 
 Before you begin, make sure you have:
 
-1. A **paid Superlines plan** (Starter, Growth, or Enterprise)
-2. An **API key** from Organization Settings (format: `sl_live_...`) — not required for OAuth on Claude.ai
+1. A **paid Superlines plan** — the MCP server is included on every plan (Starter, Pro, Growth, Enterprise, and the Agency plans)
+2. **Either** an API key (format: `sl_live_...`) **or** an OAuth sign-in:
+   - **API keys** are available on Growth and Enterprise (and Agency Growth and Agency Enterprise), from Organization Settings
+   - **OAuth** works on every plan, including Starter and Pro — use it with [Claude.ai](#claude-ai) or any MCP client that supports OAuth sign-in, pointing it at `https://mcpsse.superlines.io`
 3. An MCP-compatible client installed
+
+<Note>
+On **Starter and Pro**, API keys are not available, so the API-key and npx methods below won't work. Connect with OAuth instead.
+</Note>
 
 ## Connection methods
 
@@ -426,7 +432,7 @@ ChatGPT connectors require a remote HTTPS endpoint. Local npx servers do not wor
 </Steps>
 
 <Note>
-Parameter names in n8n are **Server Transport**, **Endpoint** (shown as MCP Endpoint URL in current n8n docs) and **Authentication**. If SSE does not connect, try the HTTP transport against the same endpoint. The API key must belong to a paid plan.
+Parameter names in n8n are **Server Transport**, **Endpoint** (shown as MCP Endpoint URL in current n8n docs) and **Authentication**. If SSE does not connect, try the HTTP transport against the same endpoint. API keys are available on Growth and Enterprise.
 </Note>
 
 ---
@@ -563,7 +569,8 @@ If it works, try:
 | "Authentication failed" | Verify your API key is correct and starts with `sl_live_` |
 | "No data returned" | Make sure you have at least one brand with tracked prompts |
 | "Connection timeout" | Check your internet connection; the SSE endpoint is at `mcpsse.superlines.io` |
-| "Plan not supported" | MCP requires a paid plan (Starter, Growth, or Enterprise) |
+| "Plan not supported" | MCP requires an active paid plan (Starter, Pro, Growth, Enterprise, or an Agency plan) |
+| Can't generate an API key | API keys are available on Growth and Enterprise. On Starter and Pro, connect with OAuth |
 | "Command not found" (npx) | Ensure Node.js is installed and `npx` is in your PATH |
 | Server hangs on connection | Try the SSE method instead of npx — it's more reliable for remote connections |
 | ChatGPT connector not visible | Confirm Developer Mode is enabled and you have a Plus or Pro subscription |

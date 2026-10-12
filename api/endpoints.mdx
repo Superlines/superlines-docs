@@ -432,10 +432,11 @@ curl -X POST https://api.superlines.io \
 
 ## Rate limits
 
+API access is available on Growth and Enterprise.
+
 | Plan | Requests/minute |
 |---|---|
-| Starter | 60 |
-| Growth | 120 |
+| Growth | 100 |
 | Enterprise | 300 |
 
 Exceeding the rate limit returns a `429` status code with `X-RateLimit-Remaining` and `X-RateLimit-Reset` headers. Implement exponential backoff in your integration.

@@ -13,27 +13,39 @@ Navigate to **Settings** in the sidebar to manage:
 |---|---|
 | **Organization name** | Display name used in reports, invitations, and billing |
 | **Website** | Your organization's primary website URL |
-| **Subscription plan** | Current plan (Starter, Growth, Enterprise) |
+| **Subscription plan** | Current plan (Starter, Pro, Growth, Enterprise, or an Agency plan) |
 
 ## Subscription & usage
 
-Your plan determines what's available across the entire organization:
+Your plan determines what's available across the entire organization. These are the current plans, matching the [pricing page](https://superlines.io/pricing):
 
-| Resource | Starter | Growth | Enterprise |
-|---|---|---|---|
-| **Brands (domains)** | 1 | Multiple | Unlimited |
-| **Tracked prompts** | 50 | 150 | Custom |
-| **Countries** | 1 | Multiple | Unlimited |
-| **Languages** | 1 | Multiple | Unlimited |
-| **Team seats** | 1 | 3 | Custom |
-| **AI engines** | 3 | 3 | All 10 |
-| **Article generations** | 5 | 15 | 50 |
-| **Crawled URLs** | Limited | Higher | Custom |
-| **API access** | No | Yes | Yes |
-| **MCP server** | No | Yes | Yes |
-| **Report Builder** | No | Yes | Yes |
-| **Cross-Brand Analytics** | No | No | Yes |
-| **Dedicated Strategist** | No | No | Yes |
+| Resource | Starter | Pro | Growth | Enterprise |
+|---|---|---|---|---|
+| **Tracked prompts** | 50 | 150 | 300 | 400+ custom |
+| **Prompt frequency** | Daily | Daily | Daily | Daily |
+| **AI engines** | Any 3, from all engines | Any 3, from all engines | Any 3, from all engines | Up to 10 |
+| **Brands** | 1 | 3 | 7 | Unlimited |
+| **Competitors** | Unlimited | Unlimited | Unlimited | Unlimited |
+| **Countries & languages** | Unlimited | Unlimited | Unlimited | Unlimited |
+| **Team seats** | Unlimited | Unlimited | Unlimited | Unlimited |
+| **History in the platform** | 1 month | 2 months | 6 months | All time |
+| **Data exports (CSV, Excel, JSON)** | — | Yes | Yes | Yes |
+| **API access** | — | — | Yes | Yes |
+| **MCP server** | Yes | Yes | Yes | Yes |
+| **Action Center** | Yes | Yes | Yes | Yes |
+| **Article Generator** | 5 / month | 15 / month | 25 / month | Unlimited |
+| **Schema Optimizer** | 10 / month | 25 / month | 25 / month | Unlimited |
+| **AI Search Checker** | 10 / month | 25 / month | 50 / month | Unlimited |
+| **Site crawl & audit** | — | Monthly | Weekly | Weekly |
+| **Cross-Brand Analytics** | — | — | — | Yes |
+| **SSO / SAML** | — | — | — | Yes |
+| **Support** | Email | Email | Priority email | Slack / Teams, dedicated |
+
+**Agency plans** (Agency Starter, Agency Pro, Agency Growth, Agency Enterprise) include everything in the same-named plan above, with a higher brand limit for client brands: 5, 10, 20, and unlimited respectively.
+
+<Note>
+Organizations that subscribed before the current plans were introduced keep the limits of their original agreement. Your **Subscription** page always shows the limits that apply to your organization.
+</Note>
 
 Usage is **aggregated** across all brands. For example, if Brand A uses 100 prompts and Brand B uses 50, your organization total is 150 prompts.
 
@@ -43,22 +55,22 @@ Monitor your usage on the **Subscription** page under Settings. If you're approa
 
 ## LLM engine configuration
 
-Choose which AI platforms to monitor. Your plan determines how many you can enable simultaneously.
+Choose which AI platforms to monitor. Your plan determines how many you can enable simultaneously: Starter, Pro, and Growth can enable any **3** engines from the full list below, and Enterprise can enable up to **10**.
 
 ### Available engines
 
-| Engine | Type | Plan |
-|---|---|---|
-| **ChatGPT** | Online + Offline | Starter+ |
-| **Copilot** | Online | Starter+ |
-| **Perplexity** | Online | Starter+ |
-| **Google AI Overviews** | Online | Enterprise |
-| **Google AI Mode** | Online | Enterprise |
-| **Gemini** | Offline | Enterprise |
-| **Grok** | Online | Enterprise |
-| **Claude** | Offline | Enterprise |
-| **Mistral** | Offline | Enterprise |
-| **DeepSeek** | Offline | Enterprise |
+| Engine | Type |
+|---|---|
+| **ChatGPT** | Online + Offline |
+| **Copilot** | Online |
+| **Perplexity** | Online |
+| **Google AI Overviews** | Online |
+| **Google AI Mode** | Online |
+| **Gemini** | Offline |
+| **Grok** | Online |
+| **Claude** | Offline |
+| **Mistral** | Offline |
+| **DeepSeek** | Offline |
 
 <Info>
 **Online engines** can access current web information and tend to cite sources. **Offline engines** rely on training data and reflect historical brand authority.
@@ -70,11 +82,11 @@ Choose which AI platforms to monitor. Your plan determines how many you can enab
 - **Add Copilot** — covers Microsoft ecosystem
 - **Add Perplexity** — strong for research-based queries
 - **Add AI Overviews** — critical for Google search integration
-- **Enterprise engines** — expand for comprehensive coverage
+- **Need more than 3?** — Enterprise can enable up to 10 engines
 
 ## API keys
 
-API keys provide programmatic access to your Superlines data. Available on all paid plans.
+API keys provide programmatic access to your Superlines data. They are available on **Growth and Enterprise** (and Agency Growth and Agency Enterprise). On Starter and Pro, connect to the [MCP server](/mcp/setup) with OAuth instead.
 
 <Steps>
   <Step title="Navigate to Settings → Subscription or Brand Settings to find your API Key section" />
