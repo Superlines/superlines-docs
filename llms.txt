@@ -42,7 +42,7 @@ Use Superlines in the platform, or bring the same intelligence into the tools yo
 - [Integrations Overview](https://docs.superlines.io/integrations/overview): Available integrations, how they work, setup flow, and permissions.
 - [Google Search Console](https://docs.superlines.io/integrations/google-search-console): Import real user queries and automatically discover relevant prompts to track in AI search.
 - [Google Analytics](https://docs.superlines.io/integrations/google-analytics): Detect LLM-referred traffic to your website and compare AI vs organic visits.
-- [Slack](https://docs.superlines.io/integrations/slack): Receive real-time opportunity alerts, weekly summaries, and sentiment notifications in Slack.
+- [Slack](https://docs.superlines.io/integrations/slack): Connect a Slack channel to your organization; receives daily updates during the free trial.
 - [Looker Studio](https://docs.superlines.io/integrations/looker-studio): Connect Superlines data to Looker Studio for custom dashboards and automated reports.
 
 ## FAQ
